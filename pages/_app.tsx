@@ -1,13 +1,19 @@
-import "../styles/globals.css";
+import { NextUIProvider } from "@nextui-org/react";
+import { globalCss } from "@nextui-org/react";
+import { lightTheme } from "../lib/theme";
 import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
-import { NextUIProvider } from "@nextui-org/react";
-import Layout from "../components/Layout";
 import Head from "next/head";
+import Layout from "../components/root/Layout";
+
+const globalStyles = globalCss({
+  body: { margin: 0 },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
+  globalStyles();
   return (
-    <NextUIProvider>
+    <NextUIProvider theme={lightTheme}>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
