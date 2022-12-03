@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = nextConfig
+  publicRuntimeConfig: {
+    staticFolder: "/static",
+    rounds: 10,
+  },
+};
+module.exports = nextConfig;
