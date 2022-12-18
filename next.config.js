@@ -4,7 +4,8 @@ const nextConfig = {
   swcMinify: true,
   publicRuntimeConfig: {
     staticFolder: "/static",
-    rounds: 10,
+    questions: 10,
+    version: "0.0.1",
   },
 };
 module.exports = nextConfig;

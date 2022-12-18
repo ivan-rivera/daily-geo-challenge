@@ -1,14 +1,21 @@
-import { useMemo } from "react";
-import { createStore, Action, action, persist } from "easy-peasy";
+import { createStore, createTypedHooks, persist } from "easy-peasy";
+import { modalsStore, ModalsStoreModel } from "./modals";
+import { sessionStore, SessionStoreModel } from "./session";
 
-interface StoreModel {
-  count: number;
-  increment: Action<StoreModel, number>;
+export interface StoreModel {
+  modals: ModalsStoreModel;
+  session: SessionStoreModel;
 }
 
-export const store = createStore<StoreModel>({
-  count: 0,
-  increment: action((state, payload) => {
-    state.count += payload;
-  }),
-});
+export const store = createStore<StoreModel>(
+  {
+    modals: modalsStore,
+    session: persist(sessionStore, { storage: "localStorage" }),
+  },
+  {
+    name: "GlobalStore",
+  }
+);
+
+export const { useStoreActions, useStoreState, useStoreDispatch, useStore } =
+  createTypedHooks<StoreModel>();

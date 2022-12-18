@@ -1,35 +1,38 @@
-import type { NextPage } from "next";
-import getConfig from "next/config";
-import { Button, Text, Container } from "@nextui-org/react";
+import Welcome from "../components/welcome/Welcome";
+import Quiz from "../components/quiz/Quiz";
+import { useReset } from "../hooks/storage";
+import { usePage } from "../hooks/session";
 
-// TODO:
-//  - Have a look at Codenames and see what you can copy design-wise
-//  - Add a footer with DEVELOPER, TROUBLESHOOTING, Q&A; add Next.JS logo
-//  - Add a header with a logo, a link to the home page
-//  - Add a rotating card that shows example questions and answers
-//  - Add an image somewhere in the background to spice things up
-//  - Play with the colours
+/**
+ * Main entry point into the app
+ * @constructor
+ * TODO:
+ *  - Create a Page Not Found error page
+ *  - Set up Storybook
+ *  - Set up Cypress and write some tests
+ *  - Design question page + summary page
+ *  - Create a few questions with dummy data (and then create question DB)
+ *  - Set up Firebase
+ *  - Set up Firebase DB schema
+ *  - Pull quiz ID from the server
+ *  - Wire logic to revalidate static props every hours and generate the question every 24 hours
+ *  - Wire state management to respond to data refreshes
+ *  - Look into detailed analytics (e.g. rate of completion, time spent on page, etc)
+ */
+export default function Home(props: StaticProps) {
+  useReset(props.quizId);
+  const [page, _setPage] = usePage();
+  return <>{page === 0 ? <Welcome /> : <Quiz />}</>;
+}
 
-const { publicRuntimeConfig } = getConfig();
+interface StaticProps {
+  quizId: number;
+}
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Text h1 weight="bold" color="primary" css={{ my: "$xl" }}>
-        Daily Geo Challenge
-      </Text>
-      <Text h4 color="error" css={{ mb: "$xl" }}>
-        Test your knowledge of geography with this daily challenge
-      </Text>
-      <Container css={{ mb: "$xl" }}>
-        <Text h4>{publicRuntimeConfig.rounds} daily questions</Text>
-        <Text h4>Share your score and challenge your friends</Text>
-      </Container>
-      <Button shadow size="xl" color="gradient" css={{ mx: "auto" }}>
-        Let's Play
-      </Button>
-    </>
-  );
-};
-
-export default Home;
+export async function getStaticProps(): Promise<{ props: StaticProps }> {
+  return {
+    props: {
+      quizId: 1,
+    },
+  };
+}

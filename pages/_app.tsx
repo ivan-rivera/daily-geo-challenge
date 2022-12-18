@@ -1,35 +1,36 @@
-import { StoreProvider } from "easy-peasy";
-
-import { NextUIProvider } from "@nextui-org/react";
-import { globalCss } from "@nextui-org/react";
-import { lightTheme } from "../lib/theme";
+import { StoreProvider, useStoreRehydrated } from "easy-peasy";
+import { ChakraProvider, Text } from "@chakra-ui/react";
+import theme from "../theme/theme";
 import { store } from "../store/store";
 import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Layout from "../components/root/Layout";
+import React from "react";
 
-const globalStyles = globalCss({
-  body: {
-    margin: 0,
-    padding: 0,
-    textAlign: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-});
+function WaitForStateRehydration({ children }: { children: React.ReactNode }) {
+  const isRehydrated = useStoreRehydrated();
+  return isRehydrated ? (
+    <>{children}</>
+  ) : (
+    <Text fontSize="3xl">Loading...</Text>
+  );
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
-  globalStyles();
   return (
     <StoreProvider store={store}>
-      <NextUIProvider theme={lightTheme}>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
-          rel="stylesheet"
-        />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+        rel="stylesheet"
+      />
+      <ChakraProvider theme={theme}>
         <Layout>
           <Head>
             <title>Daily Geo Challenge</title>
@@ -47,10 +48,12 @@ function MyApp({ Component, pageProps }: AppProps) {
             />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Component {...pageProps} />
+          <WaitForStateRehydration>
+            <Component {...pageProps} />
+          </WaitForStateRehydration>
           <Analytics />
         </Layout>
-      </NextUIProvider>
+      </ChakraProvider>
     </StoreProvider>
   );
 }

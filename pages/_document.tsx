@@ -1,18 +1,18 @@
-import Document, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from "next/document";
-import { CssBaseline } from "@nextui-org/react";
+import { Head, Html, Main, NextScript } from "next/document";
+import { ColorModeScript } from "@chakra-ui/react";
 import React from "react";
+import theme from "../theme/theme";
 
+/**
+ * The main purpose of this document is to insert the initial Chakra color mode
+ * @constructor
+ */
 function MyDocument() {
   return (
     <Html lang="en">
-      <Head>{CssBaseline.flush()}</Head>
+      <Head title="Daily Geo Challenge" />
       <body>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Main />
         <NextScript />
       </body>
@@ -20,12 +20,4 @@ function MyDocument() {
   );
 }
 
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const initialProps = await Document.getInitialProps(ctx);
-  return {
-    ...initialProps,
-    styles: React.Children.toArray([initialProps.styles]),
-  };
-};
-
-export default Document;
+export default MyDocument;

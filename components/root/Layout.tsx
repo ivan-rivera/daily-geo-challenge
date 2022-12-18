@@ -1,29 +1,31 @@
 import React from "react";
+import { Box, Flex } from "@chakra-ui/react";
 import Header from "./Header";
-import Footer from "./Footer";
-import { Container } from "@nextui-org/react";
+import Footer from "./footer/Footer";
+import Modals from "../modals/Modals";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-function Layout({ children }: LayoutProps) {
+/**
+ * Layout component
+ * It is designed to wrap the entire app which consists of header, footer
+ * and the inner content
+ * @param children
+ * @constructor
+ */
+export default function Layout({ children }: LayoutProps) {
   return (
-    <Container
-      xl
-      gap={0}
-      css={{
-        minWidth: "360px",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Header />
-      <Container css={{ flexGrow: 1 }}>{children}</Container>
-      <Footer />
-    </Container>
+    <>
+      <Flex flexDirection="column" minH="100vh" minW="360px">
+        <Header />
+        <Box flexGrow="1" bg="background">
+          {children}
+        </Box>
+        <Footer />
+      </Flex>
+      <Modals />
+    </>
   );
 }
-
-export default Layout;

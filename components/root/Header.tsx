@@ -1,30 +1,18 @@
-import { Row } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
-
-const headerPadding = "10px";
+import { Center, useColorMode } from "@chakra-ui/react";
 
 /**
  * Header component
  * It is only designed to display the logo
  */
-function Header() {
+export default function Header() {
+  const { colorMode } = useColorMode();
+  const imageFile =
+    colorMode === "light" ? "/logo-light.svg" : "/logo-dark.svg";
   return (
-    <header>
-      <Row
-        justify="center"
-        css={{ backgroundColor: "$primary", py: "$xl", minWidth: "360px" }}
-      >
-        <Image
-          src="/logo-large.svg"
-          alt="logo"
-          width="550"
-          height="120"
-          style={{ paddingLeft: headerPadding, paddingRight: headerPadding }}
-        />
-      </Row>
-    </header>
+    <Center bg="primary" p={10} borderBottom="1px" borderBottomColor="tertiary">
+      <Image src={imageFile} alt="logo" width="550" height="120" />
+    </Center>
   );
 }
-
-export default Header;

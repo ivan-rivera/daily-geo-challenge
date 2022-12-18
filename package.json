@@ -6,22 +6,48 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "theme": "chakra-cli tokens theme/theme.ts",
+    "theme:watch": "chakra-cli tokens theme/theme.ts --watch"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.2",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@nextui-org/react": "^1.0.0-beta.10",
+    "@tabler/icons": "^1.116.1",
     "@vercel/analytics": "^0.1.5",
     "easy-peasy": "^5.2.0",
+    "framer-motion": "^6.5.1",
+    "gray-matter": "^4.0.3",
     "next": "13.0.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
+    "@react-buddy/ide-toolbox": "^2.3.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@chakra-ui/cli": "^2.2.0",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-interactions": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
+    "@storybook/react": "^6.5.14",
+    "@storybook/testing-library": "^0.0.13",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "babel-loader": "^8.3.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "eslint-plugin-storybook": "^0.6.7",
     "typescript": "4.9.3"
   }
 }
