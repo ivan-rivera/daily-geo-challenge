@@ -22,7 +22,7 @@ export default function PlayButton() {
       }}
     >
       <Text fontSize="xl" as="b">
-        Let's Play!
+        Let&apos;s Play!
       </Text>
     </Button>
   );

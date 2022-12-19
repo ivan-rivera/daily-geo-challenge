@@ -1,23 +1,27 @@
 import { Center, Text, Link } from "@chakra-ui/react";
+import { useStoreActions } from "../../../store/store";
+import { ModalsStoreModel } from "../../../store/modals";
+import { humanize } from "../../../lib/strings";
 
 interface ModalLinkProps {
-  text: string;
-  onClick: () => void;
+  modal: keyof ModalsStoreModel;
 }
 
 /**
  * Modal Link holder used to display clickable options in the footer
  * that will open up relevant modals
- * @param text - label of the footer item
- * @param onClick - function to be called when the footer item is clicked
+ * @param modal - a key of ModalsStoreModel
  * @constructor
  */
-export default function ModalLink({ text, onClick }: ModalLinkProps) {
+export default function ModalLink({ modal }: ModalLinkProps) {
+  const toggle: () => void = useStoreActions(
+    (actions) => actions.modals[modal].onOpen
+  );
   return (
     <Center>
-      <Link onClick={onClick}>
+      <Link onClick={toggle}>
         <Text fontSize="md" as="b">
-          {text}
+          {humanize(modal)}
         </Text>
       </Link>
     </Center>
