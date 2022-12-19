@@ -20,16 +20,6 @@ function WaitForStateRehydration({ children }: { children: React.ReactNode }) {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <StoreProvider store={store}>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
-        rel="stylesheet"
-      />
       <ChakraProvider theme={theme}>
         <Layout>
           <Head>

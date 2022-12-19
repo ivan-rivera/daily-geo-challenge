@@ -10,7 +10,18 @@ import theme from "../theme/theme";
 function MyDocument() {
   return (
     <Html lang="en">
-      <Head title="Daily Geo Challenge" />
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Main />
