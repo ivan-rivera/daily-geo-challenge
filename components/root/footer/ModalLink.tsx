@@ -1,10 +1,10 @@
-import { Center, Text, Link } from "@chakra-ui/react";
-import { useStoreActions } from "../../../store/store";
-import { ModalsStoreModel } from "../../../store/modals";
-import { humanize } from "../../../lib/strings";
+import { Center, Text, Link } from "@chakra-ui/react"
+import { useStoreActions } from "../../../store/store"
+import { ModalsStoreModel } from "../../../store/modals"
+import { humanize } from "../../../lib/strings"
 
 interface ModalLinkProps {
-  modal: keyof ModalsStoreModel;
+  modal: keyof ModalsStoreModel
 }
 
 /**
@@ -16,14 +16,14 @@ interface ModalLinkProps {
 export default function ModalLink({ modal }: ModalLinkProps) {
   const toggle: () => void = useStoreActions(
     (actions) => actions.modals[modal].onOpen
-  );
+  )
   return (
     <Center>
       <Link onClick={toggle}>
-        <Text fontSize="md" as="b">
+        <Text fontSize={["xs", "md"]} as="b">
           {humanize(modal)}
         </Text>
       </Link>
     </Center>
-  );
+  )
 }

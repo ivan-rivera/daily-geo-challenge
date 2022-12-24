@@ -1,5 +1,5 @@
-import { Text } from "@chakra-ui/react";
-import GenericModal from "./GenericModal";
+import { Text } from "@chakra-ui/react"
+import GenericModal from "./GenericModal"
 
 /**
  * Content that goes into the Troubleshooting modal
@@ -14,7 +14,7 @@ function ModalData() {
       submit a GitGub issue. It would be helpful if you could take a screenshot
       of the problem and include it in the issue.
     </Text>
-  );
+  )
 }
 
 /**
@@ -26,5 +26,5 @@ export default function TroubleshootingModal() {
     <GenericModal title="Troubleshooting" toggle="troubleshooting">
       <ModalData />
     </GenericModal>
-  );
+  )
 }

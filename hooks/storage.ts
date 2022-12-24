@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { QUIZ_ID } from "../lib/constants";
-import { usePage } from "./session";
+import { useEffect } from "react"
+import { QUIZ_ID } from "../lib/constants"
+import { usePage } from "./session"
 
 /**
  * Retrieve the quiz ID
  */
 function getQuizId(): number {
-  return parseInt(localStorage.getItem(QUIZ_ID) || "0");
+  return parseInt(localStorage.getItem(QUIZ_ID) || "0")
 }
 
 /**
@@ -14,7 +14,7 @@ function getQuizId(): number {
  * @param id
  */
 function setQuizId(id: number): void {
-  localStorage.setItem(QUIZ_ID, id.toString());
+  localStorage.setItem(QUIZ_ID, id.toString())
 }
 
 /**
@@ -22,12 +22,12 @@ function setQuizId(id: number): void {
  * @param latestQuizId
  */
 export function useReset(latestQuizId: number) {
-  const [_page, setPage] = usePage();
+  const [_page, setPage] = usePage()
   useEffect(() => {
     if (getQuizId() !== latestQuizId) {
-      console.log("resetting progress...");
-      setQuizId(latestQuizId);
-      setPage(0);
+      console.log("resetting progress...")
+      setQuizId(latestQuizId)
+      setPage(0)
     }
-  }, [latestQuizId]);
+  }, [latestQuizId, setPage])
 }

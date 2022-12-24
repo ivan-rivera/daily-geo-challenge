@@ -33,6 +33,6 @@ const colors = {
     default: "#D8FAFE",
     _dark: "#1F2421",
   },
-};
+}
 
-export default colors;
+export default colors

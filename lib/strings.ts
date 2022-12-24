@@ -3,7 +3,7 @@
  * @param text
  */
 function splitCamelCase(text: string): string {
-  return text.replace(/([a-z])([A-Z])/g, "$1 $2");
+  return text.replace(/([a-z])([A-Z])/g, "$1 $2")
 }
 
 /**
@@ -11,7 +11,7 @@ function splitCamelCase(text: string): string {
  * @param text
  */
 function capitalize(text: string): string {
-  return text.charAt(0).toUpperCase() + text.slice(1);
+  return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
 /**
@@ -19,7 +19,7 @@ function capitalize(text: string): string {
  * @param text
  */
 function capitalizePassage(text: string): string {
-  return text.split(" ").map(capitalize).join(" ");
+  return text.split(" ").map(capitalize).join(" ")
 }
 
 /**
@@ -27,5 +27,5 @@ function capitalizePassage(text: string): string {
  * @param text
  */
 export function humanize(text: string): string {
-  return capitalizePassage(splitCamelCase(text));
+  return capitalizePassage(splitCamelCase(text))
 }

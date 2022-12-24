@@ -1,32 +1,36 @@
-import Welcome from "../components/welcome/Welcome";
-import Quiz from "../components/quiz/Quiz";
-import { useReset } from "../hooks/storage";
-import { usePage } from "../hooks/session";
+import Welcome from "../components/welcome/Welcome"
+import Quiz from "../components/quiz/Quiz"
+import { useReset } from "../hooks/storage"
+import { usePage } from "../hooks/session"
 
 /**
  * Main entry point into the app
  * @constructor
  * TODO:
- *  - Create a Page Not Found error page
- *  - Set up Storybook
- *  - Set up Cypress and write some tests
+ *  - Set up Jest/Vitest and Cypress/Playwright and write some tests
  *  - Design question page + summary page
- *  - Create a few questions with dummy data (and then create question DB)
+ *  - Create the quiz page with few questions with dummy data (and then create question DB)
+ *  - Storybook: mock state to get the quiz component displayed
  *  - Set up Firebase
- *  - Set up Firebase DB schema
+ *  - Set up Firebase DB schema (firestore + local interfaces)
+ *  - Look into Firebase emulator
  *  - Pull quiz ID from the server
  *  - Wire logic to revalidate static props every hours and generate the question every 24 hours
- *  - Wire state management to respond to data refreshes
+ *  - Redesign favicon
  *  - Look into detailed analytics (e.g. rate of completion, time spent on page, etc)
+ *  - Remove redundant dependencies
+ *  - Write proper README (go over the components, fix docs, etc)
+ *  - Add license, contributing guidelines, etc
+ *  - Set up Git templates, etc
  */
 export default function Home(props: StaticProps) {
-  useReset(props.quizId);
-  const [page, _setPage] = usePage();
-  return <>{page === 0 ? <Welcome /> : <Quiz />}</>;
+  useReset(props.quizId)
+  const [page, _setPage] = usePage()
+  return <>{page ? <Quiz /> : <Welcome />}</>
 }
 
 interface StaticProps {
-  quizId: number;
+  quizId: number
 }
 
 export async function getStaticProps(): Promise<{ props: StaticProps }> {
@@ -34,5 +38,5 @@ export async function getStaticProps(): Promise<{ props: StaticProps }> {
     props: {
       quizId: 1,
     },
-  };
+  }
 }

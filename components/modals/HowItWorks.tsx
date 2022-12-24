@@ -1,5 +1,5 @@
-import { Text } from "@chakra-ui/react";
-import GenericModal from "./GenericModal";
+import { Text } from "@chakra-ui/react"
+import GenericModal from "./GenericModal"
 
 /**
  * Content that goes into the How It Works modal
@@ -19,7 +19,7 @@ function ModalData() {
       the entire quiz. Once you complete the quiz, you can share your results
       with your friends ahd challenge them to beat your score.
     </Text>
-  );
+  )
 }
 
 /**
@@ -31,5 +31,5 @@ export default function HowItWorksModal() {
     <GenericModal title="How It Works" toggle="howItWorks">
       <ModalData />
     </GenericModal>
-  );
+  )
 }

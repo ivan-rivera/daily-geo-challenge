@@ -1,10 +1,10 @@
-import { createStore, createTypedHooks, persist } from "easy-peasy";
-import { modalsStore, ModalsStoreModel } from "./modals";
-import { sessionStore, SessionStoreModel } from "./session";
+import { createStore, createTypedHooks, persist } from "easy-peasy"
+import { modalsStore, ModalsStoreModel } from "./modals"
+import { sessionStore, SessionStoreModel } from "./session"
 
 export interface StoreModel {
-  modals: ModalsStoreModel;
-  session: SessionStoreModel;
+  modals: ModalsStoreModel
+  session: SessionStoreModel
 }
 
 export const store = createStore<StoreModel>(
@@ -15,7 +15,7 @@ export const store = createStore<StoreModel>(
   {
     name: "GlobalStore",
   }
-);
+)
 
 export const { useStoreActions, useStoreState, useStoreDispatch, useStore } =
-  createTypedHooks<StoreModel>();
+  createTypedHooks<StoreModel>()

@@ -1,5 +1,5 @@
-import { Text, CardFooter, Stack } from "@chakra-ui/react";
-import PlayButton from "./PlayButton";
+import { Text, CardFooter, Stack } from "@chakra-ui/react"
+import PlayButton from "../forms/PlayButton"
 
 /**
  * Welcome screen footer
@@ -20,13 +20,13 @@ export default function WelcomeFooter() {
     >
       <Stack direction="row" width="100%" justifyContent="space-between">
         <Stack direction="column" align="self-start" justifyContent="center">
-          <Text fontSize={["xl", "2xl"]} as="b">
+          <Text fontSize={["base", "xl", "2xl"]} as="b">
             Quiz #1
           </Text>
-          <Text fontSize={["base", "xl"]}>Average score today: 76%</Text>
+          <Text fontSize={["sm", "md", "xl"]}>Average score today: 76%</Text>
         </Stack>
         <PlayButton />
       </Stack>
     </CardFooter>
-  );
+  )
 }

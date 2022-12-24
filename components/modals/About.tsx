@@ -1,5 +1,5 @@
-import { Text } from "@chakra-ui/react";
-import GenericModal from "./GenericModal";
+import { Text } from "@chakra-ui/react"
+import GenericModal from "./GenericModal"
 
 /**
  * Content that goes into the About modal
@@ -15,7 +15,7 @@ function ModalData() {
       suggestions, please feel free to either contact me or raise an issue on
       GitHub. You may also like to check out the Troubleshooting section.
     </Text>
-  );
+  )
 }
 
 /**
@@ -27,5 +27,5 @@ export default function AboutModal() {
     <GenericModal title="About" toggle="about">
       <ModalData />
     </GenericModal>
-  );
+  )
 }

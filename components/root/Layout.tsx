@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
-import Header from "./Header";
-import Footer from "./footer/Footer";
-import Modals from "../modals/Modals";
+import React from "react"
+import { Box, Flex } from "@chakra-ui/react"
+import Header from "./Header"
+import Footer from "./footer/Footer"
+import Modals from "../modals/Modals"
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 /**
@@ -18,7 +18,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <Flex flexDirection="column" minH="100vh" minW="360px">
+      <Flex flexDirection="column" minH="100vh" minW="320px">
         <Header />
         <Box flexGrow="1" bg="background">
           {children}
@@ -27,5 +27,17 @@ export default function Layout({ children }: LayoutProps) {
       </Flex>
       <Modals />
     </>
-  );
+  )
+}
+
+/**
+ * Storybook layout function
+ * @param Story
+ */
+export function withLayout(Story: React.ComponentType): JSX.Element {
+  return (
+    <Layout>
+      <Story />
+    </Layout>
+  )
 }

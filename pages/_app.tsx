@@ -1,20 +1,16 @@
-import { StoreProvider, useStoreRehydrated } from "easy-peasy";
-import { ChakraProvider, Text } from "@chakra-ui/react";
-import theme from "../theme/theme";
-import { store } from "../store/store";
-import { Analytics } from "@vercel/analytics/react";
-import type { AppProps } from "next/app";
-import Head from "next/head";
-import Layout from "../components/root/Layout";
-import React from "react";
+import { StoreProvider, useStoreRehydrated } from "easy-peasy"
+import { ChakraProvider, Text } from "@chakra-ui/react"
+import theme from "../theme/theme"
+import { store } from "../store/store"
+import { Analytics } from "@vercel/analytics/react"
+import type { AppProps } from "next/app"
+import Head from "next/head"
+import Layout from "../components/root/Layout"
+import React from "react"
 
 function WaitForStateRehydration({ children }: { children: React.ReactNode }) {
-  const isRehydrated = useStoreRehydrated();
-  return isRehydrated ? (
-    <>{children}</>
-  ) : (
-    <Text fontSize="3xl">Loading...</Text>
-  );
+  const isRehydrated = useStoreRehydrated()
+  return isRehydrated ? <>{children}</> : <Text fontSize="3xl">Loading...</Text>
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -45,7 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Layout>
       </ChakraProvider>
     </StoreProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

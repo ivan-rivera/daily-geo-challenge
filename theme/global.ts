@@ -8,6 +8,6 @@ const globalStyles: Record<string, any> = {
     marginLeft: "auto",
     marginRight: "auto",
   },
-};
+}
 
-export default globalStyles;
+export default globalStyles

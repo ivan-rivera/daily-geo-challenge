@@ -1,18 +1,19 @@
-import { IconChecks, IconGlobe, IconShare } from "@tabler/icons";
-import WelcomeItem, { WelcomeItemProps } from "./WelcomeItem";
-import getConfig from "next/config";
-import { CardBody, VStack } from "@chakra-ui/react";
+import { IconChecks, IconGlobe, IconShare } from "@tabler/icons"
+import WelcomeItem, { WelcomeItemProps } from "./WelcomeItem"
+import getConfig from "next/config"
+import { CardBody, VStack } from "@chakra-ui/react"
 
-const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig()
 
 const welcomeItems: WelcomeItemProps[] = [
-  { icon: IconGlobe, text: "Test Your knowledge of geography" },
-  { icon: IconShare, text: "Share your score & challenge your friends" },
+  { icon: IconGlobe, text: "Test Your knowledge of geography", delay: 0.25 },
+  { icon: IconShare, text: "Challenge your friends", delay: 0.5 },
   {
     icon: IconChecks,
     text: `${publicRuntimeConfig.questions} daily questions`,
+    delay: 0.75,
   },
-];
+]
 
 /**
  * Welcome screen items: text and icons
@@ -30,9 +31,14 @@ export default function WelcomeItems() {
     >
       <VStack align="self-start">
         {welcomeItems.map((item) => (
-          <WelcomeItem key={item.text} icon={item.icon} text={item.text} />
+          <WelcomeItem
+            key={item.text}
+            icon={item.icon}
+            text={item.text}
+            delay={item.delay}
+          />
         ))}
       </VStack>
     </CardBody>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import { Flex, Icon, Text, useColorMode } from "@chakra-ui/react";
-import { IconBrandGithub, IconMoon, IconSun } from "@tabler/icons";
-import Link from "next/link";
-import getConfig from "next/config";
+import { Flex, Icon, Text, useColorMode } from "@chakra-ui/react"
+import { IconBrandGithub, IconMoon, IconSun } from "@tabler/icons"
+import Link from "next/link"
+import getConfig from "next/config"
 
-const { publicRuntimeConfig } = getConfig();
-const iconSize = 6;
+const { publicRuntimeConfig } = getConfig()
+const iconSize = 6
 
 /**
  * Bottom row of the footer.
@@ -14,7 +14,7 @@ const iconSize = 6;
  * TODO: update the GitHub link
  */
 export default function BottomRow() {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Flex justifyContent="space-between" color="tertiary">
       <Link href="https://github.com/ivan-rivera">
@@ -27,5 +27,5 @@ export default function BottomRow() {
         onClick={toggleColorMode}
       />
     </Flex>
-  );
+  )
 }

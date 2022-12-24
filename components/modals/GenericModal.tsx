@@ -6,16 +6,16 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/modal";
-import { Button } from "@chakra-ui/react";
-import React from "react";
-import { ModalsStoreModel } from "../../store/modals";
-import { useStoreActions, useStoreState } from "../../store/store";
+} from "@chakra-ui/modal"
+import Button from "components/forms/Button"
+import React from "react"
+import { ModalsStoreModel } from "../../store/modals"
+import { useStoreActions, useStoreState } from "../../store/store"
 
 interface ModalProps {
-  title: string;
-  toggle: keyof ModalsStoreModel;
-  children: React.ReactNode;
+  title: string
+  toggle: keyof ModalsStoreModel
+  children: React.ReactNode
 }
 
 /**
@@ -26,10 +26,10 @@ interface ModalProps {
  * @constructor
  */
 export default function GenericModal({ title, toggle, children }: ModalProps) {
-  const isOpen = useStoreState((state) => state.modals[toggle].isOpen);
+  const isOpen = useStoreState((state) => state.modals[toggle].isOpen)
   const onClose: () => void = useStoreActions(
     (actions) => actions.modals[toggle].onClose
-  );
+  )
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -46,11 +46,9 @@ export default function GenericModal({ title, toggle, children }: ModalProps) {
         <ModalCloseButton color="background" />
         <ModalBody px={10}>{children}</ModalBody>
         <ModalFooter>
-          <Button bg="quarternary" color="primary" onClick={onClose}>
-            Close
-          </Button>
+          <Button onClick={onClose}>Close</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
+  )
 }

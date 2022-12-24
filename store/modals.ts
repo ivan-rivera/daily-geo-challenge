@@ -1,28 +1,28 @@
-import { action, Action, State } from "easy-peasy";
+import { action, Action, State } from "easy-peasy"
 
 export interface ModalStoreModel {
-  isOpen: boolean;
-  onOpen: Action<ModalStoreModel>;
-  onClose: Action<ModalStoreModel>;
+  isOpen: boolean
+  onOpen: Action<ModalStoreModel>
+  onClose: Action<ModalStoreModel>
 }
 
 function createModalStore(): ModalStoreModel {
   return {
     isOpen: false,
     onOpen: action((state: State<ModalStoreModel>) => {
-      state.isOpen = true;
+      state.isOpen = true
     }),
     onClose: action((state: State<ModalStoreModel>) => {
-      state.isOpen = false;
+      state.isOpen = false
     }),
-  };
+  }
 }
 
 export interface ModalsStoreModel {
-  about: ModalStoreModel;
-  troubleshooting: ModalStoreModel;
-  howItWorks: ModalStoreModel;
-  contact: ModalStoreModel;
+  about: ModalStoreModel
+  troubleshooting: ModalStoreModel
+  howItWorks: ModalStoreModel
+  contact: ModalStoreModel
 }
 
 export const modalsStore: ModalsStoreModel = {
@@ -30,4 +30,4 @@ export const modalsStore: ModalsStoreModel = {
   troubleshooting: createModalStore(),
   howItWorks: createModalStore(),
   contact: createModalStore(),
-};
+}

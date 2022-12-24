@@ -2,6 +2,11 @@
   "name": "daily-geo-challenge",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "next lint"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,13 +15,18 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "theme": "chakra-cli tokens theme/theme.ts",
-    "theme:watch": "chakra-cli tokens theme/theme.ts --watch"
+    "theme:watch": "chakra-cli tokens theme/theme.ts --watch",
+    "prepare": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@nextui-org/react": "^1.0.0-beta.10",
+    "@react-buddy/ide-toolbox": "^2.3.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.0",
     "@tabler/icons": "^1.116.1",
     "@vercel/analytics": "^0.1.5",
     "easy-peasy": "^5.2.0",
@@ -26,13 +36,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remark": "^14.0.2",
-    "remark-html": "^15.0.1",
-    "@react-buddy/ide-toolbox": "^2.3.1",
-    "@react-buddy/palette-chakra-ui": "^2.3.0"
+    "remark-html": "^15.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@chakra-ui/cli": "^2.2.0",
+    "@chakra-ui/storybook-addon": "^4.0.15",
+    "@react-theming/storybook-addon": "^1.1.10",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-interactions": "^6.5.14",
@@ -47,7 +57,12 @@
     "babel-loader": "^8.3.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-storybook": "^0.6.7",
-    "typescript": "4.9.3"
+    "husky": "^8.0.0",
+    "storybook-addon-next": "^1.7.1",
+    "typescript": "4.9.3",
+    "vitest": "^0.26.2"
   }
 }

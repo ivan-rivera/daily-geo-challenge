@@ -1,7 +1,7 @@
-import { Head, Html, Main, NextScript } from "next/document";
-import { ColorModeScript } from "@chakra-ui/react";
-import React from "react";
-import theme from "../theme/theme";
+import { Head, Html, Main, NextScript } from "next/document"
+import { ColorModeScript } from "@chakra-ui/react"
+import React from "react"
+import theme from "../theme/theme"
 
 /**
  * The main purpose of this document is to insert the initial Chakra color mode
@@ -28,7 +28,7 @@ function MyDocument() {
         <NextScript />
       </body>
     </Html>
-  );
+  )
 }
 
-export default MyDocument;
+export default MyDocument

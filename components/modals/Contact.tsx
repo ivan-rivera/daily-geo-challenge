@@ -1,5 +1,5 @@
-import { Text } from "@chakra-ui/react";
-import GenericModal from "./GenericModal";
+import { Text } from "@chakra-ui/react"
+import GenericModal from "./GenericModal"
 
 /**
  * TODO: implement contact form
@@ -12,7 +12,7 @@ function ModalData() {
       If you have any questions or suggestions, please feel free to get in touch
       with the developer via the below form.
     </Text>
-  );
+  )
 }
 
 /**
@@ -24,5 +24,5 @@ export default function ContactModal() {
     <GenericModal title="Contact" toggle="contact">
       <ModalData />
     </GenericModal>
-  );
+  )
 }

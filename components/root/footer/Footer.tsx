@@ -1,6 +1,6 @@
-import { Box, Center, SimpleGrid } from "@chakra-ui/react";
-import ModalLinks from "./ModalLinks";
-import BottomRow from "./BottomRow";
+import { Box, Center, SimpleGrid } from "@chakra-ui/react"
+import ModalLinks from "./ModalLinks"
+import BottomRow from "./BottomRow"
 
 /**
  * Footer component
@@ -25,5 +25,5 @@ export default function Footer() {
         </SimpleGrid>
       </Center>
     </Box>
-  );
+  )
 }

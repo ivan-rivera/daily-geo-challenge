@@ -1,10 +1,11 @@
-import { Button, Center, Text, useColorMode, VStack } from "@chakra-ui/react";
-import Image from "next/image";
-import Link from "next/link";
+import { Center, Text, useColorMode, VStack } from "@chakra-ui/react"
+import Image from "next/image"
+import Link from "next/link"
+import Button from "../forms/Button"
 
-interface ErrorPageProps {
-  code: number;
-  message: string;
+export interface ErrorPageProps {
+  code: number
+  message: string
 }
 
 /**
@@ -12,10 +13,10 @@ interface ErrorPageProps {
  * @constructor
  */
 export default function ErrorPage({ code, message }: ErrorPageProps) {
-  const { colorMode } = useColorMode();
+  const { colorMode } = useColorMode()
   return (
     <Center>
-      <VStack spacing={10} pt={10}>
+      <VStack spacing={10} py={10}>
         <Image
           src={`/error${code}-${colorMode}.svg`}
           alt="error-image"
@@ -24,15 +25,9 @@ export default function ErrorPage({ code, message }: ErrorPageProps) {
         />
         <Text fontSize="2xl">{message}</Text>
         <Link href="/">
-          <Button
-            bg="quarternary"
-            color="primary"
-            _hover={{ bg: "tertiary", color: "background" }}
-          >
-            Home
-          </Button>
+          <Button>Home</Button>
         </Link>
       </VStack>
     </Center>
-  );
+  )
 }

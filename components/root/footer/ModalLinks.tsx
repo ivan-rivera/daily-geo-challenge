@@ -1,6 +1,6 @@
-import ModalLink from "./ModalLink";
-import { Stack } from "@chakra-ui/react";
-import { modalsStore, ModalsStoreModel } from "../../../store/modals";
+import ModalLink from "./ModalLink"
+import { Stack } from "@chakra-ui/react"
+import { modalsStore, ModalsStoreModel } from "../../../store/modals"
 
 /**
  * Collection of modal links that are meant to be accessed from the footer
@@ -14,5 +14,5 @@ export default function ModalLinks() {
         <ModalLink key={key} modal={key as keyof ModalsStoreModel} />
       ))}
     </Stack>
-  );
+  )
 }
