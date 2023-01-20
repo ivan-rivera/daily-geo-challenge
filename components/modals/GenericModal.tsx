@@ -10,7 +10,8 @@ import {
 import Button from "components/forms/Button"
 import React from "react"
 import { ModalsStoreModel } from "../../store/modals"
-import { useStoreActions, useStoreState } from "../../store/store"
+import { store, useStoreState } from "../../store/store"
+import { BOX_BORDER_RADIUS } from "../../lib/constants"
 
 interface ModalProps {
   title: string
@@ -27,19 +28,21 @@ interface ModalProps {
  */
 export default function GenericModal({ title, toggle, children }: ModalProps) {
   const isOpen = useStoreState((state) => state.modals[toggle].isOpen)
-  const onClose: () => void = useStoreActions(
-    (actions) => actions.modals[toggle].onClose
-  )
+  const onClose: () => void = store.dispatch.modals[toggle].onClose
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent bg="background" color="tertiary" borderRadius={15}>
+      <ModalContent
+        bg="background"
+        color="tertiary"
+        borderRadius={BOX_BORDER_RADIUS}
+      >
         <ModalHeader
           bg="quarternary"
           color="primary"
-          borderTopLeftRadius={15}
-          borderTopRightRadius={15}
+          borderTopLeftRadius={BOX_BORDER_RADIUS}
+          borderTopRightRadius={BOX_BORDER_RADIUS}
         >
           {title}
         </ModalHeader>

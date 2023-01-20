@@ -1,33 +1,28 @@
 import { useEffect } from "react"
-import { QUIZ_ID } from "../lib/constants"
-import { usePage } from "./session"
+import { store } from "../store/store"
+import { setQuizId } from "../lib/storage"
+import { StaticProps } from "../lib/types"
 
 /**
- * Retrieve the quiz ID
- */
-function getQuizId(): number {
-  return parseInt(localStorage.getItem(QUIZ_ID) || "0")
-}
-
-/**
- * Set Quiz ID
- * @param id
- */
-function setQuizId(id: number): void {
-  localStorage.setItem(QUIZ_ID, id.toString())
-}
-
-/**
- * Reset progress if the quiz ID changes
+ * Reset progress if the game ID changes
  * @param latestQuizId
  */
 export function useReset(latestQuizId: number) {
-  const [_page, setPage] = usePage()
   useEffect(() => {
-    if (getQuizId() !== latestQuizId) {
+    // TODO: change condition to: getQuizId() !== latestQuizId
+    if (true) {
       console.log("resetting progress...")
       setQuizId(latestQuizId)
-      setPage(0)
+      store.dispatch.session.resetSession()
     }
-  }, [latestQuizId, setPage])
+  }, [latestQuizId])
+}
+
+export function useStaticProps(props: StaticProps) {
+  useEffect(() => {
+    const sessionDispatcher = store.dispatch.session
+    sessionDispatcher.setQuestions(props.questions)
+    sessionDispatcher.setDailyScore(props.dailyScore)
+    sessionDispatcher.setRefreshTime(props.time)
+  }, [props.questions, props.dailyScore, props.time])
 }

@@ -29,15 +29,3 @@ export default function Layout({ children }: LayoutProps) {
     </>
   )
 }
-
-/**
- * Storybook layout function
- * @param Story
- */
-export function withLayout(Story: React.ComponentType): JSX.Element {
-  return (
-    <Layout>
-      <Story />
-    </Layout>
-  )
-}

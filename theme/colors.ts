@@ -2,35 +2,35 @@
 
 const colors = {
   primary: {
-    default: "#DEEAD7",
+    default: "#C4EBAD",
     _dark: "#184D4E",
   },
   secondary: {
-    default: "#CDF4D2",
+    default: "#E9CDC3",
     _dark: "#2D6249",
   },
   tertiary: {
-    default: "#296643",
+    default: "#3A5A40",
     _dark: "#DCE1DE",
   },
   quarternary: {
-    default: "#436589",
+    default: "#343330",
     _dark: "#BFD9C2",
   },
   success: {
-    default: "#83E0EC",
+    default: "#88D75B",
     _dark: "#407760",
   },
   warning: {
-    default: "#F5C5A3",
+    default: "#CF3F26",
     _dark: "#ED461D",
   },
   error: {
-    default: "#FFADAD",
+    default: "#E37764",
     _dark: "#A4243B",
   },
   background: {
-    default: "#D8FAFE",
+    default: "#E5E3DC",
     _dark: "#1F2421",
   },
 }

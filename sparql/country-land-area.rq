@@ -1,0 +1,11 @@
+# Obtain country and land area pairs
+SELECT
+    ?key
+    (?totalArea - (?totalArea * COALESCE(?waterProp/100, 0)) AS ?value)
+WHERE {
+    ?country wdt:P31 wd:Q6256.
+    ?country wdt:P2046 ?totalArea.
+    OPTIONAL { ?country wdt:P2927 ?waterProp. }
+    ?country rdfs:label ?key . FILTER (LANG(?key)='en')
+}
+ORDER BY ?key

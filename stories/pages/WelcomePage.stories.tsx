@@ -1,6 +1,7 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react"
-import { withLayout } from "../../components/root/Layout"
+import { ComponentMeta } from "@storybook/react"
 import Welcome from "../../components/welcome/Welcome"
+import { baseDecorators } from "../lib/decorators"
+import { withDailyScore } from "../lib/states"
 
 /**
  * Home page
@@ -8,8 +9,7 @@ import Welcome from "../../components/welcome/Welcome"
 export default {
   title: "Pages/Home Page",
   component: Welcome,
-  decorators: [withLayout],
 } as ComponentMeta<typeof Welcome>
 
-const Template: ComponentStory<typeof Welcome> = () => <Welcome />
-export const Default = Template.bind({})
+export const WithoutData = { decorators: baseDecorators() }
+export const WithData = { decorators: baseDecorators(withDailyScore) }

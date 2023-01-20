@@ -1,16 +1,16 @@
-import { Text, CardFooter, Stack } from "@chakra-ui/react"
+import { CardFooter, Stack, Text } from "@chakra-ui/react"
 import PlayButton from "../forms/PlayButton"
+import { useStoreState } from "../../store/store"
+import { getQuizId } from "../../lib/storage"
+
+const dailyScoreAvailable = (value: string): boolean => value != "TBD"
 
 /**
  * Welcome screen footer
  * @constructor
- * TODO:
- *  - Add transitions to the welcome items
- *  - Replace quiz number with a value from the server
- *  - Replace average score with a value from the server
- *  - Make average score display conditional on count of scores completed (set threshold in config)
  */
 export default function WelcomeFooter() {
+  const dailyScore = useStoreState((state) => state.session.dailyScore)
   return (
     <CardFooter
       bg="secondary"
@@ -18,12 +18,21 @@ export default function WelcomeFooter() {
       borderBottomLeftRadius={15}
       borderBottomRightRadius={15}
     >
-      <Stack direction="row" width="100%" justifyContent="space-between">
+      <Stack
+        direction="row"
+        width="100%"
+        justifyContent="space-between"
+        mx={[0, 1, 5]}
+      >
         <Stack direction="column" align="self-start" justifyContent="center">
           <Text fontSize={["base", "xl", "2xl"]} as="b">
-            Quiz #1
+            Quiz #{getQuizId()}
           </Text>
-          <Text fontSize={["sm", "md", "xl"]}>Average score today: 76%</Text>
+          {dailyScoreAvailable(dailyScore) && (
+            <Text fontSize={["sm", "md", "xl"]}>
+              Average score today: {dailyScore}
+            </Text>
+          )}
         </Stack>
         <PlayButton />
       </Stack>

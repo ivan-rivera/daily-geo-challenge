@@ -1,6 +1,10 @@
 // Global styles
 
-const globalStyles: Record<string, any> = {
+import React from "react"
+
+const globalStyles: Partial<
+  Record<keyof JSX.IntrinsicElements, React.CSSProperties>
+> = {
   body: {
     margin: 0,
     padding: 0,

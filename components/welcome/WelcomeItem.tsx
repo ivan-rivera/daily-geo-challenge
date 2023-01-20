@@ -19,6 +19,7 @@ export default function WelcomeItem({ icon, text, delay }: WelcomeItemProps) {
   return (
     <AnimatePresence>
       <motion.div
+        key={text}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 1 }}
@@ -29,8 +30,14 @@ export default function WelcomeItem({ icon, text, delay }: WelcomeItemProps) {
           justifyContent: "space-between",
         }}
       >
-        <Icon as={icon} color="quarternary" boxSize={[8, 14]} pr={2} />
-        <Text fontSize={["sm", "lg", "2xl"]} as="b">
+        <Icon
+          as={icon}
+          color="quarternary"
+          boxSize={[8, 14]}
+          pr={2}
+          ml={[0, 1, 5]}
+        />
+        <Text fontSize={["sm", "lg", "2xl"]} as="b" mr={[0, 1, 5]}>
           {text}
         </Text>
       </motion.div>

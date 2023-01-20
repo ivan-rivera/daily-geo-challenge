@@ -1,0 +1,28 @@
+# Obtain country-flag pairs
+# Note that some countries have multiple images of their flags, to avoid using these instances
+# we need to group by country and take only those instances that have a single flag, then the
+# sampling of the flag is only there to satisfy the aggregation condition because we are taking
+# a sample of one image only.
+SELECT
+    (?countryLabel AS ?key)
+    ?value
+{
+    SELECT
+        ?countryLabel
+        (SAMPLE(?flagLabel) AS ?value)
+    {
+        SELECT
+            ?countryLabel
+            ?flagLabel
+        WHERE
+        {
+            ?country
+                wdt:P31 wd:Q6256;
+                wdt:P41 ?flag .
+            SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+        }
+    }
+    GROUP BY ?countryLabel
+    HAVING(COUNT(?flagLabel) = 1)
+}
+ORDER BY ?key

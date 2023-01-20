@@ -5,7 +5,7 @@ import fonts from "./fonts"
 import components from "./components"
 import breakpoints from "./breakpoints"
 
-const theme: Record<string, any> = extendTheme({
+const theme = extendTheme({
   styles: { global: globalStyles },
   semanticTokens: { colors },
   breakpoints,

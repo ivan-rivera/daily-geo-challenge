@@ -1,0 +1,36 @@
+# Global city population numbers
+# Note that a global city is a city that has international significance and it is defined as such in Wikidata.
+# We are interested in extracting the latest population figures for each of these cities
+SELECT
+    (?cityLabel AS ?key)
+    (?population AS ?value)
+WITH {
+    SELECT
+        ?cityLabel
+        ?population
+        ?date
+    WHERE {
+        ?city
+        wdt:P31
+            wd:Q208511;
+            p:P1082 [pq:P585 ?date; ps:P1082 ?population] .
+        ?city rdfs:label ?cityLabel .
+        FILTER (LANG(?cityLabel)='en')
+    }
+} AS %pop
+{
+    {
+        SELECT
+            ?cityLabel
+            ?population
+            ?date
+        WHERE { include %pop }
+    }
+    {
+        SELECT
+            (?cityLabel AS ?cityLabelB)
+            (MAX(?date) AS ?latestDate) WHERE { include %pop } GROUP BY ?cityLabel
+    }
+    FILTER (?date = ?latestDate  && ?cityLabel = ?cityLabelB)
+}
+ORDER BY ?key

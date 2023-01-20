@@ -1,0 +1,21 @@
+# Get the inception year of a global city
+# Note that some cities were founded on the same date, to avoid the confusion, we keep one city per inception year
+# Also note that some cities were founded several times according to Wikipedia (for various reasons), we keep the first
+# Lastly, also note that dates can be negative (BC times)
+SELECT
+    (SAMPLE(?cityLabel) AS ?key)
+    ?value
+{
+    SELECT
+        ?cityLabel
+        (MIN(YEAR(?inception)) AS ?value)
+    WHERE {
+        ?city wdt:P31 wd:Q208511 .
+        ?city wdt:P571 ?inception .
+        SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    }
+    GROUP BY ?cityLabel
+}
+GROUP BY ?value
+HAVING (COUNT(?cityLabel) = 1)
+ORDER BY ?key

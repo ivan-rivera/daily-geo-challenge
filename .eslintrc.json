@@ -6,12 +6,17 @@
     "prettier/prettier": [
       "error",
       {
-        "semi": false
+        "semi": false,
+        "printWidth": 80,
+        "tabWidth": 2,
+        "useTabs": false,
+        "bracketSpacing": true
       }
     ],
-    "indent": ["error", 2],
+    "react/display-name": "off",
+    "no-tabs": ["error", {"allowIndentationTabs": true}],
     "quotes": ["error", "double"],
     "semi": "off",
-    "max-len": ["error", {"code": 120, "ignoreUrls": true}]
+    "max-len": ["error", {"code": 120, "ignoreUrls": true, "tabWidth": 2}]
   }
 }

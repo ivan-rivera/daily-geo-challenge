@@ -1,0 +1,22 @@
+# Obtain country capital pairs
+# Note that some countries have more than one official capital
+# and we do not want to deal with such cases that is why we are
+# only selecting results with a single capital
+SELECT
+    (?countryLabel AS ?key)
+    ?value
+{
+    SELECT
+        ?countryLabel
+        (SAMPLE(?capitalLabel) AS ?value)
+    WHERE {
+        ?country
+            wdt:P31 wd:Q6256;
+            wdt:P36 ?capital .
+        ?capital rdfs:label ?capitalLabel . FILTER (LANG(?capitalLabel)='en')
+        ?country rdfs:label ?countryLabel . FILTER (LANG(?countryLabel)='en')
+    }
+    GROUP BY ?countryLabel
+    HAVING (COUNT(?capital) = 1)
+}
+ORDER BY ?key

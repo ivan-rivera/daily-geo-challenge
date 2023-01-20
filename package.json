@@ -1,6 +1,6 @@
 {
   "name": "daily-geo-challenge",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "husky": {
     "hooks": {
@@ -12,13 +12,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test-storybook": "test-storybook",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "theme": "chakra-cli tokens theme/theme.ts",
     "theme:watch": "chakra-cli tokens theme/theme.ts --watch",
     "prepare": "husky install",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "generate-data": "ts-node scripts/generateData.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.2",
@@ -29,11 +31,14 @@
     "@react-buddy/palette-chakra-ui": "^2.3.0",
     "@tabler/icons": "^1.116.1",
     "@vercel/analytics": "^0.1.5",
+    "csv-parser": "^3.0.0",
     "easy-peasy": "^5.2.0",
     "framer-motion": "^6.5.1",
     "gray-matter": "^4.0.3",
     "next": "13.0.5",
+    "papaparse": "^5.3.2",
     "react": "18.2.0",
+    "react-countdown": "^2.3.5",
     "react-dom": "18.2.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1"
@@ -43,6 +48,7 @@
     "@chakra-ui/cli": "^2.2.0",
     "@chakra-ui/storybook-addon": "^4.0.15",
     "@react-theming/storybook-addon": "^1.1.10",
+    "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-interactions": "^6.5.14",
@@ -50,10 +56,15 @@
     "@storybook/builder-webpack5": "^6.5.14",
     "@storybook/manager-webpack5": "^6.5.14",
     "@storybook/react": "^6.5.14",
+    "@storybook/test-runner": "^0.9.2",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
+    "@types/react": "^18.0.25",
     "@types/react-dom": "18.0.9",
+    "@vitejs/plugin-react": "^3.0.0",
     "babel-loader": "^8.3.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
@@ -61,7 +72,11 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-storybook": "^0.6.7",
     "husky": "^8.0.0",
+    "jsdom": "^20.0.3",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "storybook-addon-next": "^1.7.1",
+    "ts-node": "^10.9.1",
     "typescript": "4.9.3",
     "vitest": "^0.26.2"
   }

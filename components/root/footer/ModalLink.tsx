@@ -1,5 +1,5 @@
-import { Center, Text, Link } from "@chakra-ui/react"
-import { useStoreActions } from "../../../store/store"
+import { Center, Link, Text } from "@chakra-ui/react"
+import { store } from "../../../store/store"
 import { ModalsStoreModel } from "../../../store/modals"
 import { humanize } from "../../../lib/strings"
 
@@ -14,9 +14,7 @@ interface ModalLinkProps {
  * @constructor
  */
 export default function ModalLink({ modal }: ModalLinkProps) {
-  const toggle: () => void = useStoreActions(
-    (actions) => actions.modals[modal].onOpen
-  )
+  const toggle: () => void = store.dispatch.modals[modal].onOpen
   return (
     <Center>
       <Link onClick={toggle}>

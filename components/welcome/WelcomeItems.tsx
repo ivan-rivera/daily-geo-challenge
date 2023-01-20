@@ -6,7 +6,7 @@ import { CardBody, VStack } from "@chakra-ui/react"
 const { publicRuntimeConfig } = getConfig()
 
 const welcomeItems: WelcomeItemProps[] = [
-  { icon: IconGlobe, text: "Test Your knowledge of geography", delay: 0.25 },
+  { icon: IconGlobe, text: "Test your knowledge of geography", delay: 0.25 },
   { icon: IconShare, text: "Challenge your friends", delay: 0.5 },
   {
     icon: IconChecks,

@@ -1,13 +1,6 @@
-import React, { HTMLAttributes } from "react"
-import { Button as ChakraButton, PropsOf } from "@chakra-ui/react"
-
-/**
- * Button component props
- * @param children - button content
- * @param props - optional props that feed into the Chakra button
- */
-type ButtonProps = Omit<HTMLAttributes<HTMLButtonElement>, "children"> &
-  PropsOf<typeof ChakraButton>
+import React from "react"
+import { Button as ChakraButton, ButtonProps } from "@chakra-ui/react"
+import { BUTTON_COLOURS } from "../../lib/constants"
 
 /**
  * Default button component
@@ -16,15 +9,7 @@ type ButtonProps = Omit<HTMLAttributes<HTMLButtonElement>, "children"> &
  */
 export default function Button({ children, ...otherProps }: ButtonProps) {
   return (
-    <ChakraButton
-      color="secondary"
-      bg="quarternary"
-      _hover={{
-        bg: "tertiary",
-        color: "primary",
-      }}
-      {...otherProps}
-    >
+    <ChakraButton {...BUTTON_COLOURS} {...otherProps}>
       {children}
     </ChakraButton>
   )
