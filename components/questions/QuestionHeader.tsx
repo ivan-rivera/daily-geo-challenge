@@ -12,8 +12,7 @@ export default function QuestionHeader() {
       justifyContent="space-between"
       direction="row"
       bg="quarternary"
-      borderTopLeftRadius={10}
-      borderTopRightRadius={10}
+      borderTopRadius={10}
       p={2}
     >
       <QuestionIcon boxSize={10} color="secondary" />
