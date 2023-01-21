@@ -16,7 +16,6 @@ import { StaticProps } from "../lib/types"
  *    - Analytics
  *    - Documentation
  *    - Queries
- *  - Push
  *  - Attempt to optimize images
  *  - Backend:
  *    - Set up Firebase + emulator

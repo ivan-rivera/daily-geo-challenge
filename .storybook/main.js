@@ -8,9 +8,10 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
-    "@react-theming/storybook-addon",
-    "@chakra-ui/storybook-addon",
+    "@storybook/mdx2-csf",
     "storybook-addon-next",
+    "@chakra-ui/storybook-addon",
+    "@react-theming/storybook-addon",
   ],
   framework: "@storybook/react",
   core: {
@@ -19,6 +20,7 @@ module.exports = {
   features: {
     emotionAlias: false,
     interactionsDebugger: true,
+    previewMdx2: true,
   },
   staticDirs: ["../public"],
   webpackFinal: async (config) => {
