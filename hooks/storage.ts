@@ -1,7 +1,14 @@
 import { useEffect } from "react"
 import { store } from "../store/store"
 import { setQuizId } from "../lib/storage"
-import { StaticProps } from "../lib/types"
+import { QuestionData, StaticProps } from "../lib/types"
+
+function cacheImages(questions: QuestionData[]) {
+  questions.map((question) => {
+    const image = new Image()
+    if (question.image) image.src = question.image
+  })
+}
 
 /**
  * Reset progress if the game ID changes
@@ -24,5 +31,6 @@ export function useStaticProps(props: StaticProps) {
     sessionDispatcher.setQuestions(props.questions)
     sessionDispatcher.setDailyScore(props.dailyScore)
     sessionDispatcher.setRefreshTime(props.time)
+    cacheImages(props.questions)
   }, [props.questions, props.dailyScore, props.time])
 }
