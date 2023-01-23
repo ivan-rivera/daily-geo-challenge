@@ -8,6 +8,7 @@ import QuestionHeader from "./QuestionHeader"
 import QuestionFeedback from "./QuestionFeedback"
 import { AnimatePresence, motion, useAnimation } from "framer-motion"
 import { useEffect } from "react"
+import { StatsInfo } from "./StatsInfo"
 
 /**
  * Question wrapper that contains the question, an optional image, answers
@@ -15,9 +16,12 @@ import { useEffect } from "react"
  * @constructor
  */
 export default function Question() {
+  const controls = useAnimation()
   const question = useStoreState((state) => state.session.pageQuestion)
   const page = useStoreState((state) => state.session.page)
-  const controls = useAnimation()
+  const showStatsInfo = useStoreState((state) => {
+    return state.session.pageIsAnswered && state.session.questionHasStats
+  })
   useEffect(() => {
     controls.set({ opacity: 0 })
     controls.start({ opacity: 1 })
@@ -34,6 +38,7 @@ export default function Question() {
           <QuestionHeader />
           <QuestionPrompt question={question.question} image={question.image} />
           <AnswerChoices choices={question.choices} />
+          {showStatsInfo && <StatsInfo />}
           <Divider mt={5} color="quarternary" />
           <QuestionNav infoUrl={question.link} />
         </BrandCard>

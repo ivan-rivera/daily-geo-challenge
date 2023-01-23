@@ -7,6 +7,7 @@ import { ChoiceStatusColour } from "../../lib/types"
 interface AnswerChoiceProps {
   enumerator: string
   label: string
+  voteProp: number | null
   colour: ChoiceStatusColour
   icon: JSX.Element
   isSelected: boolean
@@ -21,12 +22,15 @@ interface AnswerChoiceProps {
 export default function AnswerChoice({
   enumerator,
   label,
+  voteProp,
   colour,
   icon,
   isSelected,
   onClick,
 }: AnswerChoiceProps) {
   const isAnswered = useStoreState((state) => state.session.pageIsAnswered)
+  const votesAvailable = voteProp !== null
+  const votePropString = votesAvailable ? (voteProp * 100).toFixed(0) : ""
   return (
     <Flex
       bg={isSelected ? "tertiary" : "quarternary"}
@@ -43,7 +47,7 @@ export default function AnswerChoice({
           {enumerator}
         </Circle>
         <Text color={colour} fontSize="md">
-          {label}
+          {label} {isAnswered && votesAvailable && `(${votePropString}%)`}
         </Text>
       </Flex>
       <Box color={colour} display={isAnswered ? "block" : "none"}>

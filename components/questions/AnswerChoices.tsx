@@ -24,6 +24,10 @@ function getStatusProps(
 export default function AnswerChoices({ choices }: { choices: Choices }) {
   const answer = useStoreState((state) => state.session.pageAnswer)
   const picked = useStoreState((state) => state.session.pagePick)
+  const questionStats = useStoreState((state) => state.session.questionStats)
+  const questionHasStats = useStoreState(
+    (state) => state.session.questionHasStats
+  )
   return (
     <Stack mt={5} mx="auto" display="flex" justifyContent="center">
       {Object.keys(choices).map((label) => {
@@ -39,6 +43,7 @@ export default function AnswerChoices({ choices }: { choices: Choices }) {
             key={letter}
             enumerator={letter}
             label={label}
+            voteProp={questionHasStats ? questionStats[letter] || 0 : null}
             colour={textColour}
             icon={StatusIcon}
             isSelected={isSelected}

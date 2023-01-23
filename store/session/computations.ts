@@ -23,6 +23,15 @@ export const pageQuestion = computed(
     state.questions[state.page - 1] || ({} as QuestionData)
 )
 
+export const questionStats = computed(
+  (state: State<SessionStoreModel>) => state.questionsStats[state.page] || {}
+)
+
+export const questionHasStats = computed(
+  (state: State<SessionStoreModel>) =>
+    Object.keys(state.questionStats).length > 0
+)
+
 export const pageAnswer = computed(
   (state: State<SessionStoreModel>) =>
     state.answers[state.page] || AnswerStatus.Unanswered

@@ -2,16 +2,19 @@ import { AnswerStatus, DataKey, QuestionData } from "../../lib/types"
 import { Action, Computed } from "easy-peasy"
 
 type Page = number
+type QuestionStats = Record<DataKey, number>
 
 interface SessionAttributes {
   page: Page
   refreshTime: Date
   dailyScore: string
+  questionsStats: Record<Page, QuestionStats>
   suggested: boolean
   questions: QuestionData[]
-  picks: Record<Page, string> // TODO: look into maps?
+  picks: Record<Page, DataKey> // TODO: look into maps?
   answers: Record<Page, AnswerStatus>
   voted: Record<Page, boolean>
+  finalScoreSubmitted: boolean
 }
 
 interface SessionSetters {
@@ -24,13 +27,17 @@ interface SessionSetters {
   setPageAnswer: Action<SessionStoreModel, AnswerStatus>
   setPageVoted: Action<SessionStoreModel, boolean>
   setQuestions: Action<SessionStoreModel, QuestionData[]>
+  setQuestionsStats: Action<SessionStoreModel, Record<Page, QuestionStats>>
+  setFinalScoreSubmitted: Action<SessionStoreModel, boolean>
 }
 
 interface SessionComputed {
   pageQuestion: Computed<SessionStoreModel, QuestionData>
   pageAnswer: Computed<SessionStoreModel, AnswerStatus>
   pageVoted: Computed<SessionStoreModel, boolean>
-  pagePick: Computed<SessionStoreModel, string>
+  pagePick: Computed<SessionStoreModel, DataKey>
+  questionStats: Computed<SessionStoreModel, QuestionStats>
+  questionHasStats: Computed<SessionStoreModel, boolean>
   isCorrectPagePick: Computed<SessionStoreModel, boolean>
   pageIsAnswered: Computed<SessionStoreModel, boolean>
   isFinished: Computed<SessionStoreModel, boolean>

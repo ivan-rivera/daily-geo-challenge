@@ -7,7 +7,6 @@ export enum AnswerStatus {
 
 export interface StaticProps {
   quizId: number
-  dailyScore: number
   questions: QuestionData[]
   time: Date
 }

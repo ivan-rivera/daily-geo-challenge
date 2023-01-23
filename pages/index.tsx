@@ -1,7 +1,7 @@
 import Welcome from "../components/welcome/Welcome"
 import Game from "../components/game/Game"
 import { sampleQuestions } from "../lib/questions/sampling"
-import { useReset, useStaticProps } from "../hooks/storage"
+import { useReset, useServerStats, useStaticProps } from "../hooks/storage"
 import { useStoreState } from "../store/store"
 import { StaticProps } from "../lib/types"
 
@@ -10,12 +10,13 @@ import { StaticProps } from "../lib/types"
  * @constructor
  * TODO:
  *  - Big ticket items:
- *    - Frontend
+ *    - Frontend (mostly done)
  *    - Backend
  *    - Testing
  *    - Analytics
  *    - Documentation
  *    - Queries
+ *  - Integrate question stats
  *  - Backend:
  *    - Set up Firebase + emulator
  *    - Pull game ID + average score from the server
@@ -72,6 +73,7 @@ import { StaticProps } from "../lib/types"
 export default function Home(props: StaticProps) {
   useReset(props.quizId)
   useStaticProps(props)
+  useServerStats()
   const page = useStoreState((state) => state.session.page)
   return <>{page ? <Game /> : <Welcome />}</>
 }
@@ -80,7 +82,6 @@ export async function getStaticProps(): Promise<{ props: StaticProps }> {
   return {
     props: {
       quizId: 1,
-      dailyScore: 0.76,
       questions: sampleQuestions(),
       time: JSON.parse(JSON.stringify(new Date())),
     },

@@ -10,6 +10,8 @@ import {
   pageIsAnswered,
   yourScore,
   shareScore,
+  questionStats,
+  questionHasStats,
 } from "./computations"
 
 const initialState = {
@@ -18,9 +20,11 @@ const initialState = {
   refreshTime: new Date(),
   dailyScore: "TBD",
   questions: [],
+  questionsStats: {},
   answers: {},
   picks: {},
   voted: {},
+  finalScoreSubmitted: false,
 }
 
 const stateFn = {
@@ -29,6 +33,8 @@ const stateFn = {
   setRefreshTime: setToPayload("refreshTime"),
   setQuestions: setToPayload("questions"),
   setSuggested: setToPayload("suggested"),
+  setQuestionsStats: setToPayload("questionsStats"),
+  setFinalScoreSubmitted: setToPayload("finalScoreSubmitted"),
   setPagePick: setToPayload("picks", false),
   setPageVoted: setToPayload("voted", false),
   setPageAnswer: setToPayload("answers", false),
@@ -43,6 +49,8 @@ const stateComputed = {
   pageAnswer,
   pageIsAnswered,
   isCorrectPagePick,
+  questionStats,
+  questionHasStats,
   yourScore,
   shareScore,
 }

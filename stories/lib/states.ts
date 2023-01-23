@@ -150,6 +150,23 @@ export const inProgressCorrect = cloneStore({
   },
 })
 
+export const inProgressCorrectWithStats = cloneStore({
+  session: {
+    ...globalModels.session,
+    page: correctPage,
+    answers: incompleteAnswers,
+    picks: { [correctPage]: "D" },
+    questionsStats: {
+      [correctPage]: {
+        A: 0.1,
+        B: 0.5,
+        D: 0.4,
+      },
+    },
+    questions: questionCreator(correctPage, standardQuestion),
+  },
+})
+
 export const inProgressCorrectVoted = cloneStore({
   session: {
     ...globalModels.session,

@@ -31,6 +31,8 @@ const nextConfig = {
     questions: 5,
     choices: 4,
     hoursBeforeUpdate: 24,
+    minResponsesForGlobalStats: 10,
+    minResponsesForQuestionStats: 10,
     version: "0.0.1",
   },
   images: {
