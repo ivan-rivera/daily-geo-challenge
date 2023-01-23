@@ -3,37 +3,13 @@ import { store } from "../store/store"
 import { setQuizId } from "../lib/storage"
 import { QuestionData, StaticProps } from "../lib/types"
 import getConfig from "next/config"
+import {
+  calculateDailyScore,
+  convertResponseToProp,
+  filterOutLowResponse,
+} from "../lib/stats"
 
 const { publicRuntimeConfig } = getConfig()
-
-// TODO: move these helpers somewhere else
-function filterOutLowResponse([_key, values]: [
-  string,
-  Record<string, number>
-]) {
-  return (
-    Object.values(values).reduce((sum, value) => sum + value, 0) >=
-    publicRuntimeConfig.minResponsesForQuestionStats
-  )
-}
-
-// TODO: move these helpers somewhere else
-function convertResponseToProp([key, values]: [
-  string,
-  Record<string, number>
-]) {
-  const total = Object.values(values).reduce((sum, value) => sum + value, 0)
-  const fractionValues = Object.fromEntries(
-    Object.entries(values).map(([letter, count]) => [letter, count / total])
-  )
-  return [key, fractionValues]
-}
-
-// TODO: move these helpers somewhere else
-function calculateDailyScore(stats: any) {
-  // TODO: fix type
-  return stats.correct / (stats.games * stats.questions)
-}
 
 function cacheImages(questions: QuestionData[]) {
   questions.map((question) => {

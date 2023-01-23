@@ -16,7 +16,6 @@ import { StaticProps } from "../lib/types"
  *    - Analytics
  *    - Documentation
  *    - Queries
- *  - Integrate question stats
  *  - Backend:
  *    - Set up Firebase + emulator
  *    - Pull game ID + average score from the server
