@@ -4,8 +4,8 @@ import Button from "../forms/Button"
 import NavButton from "../forms/NavButton"
 import getConfig from "next/config"
 import { useStoreActions, useStoreState } from "../../store/store"
-import { AnswerStatus } from "../../lib/types"
 import Link from "next/link"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 const { publicRuntimeConfig } = getConfig()
 

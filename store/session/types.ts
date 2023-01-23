@@ -1,5 +1,5 @@
-import { AnswerStatus, DataKey, QuestionData } from "../../lib/types"
 import { Action, Computed } from "easy-peasy"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 type Page = number
 type QuestionStats = Record<DataKey, number>
@@ -11,7 +11,7 @@ interface SessionAttributes {
   questionsStats: Record<Page, QuestionStats>
   suggested: boolean
   questions: QuestionData[]
-  picks: Record<Page, DataKey> // TODO: look into maps?
+  picks: Record<Page, DataKey>
   answers: Record<Page, AnswerStatus>
   voted: Record<Page, boolean>
   finalScoreSubmitted: boolean

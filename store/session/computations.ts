@@ -1,8 +1,8 @@
 import { computed, State } from "easy-peasy"
 import SessionStoreModel from "./types"
-import { AnswerStatus, QuestionData } from "../../lib/types"
 import getConfig from "next/config"
 import { answerToEmoji, isCorrect } from "../../lib/scoring"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 const { publicRuntimeConfig } = getConfig()
 

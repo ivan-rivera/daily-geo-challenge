@@ -1,7 +1,7 @@
 import { sample } from "lodash"
-import { AnswerStatus, QuestionData } from "../../lib/types"
 import getConfig from "next/config"
 import assert from "assert"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 const { publicRuntimeConfig } = getConfig()
 

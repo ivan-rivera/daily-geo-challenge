@@ -3,7 +3,7 @@ import Game from "../components/game/Game"
 import { sampleQuestions } from "../lib/questions/sampling"
 import { useReset, useServerStats, useStaticProps } from "../hooks/storage"
 import { useStoreState } from "../store/store"
-import { StaticProps } from "../lib/types"
+// import { StaticProps } from "../lib/types"
 
 /**
  * Main entry point into the app

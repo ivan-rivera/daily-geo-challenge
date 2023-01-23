@@ -1,13 +1,6 @@
 /**
  * This file is concerned with answer selection strategy
  */
-
-import {
-  Choices,
-  Datapoints,
-  Reducer,
-  SelectionStrategyResolvers,
-} from "../types"
 import { sample } from "lodash"
 
 /**

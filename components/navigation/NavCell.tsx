@@ -1,8 +1,8 @@
 import { Box, Text } from "@chakra-ui/react"
 import { CheckIcon, SmallCloseIcon } from "@chakra-ui/icons"
 import getConfig from "next/config"
-import { AnswerStatus, NavStatusColour } from "../../lib/types"
 import { useStoreActions, useStoreState } from "../../store/store"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -12,7 +12,7 @@ function getStatusProps(status: AnswerStatus): [NavStatusColour, JSX.Element] {
       return ["success", <CheckIcon color="quarternary" key={0} />]
     case AnswerStatus.Incorrect:
       return ["error", <SmallCloseIcon color="quarternary" key={0} />]
-    case AnswerStatus.Unanswered:
+    default:
       return ["background", <></>]
   }
 }

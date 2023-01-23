@@ -2,7 +2,6 @@ import React from "react"
 import { Box, Circle, Flex, Text } from "@chakra-ui/react"
 import { BOX_BORDER_RADIUS } from "../../lib/constants"
 import { useStoreState } from "../../store/store"
-import { ChoiceStatusColour } from "../../lib/types"
 
 interface AnswerChoiceProps {
   enumerator: string

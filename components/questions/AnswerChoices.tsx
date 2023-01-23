@@ -1,9 +1,9 @@
 import React from "react"
 import { Stack } from "@chakra-ui/react"
 import AnswerChoice from "./AnswerChoice"
-import { AnswerStatus, Choices, ChoiceStatusColour } from "../../lib/types"
 import { store, useStoreState } from "../../store/store"
 import { CheckIcon, SmallCloseIcon } from "@chakra-ui/icons"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 function getStatusProps(
   status: AnswerStatus,

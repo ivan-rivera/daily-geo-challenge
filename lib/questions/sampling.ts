@@ -1,4 +1,3 @@
-import { Datapoints, QuestionData, QuestionBlueprint } from "../types"
 import { sampleSize } from "lodash"
 import { selectionResolvers } from "./selection"
 import bank from "./bank"

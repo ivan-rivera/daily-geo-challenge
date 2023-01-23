@@ -1,7 +1,7 @@
 import { Center, Stack, Text } from "@chakra-ui/react"
-import { AnswerStatus } from "../../lib/types"
 import { useStoreState } from "../../store/store"
 import FeedbackIconButton from "../forms/FeedbackIconButton"
+import AnswerStatus from "../../lib/AnswerStatus"
 
 /**
  * Ask users if they liked the question and submit results to the server

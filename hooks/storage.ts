@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { store } from "../store/store"
 import { setQuizId } from "../lib/storage"
-import { QuestionData, StaticProps } from "../lib/types"
 import getConfig from "next/config"
 import {
   calculateDailyScore,

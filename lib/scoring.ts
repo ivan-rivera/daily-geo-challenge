@@ -1,4 +1,4 @@
-import { AnswerStatus } from "./types"
+import AnswerStatus from "./AnswerStatus"
 
 /**
  * Convert an answer into an emoji

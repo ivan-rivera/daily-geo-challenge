@@ -1,4 +1,3 @@
-import { Choices, QuestionData } from "./types"
 import { createQuestions } from "../stories/lib/helpers"
 
 const fillerChoices: Choices = {

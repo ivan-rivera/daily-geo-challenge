@@ -4,7 +4,6 @@ import countryCapitalData from "data/country-capitals.json"
 import cityElevationData from "data/city-elevation.json"
 import cityFoundedData from "data/city-inception.json"
 import cityPopulationData from "data/city-population.json"
-import { QuestionBlueprint } from "../types"
 
 /**
  * TODO: review this blurb
