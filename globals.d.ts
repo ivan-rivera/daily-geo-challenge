@@ -1,6 +1,9 @@
 declare module "*.md"
 declare global {
   type Reducer<T> = (items: T[]) => T
+  type Page = number
+  type QuestionStats = Record<DataKey, number>
+  type QuestionsStats = Record<Page, QuestionStats>
   type DataKey = string
   type DataValue = string | number
   type Datapoints = Record<DataKey, DataValue>
@@ -15,11 +18,11 @@ declare global {
     [key in SelectionStrategy]: (data: Datapoints) => [DataValue, Choices]
   }
 
-  // export enum AnswerStatus {
-  //   Unanswered,
-  //   Correct,
-  //   Incorrect,
-  // }
+  interface DailyStats {
+    games: number
+    correct: number
+    questions: number
+  }
 
   interface StaticProps {
     quizId: number

@@ -29,9 +29,8 @@ const countRenderer = ({
 
 export default function Countdown() {
   const timeUntilRefresh = useStoreState((state) => {
-    const hours = publicRuntimeConfig.hoursBeforeUpdate
     const refreshedTime = new Date(state.session.refreshTime).getTime()
-    return refreshedTime + 1000 * 60 * 60 * hours
+    return refreshedTime + publicRuntimeConfig.revalidationIncrement * 1000
   })
   return <ReactCountdown date={timeUntilRefresh} renderer={countRenderer} />
 }

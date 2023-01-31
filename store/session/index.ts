@@ -1,18 +1,27 @@
-import { resetSession, setDailyScore, setToPayload } from "./setters"
+import {
+  onSetFinalScoreSubmitted,
+  resetSession,
+  setDailyScore,
+  setServerProps,
+  setToPayload,
+} from "./setters"
 import SessionStoreModel from "./types"
 import {
-  pageAnswer,
-  pageVoted,
-  isFinished,
-  pageQuestion,
-  pagePick,
   isCorrectPagePick,
+  isFinished,
+  pageAnswer,
   pageIsAnswered,
-  yourScore,
-  shareScore,
-  questionStats,
+  pagePick,
+  pageQuestion,
+  pageVoted,
   questionHasStats,
+  questionStats,
+  shareScore,
+  totalCorrect,
+  yourScore,
 } from "./computations"
+
+// TODO: review and maybe redesign the whole damn data model
 
 const initialState = {
   page: 0,
@@ -41,6 +50,11 @@ const stateFn = {
   setDailyScore,
 }
 
+const thunks = {
+  onSetFinalScoreSubmitted,
+  setServerProps,
+}
+
 const stateComputed = {
   isFinished,
   pageVoted,
@@ -51,6 +65,7 @@ const stateComputed = {
   isCorrectPagePick,
   questionStats,
   questionHasStats,
+  totalCorrect,
   yourScore,
   shareScore,
 }
@@ -58,5 +73,6 @@ const stateComputed = {
 export const sessionStore: SessionStoreModel = {
   ...initialState,
   ...stateFn,
+  ...thunks,
   ...stateComputed,
 }

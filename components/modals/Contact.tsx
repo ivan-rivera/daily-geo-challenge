@@ -3,16 +3,16 @@ import Article from "content/modals/contact.mdx"
 import GenericModal from "./GenericModal"
 import Contact from "../forms/Contact"
 import { useState } from "react"
+import FeedbackService from "../../services/FeedbackService"
 
 /**
  * "Contact" modal
  * @constructor
  */
 export default function ContactModal() {
-  const clickHandler = () => {
-    // TODO: handle contact submission
+  const clickHandler = async (message: string): Promise<void> => {
+    await FeedbackService.sendMessage(message, "contact")
     setSubmitted(true)
-    console.log("submit")
   }
   const [submitted, setSubmitted] = useState(false)
   return (

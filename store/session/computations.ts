@@ -54,11 +54,14 @@ export const pageIsAnswered = computed(
     state.pageAnswer !== AnswerStatus.Unanswered
 )
 
+export const totalCorrect = computed((state: State<SessionStoreModel>) => {
+  return Object.values(state.answers).filter(
+    (answer) => answer === AnswerStatus.Correct
+  ).length
+})
+
 export const yourScore = computed((state: State<SessionStoreModel>) => {
-  const score =
-    Object.values(state.answers).filter(
-      (answer) => answer === AnswerStatus.Correct
-    ).length / publicRuntimeConfig.questions
+  const score = state.totalCorrect / publicRuntimeConfig.questions
   return Math.floor(score * 100).toString() + "%"
 })
 

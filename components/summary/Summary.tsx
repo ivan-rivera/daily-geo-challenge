@@ -6,6 +6,7 @@ import ScoreReport from "./ScoreReport"
 import Feedback from "./Feedback"
 import Contact from "../forms/Contact"
 import Share from "./Share"
+import FeedbackService from "../../services/FeedbackService"
 import { useEffect } from "react"
 
 export default function Summary() {
@@ -14,20 +15,15 @@ export default function Summary() {
    * @constructor
    */
   useEffect(() => {
-    if (!store.getState().session.finalScoreSubmitted) {
-      // TODO: submit data to server
-      // TODO: review this. Maybe use a thunk?
-      console.log("send final score data to server")
+    if (!store.getState().session.finalScoreSubmitted)
       store.dispatch.session.setFinalScoreSubmitted(true)
-    }
   }, [])
   const suggested = useStoreState((state) => state.session.suggested)
   const setSuggested = useStoreActions(
     (actions) => actions.session.setSuggested
   )
-  const acceptTextSuggestion = () => {
-    // TODO: submit data to server
-    console.log("accept")
+  const acceptTextSuggestion = async (suggestion: string): Promise<void> => {
+    await FeedbackService.sendMessage(suggestion, "suggestion")
     setSuggested(true)
   }
   return (

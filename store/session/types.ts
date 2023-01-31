@@ -1,8 +1,5 @@
-import { Action, Computed } from "easy-peasy"
+import { Action, Computed, Thunk, ThunkOn } from "easy-peasy"
 import AnswerStatus from "../../lib/AnswerStatus"
-
-type Page = number
-type QuestionStats = Record<DataKey, number>
 
 interface SessionAttributes {
   page: Page
@@ -31,6 +28,11 @@ interface SessionSetters {
   setFinalScoreSubmitted: Action<SessionStoreModel, boolean>
 }
 
+interface SessionThunks {
+  onSetFinalScoreSubmitted: ThunkOn<SessionStoreModel, void, {}>
+  setServerProps: Thunk<SessionStoreModel>
+}
+
 interface SessionComputed {
   pageQuestion: Computed<SessionStoreModel, QuestionData>
   pageAnswer: Computed<SessionStoreModel, AnswerStatus>
@@ -41,6 +43,7 @@ interface SessionComputed {
   isCorrectPagePick: Computed<SessionStoreModel, boolean>
   pageIsAnswered: Computed<SessionStoreModel, boolean>
   isFinished: Computed<SessionStoreModel, boolean>
+  totalCorrect: Computed<SessionStoreModel, number>
   yourScore: Computed<SessionStoreModel, string>
   shareScore: Computed<SessionStoreModel, string>
 }
@@ -48,4 +51,5 @@ interface SessionComputed {
 export default interface SessionStoreModel
   extends SessionAttributes,
     SessionSetters,
-    SessionComputed {}
+    SessionComputed,
+    SessionThunks {}

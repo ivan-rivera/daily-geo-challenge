@@ -30,7 +30,7 @@ const nextConfig = {
     staticFolder: "/static",
     questions: 5,
     choices: 4,
-    hoursBeforeUpdate: 24,
+    revalidationIncrement: 60 * 60 * 24,
     minResponsesForGlobalStats: 10,
     minResponsesForQuestionStats: 10,
     version: "0.0.1",

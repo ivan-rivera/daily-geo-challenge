@@ -6,6 +6,7 @@ import getConfig from "next/config"
 import { useStoreActions, useStoreState } from "../../store/store"
 import Link from "next/link"
 import AnswerStatus from "../../lib/AnswerStatus"
+import StatsService from "../../services/StatsService"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -26,8 +27,10 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
     (state) => state.session.isCorrectPagePick
   )
   const handleSubmit = (): void => {
-    // TODO: submit data to backend
     setAnswer(selectedIsCorrect ? AnswerStatus.Correct : AnswerStatus.Incorrect)
+    StatsService.submitAnswer(page, pick)
+      .then()
+      .catch((e) => console.error("failed to submit answer to server: ", e))
   }
   return (
     <Flex

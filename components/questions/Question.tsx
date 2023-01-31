@@ -24,7 +24,7 @@ export default function Question() {
   })
   useEffect(() => {
     controls.set({ opacity: 0 })
-    controls.start({ opacity: 1 })
+    controls.start({ opacity: 1 }).then()
   }, [page, controls])
   return (
     <AnimatePresence>

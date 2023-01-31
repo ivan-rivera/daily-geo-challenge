@@ -1,5 +1,5 @@
 import { StoreProvider, useStoreRehydrated } from "easy-peasy"
-import { ChakraProvider, Text } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/react"
 import theme from "../theme/theme"
 import { store } from "../store/store"
 import { Analytics } from "@vercel/analytics/react"
@@ -7,10 +7,11 @@ import type { AppProps } from "next/app"
 import Head from "next/head"
 import Layout from "../components/root/Layout"
 import React from "react"
+import Loading from "../components/display/Loading"
 
 function WaitForStateRehydration({ children }: { children: React.ReactNode }) {
   const isRehydrated = useStoreRehydrated()
-  return isRehydrated ? <>{children}</> : <Text fontSize="3xl">Loading...</Text>
+  return isRehydrated ? <>{children}</> : <Loading />
 }
 
 function MyApp({ Component, pageProps }: AppProps) {

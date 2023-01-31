@@ -23,6 +23,7 @@
     "generate-data": "ts-node scripts/generateData.ts"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -35,11 +36,13 @@
     "@tabler/icons": "^1.116.1",
     "@vercel/analytics": "^0.1.5",
     "easy-peasy": "^5.2.0",
+    "firebase": "^9.16.0",
     "framer-motion": "^6.5.1",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-countdown": "^2.3.5",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -71,6 +74,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-storybook": "^0.6.7",
+    "firebase-tools": "^11.21.0",
     "husky": "^8.0.0",
     "jsdom": "^20.0.3",
     "lodash": "^4.17.21",
