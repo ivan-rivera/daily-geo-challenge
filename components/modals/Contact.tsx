@@ -4,6 +4,7 @@ import GenericModal from "./GenericModal"
 import Contact from "../forms/Contact"
 import { useState } from "react"
 import FeedbackService from "../../services/FeedbackService"
+import AnalyticsService from "../../services/AnalyticsService"
 
 /**
  * "Contact" modal
@@ -11,6 +12,7 @@ import FeedbackService from "../../services/FeedbackService"
  */
 export default function ContactModal() {
   const clickHandler = async (message: string): Promise<void> => {
+    AnalyticsService.logEvent("contact", { contact_type: "message" })
     await FeedbackService.sendMessage(message, "contact")
     setSubmitted(true)
   }

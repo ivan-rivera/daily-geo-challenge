@@ -15,27 +15,9 @@ const { publicRuntimeConfig } = getConfig()
  * @constructor
  * TODO:
  *  - Big ticket items:
- *    - Analytics
  *    - Testing
  *    - Documentation
  *    - Queries
- *  - Backend:
- *    - Set up analytics
- *  - GA: Look into detailed analytics (e.g. rate of completion, time spent on page, etc) + feedback stuff
- *    - Find out if you can use GA4 as a DB for feedback, likes/dislikes, etc
- *    - rate of completion
- *    - rate of game initiation (people who start the game)
- *    - Of all visitors how many answer at least 1 question (or N questions)
- *    - Count of users returning N (1-7) days in a row
- *    - Average scores
- *    - time spent on page
- *    - Page not found counter
- *    - Server error counter
- *    - Trouble displaying an image?
- *    - Trouble inserting text into question/answer?
- *    - Clicks on share button
- *    - average likes/dislikes from feedback
- *    - display feedback text
  *  - Tests: Playwright/Vitest (you will have to take a course on this)
  *    - modals click events
  *    - welcome page: hiding score (average available vs not available)
@@ -53,8 +35,7 @@ const { publicRuntimeConfig } = getConfig()
  *    - Reset logic when the ID changes (test timeout?)
  *    - Share logic
  *    - Test all images & duplicates in the data
- *    - Firebase tests (more to come)
- *    - GTM tests (more to come)
+ *    - Analytics events are being fired?
  *    - GitHub actions
  *  - Queries
  *    - Remove duplicates
@@ -72,6 +53,8 @@ const { publicRuntimeConfig } = getConfig()
  *    - Remove redundant dependencies
  *    - Set up Git templates, etc
  *    - Google Ads + Google Network
+ *    - Deploy & check DB logic, check analytics, check ISR
+ *    - Set up Data Studio report
  *    - Ask for feedback
  *      - Carefully craft data structures for the app?
  *      - Create service classes like QuestionService?

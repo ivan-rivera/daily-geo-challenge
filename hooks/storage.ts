@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { store } from "../store/store"
-import { setQuizId } from "../lib/storage"
+import { getQuizId, setQuizId } from "../lib/storage"
 
 function cacheImages(questions: QuestionData[]) {
   questions.map((question) => {
@@ -15,8 +15,7 @@ function cacheImages(questions: QuestionData[]) {
  */
 export function useReset(latestQuizId: number) {
   useEffect(() => {
-    // TODO: change condition to: getQuizId() !== latestQuizId
-    if (true) {
+    if (getQuizId() !== latestQuizId) {
       console.log("resetting progress...")
       setQuizId(latestQuizId)
       store.dispatch.session.resetSession()

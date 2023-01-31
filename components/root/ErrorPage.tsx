@@ -2,6 +2,7 @@ import { Center, Text, useColorMode, VStack } from "@chakra-ui/react"
 import Image from "next/image"
 import Link from "next/link"
 import Button from "../forms/Button"
+import AnalyticsService from "../../services/AnalyticsService"
 
 export interface ErrorPageProps {
   code: number
@@ -13,6 +14,7 @@ export interface ErrorPageProps {
  * @constructor
  */
 export default function ErrorPage({ code, message }: ErrorPageProps) {
+  AnalyticsService.logEvent("error", { error_type: `page_${code}` })
   const { colorMode } = useColorMode()
   return (
     <Center>

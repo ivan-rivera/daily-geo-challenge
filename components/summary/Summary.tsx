@@ -8,6 +8,7 @@ import Contact from "../forms/Contact"
 import Share from "./Share"
 import FeedbackService from "../../services/FeedbackService"
 import { useEffect } from "react"
+import AnalyticsService from "../../services/AnalyticsService"
 
 export default function Summary() {
   /**
@@ -15,14 +16,18 @@ export default function Summary() {
    * @constructor
    */
   useEffect(() => {
-    if (!store.getState().session.finalScoreSubmitted)
+    if (!store.getState().session.finalScoreSubmitted) {
+      AnalyticsService.logEvent("goal_completion", { goal_name: "end" })
+      AnalyticsService.setUserProperties({ player: "finisher" })
       store.dispatch.session.setFinalScoreSubmitted(true)
+    }
   }, [])
   const suggested = useStoreState((state) => state.session.suggested)
   const setSuggested = useStoreActions(
     (actions) => actions.session.setSuggested
   )
   const acceptTextSuggestion = async (suggestion: string): Promise<void> => {
+    AnalyticsService.logEvent("contact", { contact_type: "suggestion" })
     await FeedbackService.sendMessage(suggestion, "suggestion")
     setSuggested(true)
   }

@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Alert, AlertTitle, AlertIcon } from "@chakra-ui/alert"
 import { useStoreState } from "../../store/store"
 import { Center } from "@chakra-ui/react"
+import AnalyticsService from "../../services/AnalyticsService"
 
 interface ShareHandlerProps {
   text: string
@@ -18,12 +19,14 @@ interface ShareHandlerProps {
  */
 const shareHandler = async ({ text, popupTrigger }: ShareHandlerProps) => {
   if (typeof navigator !== "undefined" && navigator?.share !== undefined) {
+    AnalyticsService.logEvent("share", { format: "native" })
     await navigator
       .share({ title: "Share", text })
       .catch((err) => console.log(err))
   } else {
     try {
       navigator.clipboard.writeText(text).then(() => popupTrigger())
+      AnalyticsService.logEvent("share", { format: "copy" })
     } catch (err) {
       alert("Your browser does not support this action")
     }

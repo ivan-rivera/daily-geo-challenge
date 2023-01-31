@@ -7,6 +7,7 @@ import { useStoreActions, useStoreState } from "../../store/store"
 import Link from "next/link"
 import AnswerStatus from "../../lib/AnswerStatus"
 import StatsService from "../../services/StatsService"
+import AnalyticsService from "../../services/AnalyticsService"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -16,6 +17,7 @@ const { publicRuntimeConfig } = getConfig()
  */
 export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
   const page = useStoreState((state) => state.session.page)
+  const question = useStoreState((state) => state.session.pageQuestion)
   const setPage = useStoreActions((actions) => actions.session.setPage)
   const pick = useStoreState((state) => state.session.pagePick)
   const setAnswer = useStoreActions((state) => state.session.setPageAnswer)
@@ -28,6 +30,11 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
   )
   const handleSubmit = (): void => {
     setAnswer(selectedIsCorrect ? AnswerStatus.Correct : AnswerStatus.Incorrect)
+    AnalyticsService.logEvent("level_end", {
+      level_name: page,
+      is_correct: +selectedIsCorrect,
+      question_id: question.id,
+    })
     StatsService.submitAnswer(page, pick)
       .then()
       .catch((e) => console.error("failed to submit answer to server: ", e))

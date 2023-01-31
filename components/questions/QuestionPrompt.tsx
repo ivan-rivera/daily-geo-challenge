@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
+import AnalyticsService from "../../services/AnalyticsService"
 
 interface QuestionPromptProps {
   question: string
@@ -49,7 +50,10 @@ export default function QuestionPrompt({
             loading="eager"
             sizes="(max-width: 300px) 100vw, 300px"
             priority
-            onError={() => setSrc(`/image-error-${colorMode}.svg`)}
+            onError={() => {
+              AnalyticsService.logEvent("error", { error_type: "image_load" })
+              setSrc(`/image-error-${colorMode}.svg`)
+            }}
             onLoadingComplete={() => setIsLoading(false)}
           />
         </Center>
