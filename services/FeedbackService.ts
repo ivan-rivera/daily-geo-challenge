@@ -3,6 +3,7 @@ import { databases } from "../firebase/setup"
 import getConfig from "next/config"
 import { getQuizId } from "../lib/storage"
 import { v4 as uuid } from "uuid"
+import { ifBackendEnabled } from "../lib/backend"
 
 const { contactDb, statsDb } = databases
 const { publicRuntimeConfig } = getConfig()
@@ -19,6 +20,7 @@ export default class FeedbackService {
     const date = `${year}-${month}-${day}`
     return `${date}/${uuid()}`
   }
+  @ifBackendEnabled()
   static async sendMessage(
     message: string,
     kind: "contact" | "suggestion"
@@ -28,6 +30,7 @@ export default class FeedbackService {
       .then(() => console.log("message sent"))
       .catch((e) => console.log("failed to send message: ", e))
   }
+  @ifBackendEnabled()
   static async submitRating(page: number, liked: boolean): Promise<void> {
     const location = page > publicRuntimeConfig.questions ? "summary" : page
     const db = child(statsDb, `${this.quizId}/feedback/${location}`)

@@ -1,8 +1,8 @@
 import {
+  Analytics,
+  isSupported,
   logEvent,
   setUserProperties,
-  isSupported,
-  Analytics,
 } from "@firebase/analytics"
 import { getAnalytics } from "../firebase/setup"
 
@@ -22,10 +22,10 @@ export default class AnalyticsService {
       console.error("Error logging event submit", e)
     }
   }
-  static logEvent(name: string, details: EventProps = {}) {
+  static logEvent(name: string, details: EventProps = {}): void {
     this.submit(() => logEvent(this.instance, name, details))
   }
-  static setUserProperties(details: EventProps) {
+  static setUserProperties(details: EventProps): void {
     this.submit(() => setUserProperties(this.instance, details))
   }
 }

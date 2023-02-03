@@ -28,6 +28,7 @@ const nextConfig = {
     hashtag: "#daily-geo-challenge",
     url: "https://www.dailygeochallenge.com", // TODO: update
     staticFolder: "/static",
+    backendEnabled: true,
     questions: 5,
     choices: 4,
     revalidationIncrement: 60 * 60 * 24,
