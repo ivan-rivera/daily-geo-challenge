@@ -48,6 +48,7 @@ interface SessionComputed {
   shareScore: Computed<SessionStoreModel, string>
 }
 
+// TODO: test this store
 export default interface SessionStoreModel
   extends SessionAttributes,
     SessionSetters,

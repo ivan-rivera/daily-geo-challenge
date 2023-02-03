@@ -21,8 +21,6 @@ import {
   yourScore,
 } from "./computations"
 
-// TODO: review and maybe redesign the whole damn data model
-
 const initialState = {
   page: 0,
   suggested: false,

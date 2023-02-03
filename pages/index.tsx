@@ -69,9 +69,11 @@ export default function Home(props: StaticProps) {
 }
 
 export async function getStaticProps() {
-  await signIn()
-    .then(() => console.log("Server signed in"))
-    .catch((err) => console.error("Server sign in error", err))
+  if (publicRuntimeConfig.backendEnabled) {
+    await signIn()
+      .then(() => console.log("Server signed in"))
+      .catch((err) => console.error("Server sign in error", err))
+  } else console.log("Backend disabled")
   const questions = sampleQuestions()
   const quizId = await QuizService.getLatestId()
   await QuizService.initQuiz(questions, quizId)

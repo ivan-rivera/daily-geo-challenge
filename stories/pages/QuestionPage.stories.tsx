@@ -22,7 +22,6 @@ export default {
   component: Game,
 } as ComponentMeta<typeof Game>
 
-// TODO: mock server data once you wire it up
 export const Unanswered = fullTemplate(inProgressUnanswered)
 export const UnansweredNonASCII = fullTemplate(inProgressUnansweredNonASCII)
 export const WithManyChoices = fullTemplate(inProgressUnansweredManyChoices)

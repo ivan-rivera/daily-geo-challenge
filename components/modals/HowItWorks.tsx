@@ -3,7 +3,6 @@ import Article from "content/modals/howItWorks.mdx"
 
 /**
  * "How It Works" modal
- * TODO: add reference to the database
  * @constructor
  */
 export default function HowItWorksModal() {

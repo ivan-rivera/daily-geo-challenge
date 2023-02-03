@@ -15,7 +15,6 @@ interface AnswerChoiceProps {
 
 /**
  * A single available choice
- * // TODO: add choice stats
  * @constructor
  */
 export default function AnswerChoice({

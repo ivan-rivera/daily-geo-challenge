@@ -7,7 +7,6 @@ const { publicRuntimeConfig } = getConfig()
 
 /**
  * Generate a sample of answers
- * TODO: test me
  * @param n
  */
 export const generateAnswers = (
@@ -22,7 +21,6 @@ export const generateAnswers = (
 /**
  * Given an integer n and an object of correct and incorrect answers,
  * append n unanswered answers to the object continuing the key order
- * TODO: test me
  * @param answers
  * @param n
  */
@@ -38,6 +36,7 @@ export const appendUnanswered = (
 }
 
 /**
+ * TODO: test me
  * Given the desired number of unanswered pages, create a list of AnswerStatus
  * values such that:
  *   - The last `unanswered` values are `AnswerStatus.Unanswered`

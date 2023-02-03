@@ -11,12 +11,12 @@ import AnalyticsService from "../../services/AnalyticsService"
  * @constructor
  */
 export default function ContactModal() {
+  const [submitted, setSubmitted] = useState(false)
   const clickHandler = async (message: string): Promise<void> => {
     AnalyticsService.logEvent("contact", { contact_type: "message" })
     await FeedbackService.sendMessage(message, "contact")
     setSubmitted(true)
   }
-  const [submitted, setSubmitted] = useState(false)
   return (
     <GenericModal toggle="contact">
       <>
