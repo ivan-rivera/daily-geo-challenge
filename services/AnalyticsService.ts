@@ -5,6 +5,7 @@ import {
   setUserProperties,
 } from "@firebase/analytics"
 import { getAnalytics } from "../firebase/setup"
+import { ifBackendEnabled } from "../lib/backend"
 
 type EventProps = Record<string, string | number>
 
@@ -12,6 +13,7 @@ export default class AnalyticsService {
   private static get instance(): Analytics {
     return getAnalytics()
   }
+  @ifBackendEnabled()
   private static submit(fn: () => void): void {
     try {
       isSupported()
