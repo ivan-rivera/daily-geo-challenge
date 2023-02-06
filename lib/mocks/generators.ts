@@ -1,7 +1,7 @@
 import { sample } from "lodash"
 import getConfig from "next/config"
 import assert from "assert"
-import AnswerStatus from "../../lib/AnswerStatus"
+import AnswerStatus from "../AnswerStatus"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -36,7 +36,6 @@ export const appendUnanswered = (
 }
 
 /**
- * TODO: test me
  * Given the desired number of unanswered pages, create a list of AnswerStatus
  * values such that:
  *   - The last `unanswered` values are `AnswerStatus.Unanswered`

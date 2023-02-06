@@ -12,7 +12,7 @@ import {
   inProgressUnansweredLongData,
   inProgressUnansweredManyChoices,
   inProgressUnansweredNonASCII,
-} from "../lib/states"
+} from "../../lib/mocks/states"
 import Game from "../../components/game/Game"
 
 // TODO:

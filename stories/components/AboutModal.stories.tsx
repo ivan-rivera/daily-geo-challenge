@@ -1,7 +1,7 @@
 import AboutModal from "../../components/modals/About"
 import { ComponentMeta } from "@storybook/react"
 import { storeTemplate } from "../lib/decorators"
-import { aboutModalOpen } from "../lib/states"
+import { aboutModalOpen } from "../../lib/mocks/states"
 
 export default {
   title: "Components/Modal - About",

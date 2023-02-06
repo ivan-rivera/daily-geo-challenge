@@ -42,23 +42,19 @@ const { publicRuntimeConfig } = getConfig()
  *    - Validate numbers & images
  *    - Add more queries
  *    - Remove bad queries
- *    - Country capitals: remove misl
  *    - City founded date: remove Auckland
  *  - Docs:
  *    - Add license, contributing guidelines
  *    - Write proper documentation (go over the components, fix docs, etc)
  *  - Misc:
- *    - SEO research
+ *    - SEO research & refinement
  *    - Domain! (OMG why did I leave it until so late)
  *    - Remove redundant dependencies
  *    - Set up Git templates, etc
- *    - Google Ads + Google Network
- *    - Deploy & check DB logic, check analytics, check ISR
- *    - Set up Data Studio report
+ *    - Deploy
+ *    - Google Ads + Google Network + scream about this
+ *    - Set up Data Studio report (create a GH issue for this)
  *    - Ask for feedback
- *      - Carefully craft data structures for the app?
- *      - Create service classes like QuestionService?
- *      - Anything else?
  */
 export default function Home(props: StaticProps) {
   useAuth()

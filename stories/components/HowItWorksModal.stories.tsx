@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react"
 import { storeTemplate } from "../lib/decorators"
-import { howItWorksModalOpen } from "../lib/states"
+import { howItWorksModalOpen } from "../../lib/mocks/states"
 import HowItWorksModal from "../../components/modals/HowItWorks"
 
 export default {

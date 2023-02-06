@@ -1,8 +1,8 @@
 // TODO: review whether these definitions should be here
 
-import { cloneStore } from "./decorators"
+import { cloneStore } from "../../stories/lib/decorators"
 import { models as globalModels } from "../../store/store"
-import { createQuestionList } from "./helpers"
+import { createQuestionList } from "./generators"
 import {
   questionCreator,
   questionWithBadImage,
@@ -11,7 +11,7 @@ import {
   questionWithManyChoices,
   questionWithNonASCIIChars,
   standardQuestion,
-} from "../../lib/mocks"
+} from "./mocks"
 
 export const withDailyScore = cloneStore({
   session: { ...globalModels.session, dailyScore: "76%" },

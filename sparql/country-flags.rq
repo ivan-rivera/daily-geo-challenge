@@ -3,6 +3,9 @@
 # we need to group by country and take only those instances that have a single flag, then the
 # sampling of the flag is only there to satisfy the aggregation condition because we are taking
 # a sample of one image only.
+# TODO: exclude duplicates
+# TODO: exclude: Kingdom of the Netherlands
+# TODO: exclude: Kingdom of Denmark
 SELECT
     (?countryLabel AS ?key)
     ?value

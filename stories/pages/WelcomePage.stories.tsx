@@ -1,7 +1,7 @@
 import { ComponentMeta } from "@storybook/react"
 import Welcome from "../../components/welcome/Welcome"
 import { baseDecorators } from "../lib/decorators"
-import { withDailyScore } from "../lib/states"
+import { withDailyScore } from "../../lib/mocks/states"
 
 /**
  * Home page

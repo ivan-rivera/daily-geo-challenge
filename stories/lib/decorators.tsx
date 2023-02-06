@@ -40,7 +40,7 @@ export const withStoreProvider =
  * @param label - an optional name of the store
  */
 export function cloneStore(
-  update: Partial<StoreModel>,
+  update: Partial<StoreModel> = {},
   label: string = "MockStore"
 ): Store<StoreModel> {
   return createStore<StoreModel>(

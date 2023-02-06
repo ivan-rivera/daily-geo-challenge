@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react"
 import { storeTemplate } from "../lib/decorators"
-import { contactModalOpen } from "../lib/states"
+import { contactModalOpen } from "../../lib/mocks/states"
 import ContactModal from "../../components/modals/Contact"
 
 export default {

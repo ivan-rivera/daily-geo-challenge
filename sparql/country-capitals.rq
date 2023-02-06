@@ -2,6 +2,10 @@
 # Note that some countries have more than one official capital
 # and we do not want to deal with such cases that is why we are
 # only selecting results with a single capital
+# TODO: exclude duplicates
+# TODO: exclude: Kingdom of the Netherlands
+# TODO: exclude: Kingdom of Denmark
+# TODO: exclude: misl
 SELECT
     (?countryLabel AS ?key)
     ?value

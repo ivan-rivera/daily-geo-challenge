@@ -1,4 +1,4 @@
-import { createQuestions } from "../stories/lib/helpers"
+import { createQuestions } from "./generators"
 
 const fillerChoices: Choices = {
   "Some selection": { correct: false, letter: "A" },

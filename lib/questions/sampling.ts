@@ -44,6 +44,6 @@ const askQuestion = (question: QuestionBlueprint): QuestionData => {
  * Sample a random collection of questions from the bank
  */
 export const sampleQuestions = (
+  data: QuestionBlueprint[] = bank,
   n: number = publicRuntimeConfig.questions
-  // TODO: test this with min/max/random
-): QuestionData[] => sampleSize(bank, n).map((q) => askQuestion(q))
+): QuestionData[] => sampleSize(data, n).map((q) => askQuestion(q))

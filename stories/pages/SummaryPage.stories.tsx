@@ -5,7 +5,7 @@ import {
   completedSummarySuggested,
   completedSummaryVoted,
   completedSummaryWithScore,
-} from "../lib/states"
+} from "../../lib/mocks/states"
 import Game from "../../components/game/Game"
 
 export default {

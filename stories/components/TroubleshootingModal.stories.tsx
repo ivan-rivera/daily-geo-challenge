@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react"
 import { storeTemplate } from "../lib/decorators"
-import { troubleshootingModalOpen } from "../lib/states"
+import { troubleshootingModalOpen } from "../../lib/mocks/states"
 import TroubleshootingModal from "../../components/modals/Troubleshooting"
 
 export default {
