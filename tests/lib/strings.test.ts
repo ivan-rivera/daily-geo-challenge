@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest"
+import { describe, it, expect } from "@jest/globals"
 import { humanize } from "../../lib/strings"
 
 describe("string manipulation tests", () => {
