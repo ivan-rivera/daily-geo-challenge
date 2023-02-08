@@ -2,7 +2,7 @@ import { child, increment, set, update } from "@firebase/database"
 import { databases } from "../firebase/setup"
 import getConfig from "next/config"
 import { getQuizId } from "../lib/storage"
-import { v4 as uuid } from "uuid"
+import { uuid } from "uuidv4"
 import { ifBackendEnabled } from "../lib/backend"
 
 const { contactDb, statsDb } = databases

@@ -29,5 +29,5 @@ export function useStaticProps(props: StaticProps) {
     store.dispatch.session.setRefreshTime(props.time)
     store.dispatch.session.setServerProps()
     cacheImages(props.questions)
-  }, [props.questions, props.time])
+  })
 }

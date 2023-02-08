@@ -32,6 +32,7 @@ export default function NavCell({ id }: { id: number }) {
   })
   return (
     <Box
+      data-testid="NavCell"
       bg={statusColour}
       display="flex"
       borderColor="quarternary"

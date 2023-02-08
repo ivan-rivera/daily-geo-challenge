@@ -1,7 +1,4 @@
-// TODO: review whether these definitions should be here
-
-import { cloneStore } from "../../stories/lib/decorators"
-import { models as globalModels } from "../../store/store"
+import { models as globalModels, StoreModel } from "../../store/store"
 import { createQuestionList } from "./generators"
 import {
   questionCreator,
@@ -12,6 +9,22 @@ import {
   questionWithNonASCIIChars,
   standardQuestion,
 } from "./mocks"
+import { createStore, Store } from "easy-peasy"
+
+/**
+ * Clone store and extend it with attributes
+ * @param update - an object that maps to the global model
+ * @param label - an optional name of the store
+ */
+export function cloneStore(
+  update: Partial<StoreModel> = {},
+  label: string = "MockStore"
+): Store<StoreModel> {
+  return createStore<StoreModel>(
+    { ...globalModels, ...update },
+    { name: label }
+  )
+}
 
 export const withDailyScore = cloneStore({
   session: { ...globalModels.session, dailyScore: "76%" },

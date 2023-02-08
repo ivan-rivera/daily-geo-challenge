@@ -24,7 +24,6 @@ describe("question sampling tests", () => {
   const questions = sampleQuestions()
 
   it("should sample N questions from the bank", () => {
-    console.log(publicRuntimeConfig)
     expect(questions).toHaveLength(publicRuntimeConfig.questions)
   })
 
@@ -42,7 +41,7 @@ describe("question sampling tests", () => {
 
   it("should ensure that question text does not contain placeholders", () => {
     questions.forEach((q) => {
-      expect(q.question).not.toMatch(/\{|\}/)
+      expect(q.question).not.toMatch(/{|}/)
     })
   })
 

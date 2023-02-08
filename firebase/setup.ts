@@ -4,7 +4,9 @@ import { getAuth, signInAnonymously } from "@firebase/auth"
 import { Analytics, getAnalytics as getFbAnalytics } from "@firebase/analytics"
 import { prodConfig, devConfig } from "./configs"
 
-const MODE = process.env.NODE_ENV === "development" ? "DEV" : "PROD"
+const MODE = ["development", "test"].includes(process.env.NODE_ENV)
+  ? "DEV"
+  : "PROD"
 console.log("Connecting to Firebase in", MODE, "mode...")
 const app = initializeApp(MODE === "DEV" ? devConfig : prodConfig)
 const db = getDatabase(app)

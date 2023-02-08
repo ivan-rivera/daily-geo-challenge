@@ -1,3 +1,4 @@
+const settings = require("./settings")
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
   options: {
@@ -23,19 +24,7 @@ const nextConfig = {
       "tests",
     ],
   },
-  publicRuntimeConfig: {
-    title: "Daily Geo Challenge",
-    hashtag: "#daily-geo-challenge",
-    url: "https://www.dailygeochallenge.com", // TODO: update
-    staticFolder: "/static",
-    backendEnabled: true,
-    questions: 5,
-    choices: 4,
-    revalidationIncrement: 60 * 60 * 24,
-    minResponsesForGlobalStats: 10,
-    minResponsesForQuestionStats: 10,
-    version: "0.0.1",
-  },
+  publicRuntimeConfig: settings.publicRuntimeConfig,
   images: {
     domains: ["commons.wikimedia.org"],
   },

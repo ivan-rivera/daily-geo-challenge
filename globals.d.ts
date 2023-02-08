@@ -1,4 +1,8 @@
 declare module "*.md"
+declare module "*.mdx" {
+  let MDXComponent: (props: any) => JSX.Element
+  export default MDXComponent
+}
 declare global {
   type Reducer<T> = (items: T[]) => T
   type Page = number

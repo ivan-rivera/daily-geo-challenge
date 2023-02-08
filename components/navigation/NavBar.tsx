@@ -24,7 +24,7 @@ export default function NavBar() {
   )
   const pageDescription = `Question ${page} of ${publicRuntimeConfig.questions}`
   return (
-    <Center py={2}>
+    <Center py={2} data-testid="NavBar">
       <Stack direction="column">
         <Flex justifyContent="space-between" color="quarternary">
           <Text>{displayPage && pageDescription}</Text>

@@ -1,11 +1,7 @@
 import React from "react"
-import { createStore, Store, StoreProvider } from "easy-peasy"
+import { Store, StoreProvider } from "easy-peasy"
 import Layout from "../../components/root/Layout"
-import {
-  models as globalModels,
-  store as globalStore,
-  StoreModel,
-} from "../../store/store"
+import { store as globalStore, StoreModel } from "../../store/store"
 
 const _baseDecorators = [withLayout]
 
@@ -33,21 +29,6 @@ export const withStoreProvider =
         <Story />
       </StoreProvider>
     )
-
-/**
- * Clone store and extend it with attributes
- * @param update - an object that maps to the global model
- * @param label - an optional name of the store
- */
-export function cloneStore(
-  update: Partial<StoreModel> = {},
-  label: string = "MockStore"
-): Store<StoreModel> {
-  return createStore<StoreModel>(
-    { ...globalModels, ...update },
-    { name: label }
-  )
-}
 
 /**
  * A helper function to return an array of decorators with a store

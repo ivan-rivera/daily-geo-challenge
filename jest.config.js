@@ -1,16 +1,13 @@
+const nextJest = require("next/jest")
+
+const createJestConfig = nextJest({ dir: "./" })
+
 /** @type {import('jest').Config} */
-const config = {
-  rootDir: "./",
+const customJestConfig = {
+  moduleDirectories: ["node_modules", "<rootDir>/"],
+  moduleNameMapper: { "@/(.*)$": "<rootDir>/src/$1" },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/tests/setup.ts"],
-  modulePaths: ["<rootDir>/", "<rootDir>/data"],
-  moduleDirectories: ["node_modules", "src"],
-  verbose: true,
-  automock: true,
-  transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
-    "^.+\\.mdx?$": "@storybook/addon-docs/jest-transform-mdx",
-  },
 }
 
-module.exports = config
+module.exports = createJestConfig(customJestConfig)

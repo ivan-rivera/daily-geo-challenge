@@ -41,7 +41,8 @@ export default class StatsService {
   @ifBackendEnabled<QuestionsStats>({})
   static async getStatsPerQuestion(): Promise<QuestionsStats> {
     const questionData = await get(child(statsDb, this.questionsPath))
-    const transformedData = Object.entries(questionData)
+    const data: QuestionsStats = questionData.val() || {}
+    const transformedData = Object.entries(data)
       .filter(filterOutLowResponse)
       .map(convertResponseToProp)
     return Object.fromEntries(transformedData)
