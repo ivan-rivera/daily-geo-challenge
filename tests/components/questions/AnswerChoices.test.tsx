@@ -8,8 +8,6 @@ import QuestionNav from "../../../components/questions/QuestionNav"
 import AnswerChoices from "../../../components/questions/AnswerChoices"
 import { fireEvent, screen } from "@testing-library/react"
 
-export {}
-
 describe("AnswerChoices tests", () => {
   const dummyChoices = {
     ABC: { letter: "A", correct: false },

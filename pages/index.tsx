@@ -18,6 +18,8 @@ const { publicRuntimeConfig } = getConfig()
  *    - Testing
  *    - Documentation
  *    - Queries
+ *  - Bring FB config back into env vars
+ *  - Import react everywhere?
  *  - Tests: Playwright/Vitest (you will have to take a course on this)
  *    - modals click events
  *    - welcome page: hiding score (average available vs not available)
