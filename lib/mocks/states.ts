@@ -99,6 +99,15 @@ export const completedSummarySuggested = cloneStore({
   },
 })
 
+export const inProgressStart = cloneStore({
+  session: {
+    ...globalModels.session,
+    page: 1,
+    answers: incompleteAnswers,
+    questions: questionCreator(unansweredPage, standardQuestion),
+  },
+})
+
 export const inProgressUnanswered = cloneStore({
   session: {
     ...globalModels.session,

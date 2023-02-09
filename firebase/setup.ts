@@ -4,6 +4,7 @@ import { getAuth, signInAnonymously } from "@firebase/auth"
 import { Analytics, getAnalytics as getFbAnalytics } from "@firebase/analytics"
 import { prodConfig, devConfig } from "./configs"
 
+// TODO: Use environment variables
 const MODE = ["development", "test"].includes(process.env.NODE_ENV)
   ? "DEV"
   : "PROD"

@@ -38,6 +38,7 @@ export default function AnswerChoice({
       w="300px"
       as="button"
       p={2}
+      data-testid={`answer-choice-${enumerator}`}
       onClick={() => (!isAnswered ? onClick() : () => {})}
     >
       <Flex direction="row" justifyContent="center" alignItems="center">

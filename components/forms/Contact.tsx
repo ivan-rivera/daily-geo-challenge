@@ -27,9 +27,12 @@ export default function Contact({ onClick, title }: ContactProps) {
         _hover={{ bg: "secondary" }}
         variant="filled"
         placeholder="I suggest..."
+        data-testid="contactTextArea"
       />
       <br />
       <Button
+        data-testid="submitContactButton"
+        disabled={text === ""}
         display="block"
         ml="auto"
         mr={0}

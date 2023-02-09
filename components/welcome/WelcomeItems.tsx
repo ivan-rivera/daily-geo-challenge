@@ -1,7 +1,7 @@
 import { IconChecks, IconGlobe, IconShare } from "@tabler/icons"
 import WelcomeItem from "./WelcomeItem"
 import getConfig from "next/config"
-import { CardBody, VStack } from "@chakra-ui/react"
+import { Card, CardBody, VStack } from "@chakra-ui/react"
 import { BOX_BORDER_RADIUS } from "../../lib/constants"
 
 const { publicRuntimeConfig } = getConfig()
@@ -27,23 +27,19 @@ const welcomeItems = [
  */
 export default function WelcomeItems() {
   return (
-    <CardBody
-      bg="secondary"
-      color="tertiary"
-      borderBottom="1px"
-      borderColor="tertiary"
-      borderTopRadius={BOX_BORDER_RADIUS}
-    >
-      <VStack align="self-start">
-        {welcomeItems.map((item, index) => (
-          <WelcomeItem
-            key={item.text}
-            icon={item.icon}
-            text={item.text}
-            delay={(index + 1) * 0.25}
-          />
-        ))}
-      </VStack>
-    </CardBody>
+    <Card bg="secondary" color="tertiary" borderTopRadius={BOX_BORDER_RADIUS}>
+      <CardBody borderBottom="1px" borderColor="tertiary">
+        <VStack align="self-start">
+          {welcomeItems.map((item, index) => (
+            <WelcomeItem
+              key={item.text}
+              icon={item.icon}
+              text={item.text}
+              delay={(index + 1) * 0.25}
+            />
+          ))}
+        </VStack>
+      </CardBody>
+    </Card>
   )
 }

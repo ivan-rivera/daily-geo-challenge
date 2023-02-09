@@ -11,9 +11,15 @@ function getStatusProps(
   isCorrect: boolean
 ): [ChoiceStatusColour, JSX.Element] {
   if (status !== AnswerStatus.Unanswered && isCorrect)
-    return ["success", <CheckIcon color="success" key={0} />]
+    return [
+      "success",
+      <CheckIcon data-testid="correctMark" color="success" key={0} />,
+    ]
   if (status === AnswerStatus.Incorrect && isSelected)
-    return ["error", <SmallCloseIcon color="error" key={0} />]
+    return [
+      "error",
+      <SmallCloseIcon data-testid="incorrectMark" color="error" key={0} />,
+    ]
   return ["secondary", <></>]
 }
 

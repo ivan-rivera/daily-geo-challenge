@@ -47,6 +47,7 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
       m={5}
     >
       <NavButton
+        data-testid="backButton"
         disabled={page === 1}
         aria-label="previous"
         icon={<ChevronLeftIcon />}
@@ -59,11 +60,16 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
           </Text>
         </Link>
       ) : (
-        <Button onClick={handleSubmit} disabled={pick === ""}>
+        <Button
+          data-testid="submitAnswerButton"
+          onClick={handleSubmit}
+          disabled={pick === ""}
+        >
           Submit
         </Button>
       )}
       <NavButton
+        data-testid="forwardButton"
         disabled={page === availablePages}
         aria-label="next"
         icon={<ChevronRightIcon />}
