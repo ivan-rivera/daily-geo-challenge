@@ -2,6 +2,7 @@ import { default as ReactCountdown, zeroPad } from "react-countdown"
 import { Text } from "@chakra-ui/react"
 import { useStoreState } from "../../store/store"
 import getConfig from "next/config"
+import React from "react"
 
 const { publicRuntimeConfig } = getConfig()
 

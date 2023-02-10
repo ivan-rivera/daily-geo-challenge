@@ -3,6 +3,7 @@ import { IconBrandGithub, IconMoon, IconSun } from "@tabler/icons"
 import Link from "next/link"
 import getConfig from "next/config"
 import AnalyticsService from "../../../services/AnalyticsService"
+import React from "react"
 
 const { publicRuntimeConfig } = getConfig()
 const iconSize = 6

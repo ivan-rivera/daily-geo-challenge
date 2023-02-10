@@ -1,5 +1,6 @@
 import { Stack, Text } from "@chakra-ui/react"
 import { QuestionIcon } from "@chakra-ui/icons"
+import React from "react"
 
 /**
  * Displaying a question icon and question text

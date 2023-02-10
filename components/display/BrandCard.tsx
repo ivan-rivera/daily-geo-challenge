@@ -1,3 +1,4 @@
+import React from "react"
 import { BOX_BORDER_RADIUS } from "../../lib/constants"
 import { Card, Center, CardProps } from "@chakra-ui/react"
 

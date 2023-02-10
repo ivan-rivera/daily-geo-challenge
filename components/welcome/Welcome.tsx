@@ -1,6 +1,7 @@
 import WelcomeItems from "./WelcomeItems"
 import WelcomeFooter from "./WelcomeFooter"
 import BrandCard from "../display/BrandCard"
+import React from "react"
 
 /**
  * Welcome: card component

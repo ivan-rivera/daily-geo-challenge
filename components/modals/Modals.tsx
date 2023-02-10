@@ -1,3 +1,4 @@
+import React from "react"
 import AboutModal from "./About"
 import ContactModal from "./Contact"
 import TroubleshootingModal from "./Troubleshooting"

@@ -3,6 +3,7 @@ import WelcomeItem from "./WelcomeItem"
 import getConfig from "next/config"
 import { Card, CardBody, VStack } from "@chakra-ui/react"
 import { BOX_BORDER_RADIUS } from "../../lib/constants"
+import React from "react"
 
 const { publicRuntimeConfig } = getConfig()
 

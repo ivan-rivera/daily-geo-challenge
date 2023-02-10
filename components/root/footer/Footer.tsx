@@ -1,6 +1,7 @@
 import { Box, Center, SimpleGrid } from "@chakra-ui/react"
 import ModalLinks from "./ModalLinks"
 import BottomRow from "./BottomRow"
+import React from "react"
 
 /**
  * Footer component

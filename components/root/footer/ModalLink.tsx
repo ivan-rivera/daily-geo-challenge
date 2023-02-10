@@ -2,6 +2,7 @@ import { Center, Link, Text } from "@chakra-ui/react"
 import { store } from "../../../store/store"
 import { ModalsStoreModel } from "../../../store/modals"
 import { humanize } from "../../../lib/strings"
+import React from "react"
 
 interface ModalLinkProps {
   modal: keyof ModalsStoreModel

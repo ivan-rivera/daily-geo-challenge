@@ -3,6 +3,7 @@ import PlayButton from "../forms/PlayButton"
 import { useStoreState } from "../../store/store"
 import { getQuizId } from "../../lib/storage"
 import { BOX_BORDER_RADIUS } from "../../lib/constants"
+import React from "react"
 
 const dailyScoreAvailable = (value: string): boolean => value != "TBD"
 

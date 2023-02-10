@@ -1,5 +1,6 @@
 import { Box, Divider, Text } from "@chakra-ui/react"
 import { useStoreState } from "../../store/store"
+import React from "react"
 
 export default function ScoreReport() {
   const dailyScore = useStoreState((state) => state.session.dailyScore)

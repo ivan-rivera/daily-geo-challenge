@@ -1,3 +1,4 @@
+import React from "react"
 import { IconButton } from "@chakra-ui/react"
 import { IconThumbDown, IconThumbUp } from "@tabler/icons"
 import { useStoreActions, useStoreState } from "../../store/store"

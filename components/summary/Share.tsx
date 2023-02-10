@@ -4,6 +4,7 @@ import { Alert, AlertTitle, AlertIcon } from "@chakra-ui/alert"
 import { useStoreState } from "../../store/store"
 import { Center } from "@chakra-ui/react"
 import AnalyticsService from "../../services/AnalyticsService"
+import React from "react"
 
 interface ShareHandlerProps {
   text: string

@@ -1,3 +1,4 @@
+import React from "react"
 import { Box, Text, Textarea } from "@chakra-ui/react"
 import Button from "../forms/Button"
 import { ChangeEvent, ChangeEventHandler, useState } from "react"

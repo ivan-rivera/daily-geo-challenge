@@ -14,6 +14,7 @@ interface QuestionPromptProps {
   question: string
   image: string | null
 }
+import React from "react"
 
 /**
  * Question Prompt

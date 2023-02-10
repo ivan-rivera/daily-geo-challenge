@@ -8,6 +8,7 @@ import Link from "next/link"
 import AnswerStatus from "../../lib/AnswerStatus"
 import StatsService from "../../services/StatsService"
 import AnalyticsService from "../../services/AnalyticsService"
+import React from "react"
 
 const { publicRuntimeConfig } = getConfig()
 

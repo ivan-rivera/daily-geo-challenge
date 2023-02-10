@@ -1,3 +1,4 @@
+import React from "react"
 import { Box, Text } from "@chakra-ui/react"
 import Article from "content/modals/contact.mdx"
 import GenericModal from "./GenericModal"

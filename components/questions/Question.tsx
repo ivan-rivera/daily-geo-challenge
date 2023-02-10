@@ -9,6 +9,7 @@ import QuestionFeedback from "./QuestionFeedback"
 import { AnimatePresence, motion, useAnimation } from "framer-motion"
 import { useEffect } from "react"
 import { StatsInfo } from "./StatsInfo"
+import React from "react"
 
 /**
  * Question wrapper that contains the question, an optional image, answers

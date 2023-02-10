@@ -1,6 +1,7 @@
 import { Box, HStack, Text } from "@chakra-ui/react"
 import FeedbackIconButton from "../forms/FeedbackIconButton"
 import { useStoreState } from "../../store/store"
+import React from "react"
 
 export default function Feedback() {
   const voted = useStoreState((state) => state.session.pageVoted)

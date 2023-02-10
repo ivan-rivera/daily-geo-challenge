@@ -9,6 +9,7 @@ import Share from "./Share"
 import FeedbackService from "../../services/FeedbackService"
 import { useEffect } from "react"
 import AnalyticsService from "../../services/AnalyticsService"
+import React from "react"
 
 export default function Summary() {
   /**

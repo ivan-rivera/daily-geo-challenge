@@ -1,3 +1,4 @@
+import React from "react"
 import Question from "../questions/Question"
 import Summary from "../summary/Summary"
 import getConfig from "next/config"

@@ -19,6 +19,7 @@ const { publicRuntimeConfig } = getConfig()
  *    - Documentation
  *    - Queries
  *  - Bring FB config back into env vars
+ *  - Idea: connect suggestion feedback to GitHub issues
  *  - Import react everywhere?
  *  - Tests: Playwright/Vitest (you will have to take a course on this)
  *    - modals click events

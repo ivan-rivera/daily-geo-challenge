@@ -3,6 +3,7 @@ import { CheckIcon, SmallCloseIcon } from "@chakra-ui/icons"
 import getConfig from "next/config"
 import { useStoreActions, useStoreState } from "../../store/store"
 import AnswerStatus from "../../lib/AnswerStatus"
+import React from "react"
 
 const { publicRuntimeConfig } = getConfig()
 

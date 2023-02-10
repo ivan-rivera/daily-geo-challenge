@@ -1,6 +1,7 @@
 import ModalLink from "./ModalLink"
 import { Stack } from "@chakra-ui/react"
 import { modalsStore, ModalsStoreModel } from "../../../store/modals"
+import React from "react"
 
 /**
  * Collection of modal links that are meant to be accessed from the footer

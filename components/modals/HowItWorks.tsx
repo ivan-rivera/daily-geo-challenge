@@ -1,3 +1,4 @@
+import React from "react"
 import GenericModal from "./GenericModal"
 import Article from "content/modals/howItWorks.mdx"
 

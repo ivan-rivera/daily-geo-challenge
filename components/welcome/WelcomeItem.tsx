@@ -1,6 +1,7 @@
 import { Icon, Text } from "@chakra-ui/react"
 import { TablerIcon } from "@tabler/icons"
 import { motion, AnimatePresence } from "framer-motion"
+import React from "react"
 
 export interface WelcomeItemProps {
   icon: TablerIcon

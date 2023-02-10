@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Button from "../forms/Button"
 import AnalyticsService from "../../services/AnalyticsService"
+import React from "react"
 
 export interface ErrorPageProps {
   code: number
