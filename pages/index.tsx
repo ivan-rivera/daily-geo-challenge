@@ -6,7 +6,8 @@ import { useStoreState } from "../store/store"
 import { QuizService } from "../services/QuizService"
 import getConfig from "next/config"
 import { signIn } from "../firebase/setup"
-import { useAuth } from "../hooks/auth"
+import React from "react"
+import { getFirebaseOptions } from "../firebase/config"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -14,44 +15,21 @@ const { publicRuntimeConfig } = getConfig()
  * Main entry point into the app
  * @constructor
  * TODO:
- *  - Big ticket items:
- *    - Testing
- *    - Documentation
- *    - Queries
- *  - Bring FB config back into env vars
  *  - Idea: connect suggestion feedback to GitHub issues
- *  - Import react everywhere?
- *  - Tests: Playwright/Vitest (you will have to take a course on this)
- *    - modals click events
- *    - welcome page: hiding score (average available vs not available)
- *    - start game (clicking start game takes you to question 1 and you cannot go back to start page)
- *    - question navigation respecting the state
- *    - question navigation showing summary when completed
- *    - question card navigation: back/forward depending on page
- *    - question card: unanswered state
- *    - question card: answering correctly
- *    - question card: answering incorrectly
- *    - question card: up/down voted vs not voted
- *    - summary page: feedback provided vs not
- *    - summary page: share button logic
- *    - summary page average stats available vs not
- *    - Reset logic when the ID changes (test timeout?)
- *    - Share logic
- *    - Test all images & duplicates in the data
- *    - Analytics events are being fired?
- *    - GitHub actions
+ *  - Playwright E2E tests
+ *  - GitHub actions
  *  - Queries
  *    - Remove duplicates
  *    - Validate numbers & images
  *    - Add more queries
  *    - Remove bad queries
  *    - City founded date: remove Auckland
+ *  - SEO refinement
+ *  - Buy domain
  *  - Docs:
  *    - Add license, contributing guidelines
  *    - Write proper documentation (go over the components, fix docs, etc)
  *  - Misc:
- *    - SEO research & refinement
- *    - Domain! (OMG why did I leave it until so late)
  *    - Remove redundant dependencies
  *    - Set up Git templates, etc
  *    - Deploy
@@ -60,7 +38,6 @@ const { publicRuntimeConfig } = getConfig()
  *    - Ask for feedback
  */
 export default function Home(props: StaticProps) {
-  useAuth()
   useReset(props.quizId)
   useStaticProps(props)
   const page = useStoreState((state) => state.session.page)
@@ -68,16 +45,19 @@ export default function Home(props: StaticProps) {
 }
 
 export async function getStaticProps() {
+  const fbOpts = getFirebaseOptions()
   if (publicRuntimeConfig.backendEnabled) {
-    await signIn()
+    await signIn(fbOpts)
       .then(() => console.log("Server signed in"))
       .catch((err) => console.error("Server sign in error", err))
   } else console.log("Backend disabled")
   const questions = sampleQuestions()
-  const quizId = await QuizService.getLatestId()
-  await QuizService.initQuiz(questions, quizId)
+  const quizService = new QuizService(fbOpts)
+  const quizId = await quizService.getLatestId()
+  await quizService.initQuiz(questions, quizId)
   return {
     props: {
+      fbOpts,
       questions,
       quizId,
       time: JSON.parse(JSON.stringify(new Date())),

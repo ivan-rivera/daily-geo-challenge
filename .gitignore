@@ -38,4 +38,3 @@ next-env.d.ts
 /storybook-static/
 /.husky/
 /package-lock.json
-/firebase/configs.ts

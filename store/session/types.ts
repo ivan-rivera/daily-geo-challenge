@@ -1,5 +1,6 @@
 import { Action, Computed, Thunk, ThunkOn } from "easy-peasy"
 import AnswerStatus from "../../lib/AnswerStatus"
+import { FirebaseOptions } from "@firebase/app"
 
 interface SessionAttributes {
   page: Page
@@ -11,6 +12,7 @@ interface SessionAttributes {
   picks: Record<Page, DataKey>
   answers: Record<Page, AnswerStatus>
   voted: Record<Page, boolean>
+  fbOpts: FirebaseOptions
   finalScoreSubmitted: boolean
 }
 
@@ -26,6 +28,7 @@ interface SessionSetters {
   setQuestions: Action<SessionStoreModel, QuestionData[]>
   setQuestionsStats: Action<SessionStoreModel, Record<Page, QuestionStats>>
   setFinalScoreSubmitted: Action<SessionStoreModel, boolean>
+  setFbOpts: Action<SessionStoreModel, FirebaseOptions>
 }
 
 interface SessionThunks {

@@ -2,23 +2,25 @@ import { initializeApp } from "firebase/app"
 import { getDatabase, ref } from "firebase/database"
 import { getAuth, signInAnonymously } from "@firebase/auth"
 import { Analytics, getAnalytics as getFbAnalytics } from "@firebase/analytics"
-import { prodConfig, devConfig } from "./configs"
+import { FirebaseOptions } from "@firebase/app"
 
-// TODO: Use environment variables
-const MODE = ["development", "test"].includes(process.env.NODE_ENV)
-  ? "DEV"
-  : "PROD"
-console.log("Connecting to Firebase in", MODE, "mode...")
-const app = initializeApp(MODE === "DEV" ? devConfig : prodConfig)
-const db = getDatabase(app)
-const fbAuth = getAuth(app)
-export const signIn = async (): Promise<void> => {
-  await signInAnonymously(fbAuth)
+export const signIn = async (fbOpts: FirebaseOptions): Promise<void> => {
+  const app = initializeApp(fbOpts)
+  await signInAnonymously(getAuth(app))
 }
-export const getAnalytics = (): Analytics => getFbAnalytics(app)
-export const databases = {
-  questionDb: ref(db, "questions"),
-  statsDb: ref(db, "stats"),
-  latestIdDb: ref(db, "latestId"),
-  contactDb: ref(db, "contact"),
+
+export const getAnalytics = (fbOpts: FirebaseOptions): Analytics => {
+  const app = initializeApp(fbOpts)
+  return getFbAnalytics(app)
+}
+
+export const getDatabases = (fbOpts: FirebaseOptions): FirebaseDatabases => {
+  const app = initializeApp(fbOpts)
+  const db = getDatabase(app)
+  return {
+    questionDb: ref(db, "questions"),
+    statsDb: ref(db, "stats"),
+    latestIdDb: ref(db, "latestId"),
+    contactDb: ref(db, "contact"),
+  }
 }

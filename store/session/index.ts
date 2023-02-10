@@ -20,6 +20,7 @@ import {
   totalCorrect,
   yourScore,
 } from "./computations"
+import { FirebaseOptions } from "@firebase/app"
 
 const initialState = {
   page: 0,
@@ -31,6 +32,7 @@ const initialState = {
   answers: {},
   picks: {},
   voted: {},
+  fbOpts: {} as FirebaseOptions,
   finalScoreSubmitted: false,
 }
 
@@ -42,6 +44,7 @@ const stateFn = {
   setSuggested: setToPayload("suggested"),
   setQuestionsStats: setToPayload("questionsStats"),
   setFinalScoreSubmitted: setToPayload("finalScoreSubmitted"),
+  setFbOpts: setToPayload("fbOpts"),
   setPagePick: setToPayload("picks", false),
   setPageVoted: setToPayload("voted", false),
   setPageAnswer: setToPayload("answers", false),

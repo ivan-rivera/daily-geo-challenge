@@ -1,3 +1,6 @@
+import { DatabaseReference } from "@firebase/database"
+import { FirebaseOptions } from "@firebase/app"
+
 declare module "*.md"
 declare module "*.mdx" {
   let MDXComponent: (props: any) => JSX.Element
@@ -22,6 +25,13 @@ declare global {
     [key in SelectionStrategy]: (data: Datapoints) => [DataValue, Choices]
   }
 
+  interface FirebaseDatabases {
+    questionDb: DatabaseReference
+    statsDb: DatabaseReference
+    latestIdDb: DatabaseReference
+    contactDb: DatabaseReference
+  }
+
   interface DailyStats {
     games: number
     correct: number
@@ -29,6 +39,7 @@ declare global {
   }
 
   interface StaticProps {
+    fbOpts: FirebaseOptions
     quizId: number
     questions: QuestionData[]
     time: Date

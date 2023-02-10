@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { store } from "../store/store"
 import { getQuizId, setQuizId } from "../lib/storage"
+import { signIn } from "../firebase/setup"
 
 function cacheImages(questions: QuestionData[]) {
   questions.map((question) => {
@@ -27,6 +28,11 @@ export function useStaticProps(props: StaticProps) {
   useEffect(() => {
     store.dispatch.session.setQuestions(props.questions)
     store.dispatch.session.setRefreshTime(props.time)
+    store.dispatch.session.setFbOpts(props.fbOpts)
+    const auth = async () => await signIn(store.getState().session.fbOpts)
+    auth()
+      .then(() => console.log("Client signed in"))
+      .catch((err) => console.error("Client sign in error", err))
     store.dispatch.session.setServerProps()
     cacheImages(props.questions)
   })

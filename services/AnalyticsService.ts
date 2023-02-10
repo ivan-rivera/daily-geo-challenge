@@ -6,12 +6,14 @@ import {
 } from "@firebase/analytics"
 import { getAnalytics } from "../firebase/setup"
 import { ifBackendEnabled } from "../lib/backend"
+import { store } from "../store/store"
 
 type EventProps = Record<string, string | number>
 
 export default class AnalyticsService {
   private static get instance(): Analytics {
-    return getAnalytics()
+    const fbOpts = store.getState().session.fbOpts
+    return getAnalytics(fbOpts)
   }
   @ifBackendEnabled()
   private static submit(fn: () => void): void {
