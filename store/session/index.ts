@@ -33,11 +33,13 @@ const initialState = {
   picks: {},
   voted: {},
   fbOpts: {} as FirebaseOptions,
+  gitHubToken: "",
   finalScoreSubmitted: false,
 }
 
 const stateFn = {
   resetSession: resetSession(initialState),
+  setGitHubToken: setToPayload("gitHubToken"),
   setPage: setToPayload("page"),
   setRefreshTime: setToPayload("refreshTime"),
   setQuestions: setToPayload("questions"),

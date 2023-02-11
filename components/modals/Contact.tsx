@@ -1,9 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { Box, Text } from "@chakra-ui/react"
 import Article from "content/modals/contact.mdx"
 import GenericModal from "./GenericModal"
 import Contact from "../forms/Contact"
-import { useState } from "react"
 import FeedbackService from "../../services/FeedbackService"
 import AnalyticsService from "../../services/AnalyticsService"
 

@@ -40,6 +40,7 @@ declare global {
 
   interface StaticProps {
     fbOpts: FirebaseOptions
+    gitHubToken: string
     quizId: number
     questions: QuestionData[]
     time: Date

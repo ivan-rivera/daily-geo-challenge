@@ -29,6 +29,7 @@ export function useStaticProps(props: StaticProps) {
     store.dispatch.session.setQuestions(props.questions)
     store.dispatch.session.setRefreshTime(props.time)
     store.dispatch.session.setFbOpts(props.fbOpts)
+    store.dispatch.session.setGitHubToken(props.gitHubToken)
     const auth = async () => await signIn(store.getState().session.fbOpts)
     auth()
       .then(() => console.log("Client signed in"))

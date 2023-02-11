@@ -58,6 +58,7 @@ export async function getStaticProps() {
   return {
     props: {
       fbOpts,
+      gitHubToken: process.env.NEXT_PUBLIC_GH_TOKEN,
       questions,
       quizId,
       time: JSON.parse(JSON.stringify(new Date())),

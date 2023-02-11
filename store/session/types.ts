@@ -4,6 +4,7 @@ import { FirebaseOptions } from "@firebase/app"
 
 interface SessionAttributes {
   page: Page
+  gitHubToken: string
   refreshTime: Date
   dailyScore: string
   questionsStats: Record<Page, QuestionStats>
@@ -19,6 +20,7 @@ interface SessionAttributes {
 interface SessionSetters {
   resetSession: Action<SessionStoreModel>
   setPage: Action<SessionStoreModel, Page>
+  setGitHubToken: Action<SessionStoreModel, string>
   setRefreshTime: Action<SessionStoreModel, Date>
   setSuggested: Action<SessionStoreModel, boolean>
   setDailyScore: Action<SessionStoreModel, number>

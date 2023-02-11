@@ -10,6 +10,7 @@ import FeedbackService from "../../services/FeedbackService"
 import { useEffect } from "react"
 import AnalyticsService from "../../services/AnalyticsService"
 import React from "react"
+import { createIssue } from "../../lib/issues"
 
 export default function Summary() {
   /**
@@ -30,6 +31,7 @@ export default function Summary() {
   const acceptTextSuggestion = async (suggestion: string): Promise<void> => {
     AnalyticsService.logEvent("contact", { contact_type: "suggestion" })
     await FeedbackService.sendMessage(suggestion, "suggestion")
+    await createIssue(suggestion, store.getState().session.gitHubToken)
     setSuggested(true)
   }
   return (

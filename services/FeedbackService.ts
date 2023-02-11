@@ -7,7 +7,7 @@ import {
 } from "@firebase/database"
 import getConfig from "next/config"
 import { getQuizId } from "../lib/storage"
-import { uuid } from "uuidv4"
+import { v4 as uuid } from "uuid"
 import { ifBackendEnabled } from "../lib/backend"
 import { getDatabases } from "../firebase/setup"
 import { store } from "../store/store"
