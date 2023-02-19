@@ -23,12 +23,10 @@ const { publicRuntimeConfig } = getConfig()
  *    - Remove bad queries
  *    - City founded date: remove Auckland
  *  - SEO refinement
- *  - Buy domain
  *  - Docs:
  *    - Add license, contributing guidelines
  *    - Write proper documentation (go over the components, fix docs, etc)
  *  - Misc:
- *    - Remove redundant dependencies
  *    - Set up Git templates, etc
  *    - Deploy
  *    - Google Ads + Google Network + scream about this
