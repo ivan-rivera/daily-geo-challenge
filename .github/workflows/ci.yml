@@ -19,16 +19,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_PROD_FB_API_KEY: "xxx"
-      NEXT_PUBLIC_PROD_FB_AUTH_DOMAIN: "xxx.firebaseapp.com"
-      NEXT_PUBLIC_PROD_FB_DATABASE_URL: "https://xxx-rtdb.europe-west1.firebasedatabase.app"
-      NEXT_PUBLIC_PROD_FB_PROJECT_ID: "daily-geo"
-      NEXT_PUBLIC_PROD_FB_STORAGE_BUCKET: "daily-geo.appspot.com"
-      NEXT_PUBLIC_PROD_FB_MESSAGING_SENDER_ID: "xxx"
-      NEXT_PUBLIC_PROD_FB_APP_ID: "1:xxx:web:xxx"
-      NEXT_PUBLIC_PROD_GA_MEASUREMENT_ID: "G-XXX"
-      NEXT_PUBLIC_GH_TOKEN: "github_pat_xxx"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
