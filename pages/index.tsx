@@ -15,8 +15,6 @@ const { publicRuntimeConfig } = getConfig()
  * Main entry point into the app
  * @constructor
  * TODO:
- *  - Idea: connect suggestion feedback to GitHub issues
- *  - Playwright E2E tests
  *  - GitHub actions
  *  - Queries
  *    - Remove duplicates
