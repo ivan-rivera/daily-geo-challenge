@@ -19,6 +19,7 @@
     "theme:watch": "chakra-cli tokens theme/theme.ts --watch",
     "prepare": "husky install",
     "test": "jest",
+    "test:ci": "jest --testPathIgnorePatterns bank.test.ts",
     "generate-data": "ts-node scripts/generateData.ts"
   },
   "dependencies": {
