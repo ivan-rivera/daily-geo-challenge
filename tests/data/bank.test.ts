@@ -11,17 +11,17 @@ describe("options must be unique", () => {
   })
 })
 
-// describe("images must be loaded correctly", () => {
-//   data.forEach((q) => {
-//     if (q.image) {
-//       it(`should have a valid image for question ${q.id}`, () => {
-//         Object.values(q.data).forEach(async (value) => {
-//           if (typeof value === "string") {
-//             const response = await axios.get(value)
-//             expect(response.status).toBe(200)
-//           }
-//         })
-//       })
-//     }
-//   })
-// })
+describe("images must be loaded correctly", () => {
+  data.forEach((q) => {
+    if (q.image) {
+      it(`should have a valid image for question ${q.id}`, () => {
+        Object.values(q.data).forEach(async (value) => {
+          if (typeof value === "string") {
+            const response = await axios.get(value)
+            expect(response.status).toBe(200)
+          }
+        })
+      })
+    }
+  })
+})
