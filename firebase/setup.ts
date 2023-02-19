@@ -15,6 +15,7 @@ export const getAnalytics = (fbOpts: FirebaseOptions): Analytics => {
 }
 
 export const getDatabases = (fbOpts: FirebaseOptions): FirebaseDatabases => {
+  console.log("firebase options: ", fbOpts)
   const app = initializeApp(fbOpts)
   const db = getDatabase(app)
   return {
