@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import axios from "axios"
 import { getDuplicates } from "../support"
 import data from "../../lib/questions/bank"

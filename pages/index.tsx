@@ -22,16 +22,6 @@ const { publicRuntimeConfig } = getConfig()
  *    - Add more queries
  *    - Remove bad queries
  *    - City founded date: remove Auckland
- *  - SEO refinement
- *  - Docs:
- *    - Add license, contributing guidelines
- *    - Write proper documentation (go over the components, fix docs, etc)
- *  - Misc:
- *    - Set up Git templates, etc
- *    - Deploy
- *    - Google Ads + Google Network + scream about this
- *    - Set up Data Studio report (create a GH issue for this)
- *    - Ask for feedback
  */
 export default function Home(props: StaticProps) {
   useReset(props.quizId)
