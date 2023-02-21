@@ -1,9 +1,8 @@
 # Global city highest elevation values
 # Note that a global city is a city that has international significance and it is defined as such in Wikidata.
 # Elevation of a city may vary, we use the highest elevation value for each city.
-# TODO: remove duplicate values!
 SELECT
-    (?cityLabel AS ?key)
+    (SAMPLE(?cityLabel) AS ?key)
     ?value
 {
     SELECT
@@ -17,4 +16,5 @@ SELECT
     }
     GROUP BY ?cityLabel
 }
+GROUP BY ?value
 ORDER BY ?key

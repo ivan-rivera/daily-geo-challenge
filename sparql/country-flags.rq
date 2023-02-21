@@ -3,11 +3,8 @@
 # we need to group by country and take only those instances that have a single flag, then the
 # sampling of the flag is only there to satisfy the aggregation condition because we are taking
 # a sample of one image only.
-# TODO: exclude duplicates
-# TODO: exclude: Kingdom of the Netherlands
-# TODO: exclude: Kingdom of Denmark
 SELECT
-    (?countryLabel AS ?key)
+    (SAMPLE(?countryLabel) AS ?key)
     ?value
 {
     SELECT
@@ -22,10 +19,14 @@ SELECT
             ?country
                 wdt:P31 wd:Q6256;
                 wdt:P41 ?flag .
+            ?country rdfs:label ?countryLabelFilter .
+            FILTER(LANG(?countryLabelFilter)='en')
+            FILTER(STR(?countryLabelFilter) NOT IN ("Kingdom of the Netherlands", "Kingdom of Denmark"))
             SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
         }
     }
     GROUP BY ?countryLabel
     HAVING(COUNT(?flagLabel) = 1)
 }
+GROUP BY ?value
 ORDER BY ?key
