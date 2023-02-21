@@ -3,6 +3,7 @@ import getConfig from "next/config"
 import { ifBackendEnabled } from "../lib/backend"
 import { getDatabases } from "../firebase/setup"
 import { FirebaseOptions } from "@firebase/app"
+import { AuthService } from "./AuthService"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -11,8 +12,10 @@ const { publicRuntimeConfig } = getConfig()
  */
 export class QuizService {
   private readonly databases: FirebaseDatabases
+  private readonly auth: AuthService
   constructor(fbOpts: FirebaseOptions) {
     this.databases = getDatabases(fbOpts)
+    this.auth = new AuthService(fbOpts)
   }
   private get questionDb(): DatabaseReference {
     const { questionDb } = this.databases
@@ -47,6 +50,7 @@ export class QuizService {
   }
   @ifBackendEnabled()
   async initQuiz(questions: QuestionData[], quizId: number): Promise<void> {
+    await this.auth.signIn()
     this.commitQuestions(questions, quizId)
       .then(() => console.log("committed questions to DB"))
       .catch((e) => console.log("failed to commit questions to DB: ", e))
@@ -56,6 +60,7 @@ export class QuizService {
   }
   @ifBackendEnabled(Math.floor(Math.random() * 10_000))
   async getLatestId(): Promise<number> {
+    await this.auth.signIn()
     const latestIdSnapshot = await get(this.latestIdDb)
     const latestId = (latestIdSnapshot.val() || 0) + 1
     await set(this.latestIdDb, latestId)

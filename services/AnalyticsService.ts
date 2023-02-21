@@ -24,7 +24,6 @@ export default class AnalyticsService {
     try {
       isSupported()
         .then(fn)
-        .then(() => console.log("Event submitted"))
         .catch((e) => console.error("Analytics not supported", e))
     } catch (e) {
       console.error("Error logging event submit", e)

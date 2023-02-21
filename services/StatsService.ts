@@ -10,6 +10,8 @@ import { store } from "../store/store"
 import getConfig from "next/config"
 import { ifBackendEnabled } from "../lib/backend"
 import { getDatabases } from "../firebase/setup"
+import { AuthService } from "./AuthService"
+import { FirebaseOptions } from "@firebase/app"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -17,8 +19,14 @@ const { publicRuntimeConfig } = getConfig()
  * Stats service, used to handle user stats.
  */
 export default class StatsService {
+  private static get fbOpts(): FirebaseOptions {
+    return store.getState().session.fbOpts
+  }
+  private static get auth(): AuthService {
+    return new AuthService(this.fbOpts)
+  }
   private static get statsDb(): DatabaseReference {
-    const { statsDb } = getDatabases(store.getState().session.fbOpts)
+    const { statsDb } = getDatabases(this.fbOpts)
     return statsDb
   }
   private static get quizId(): string {
@@ -38,6 +46,7 @@ export default class StatsService {
   }
   @ifBackendEnabled()
   static async submitFinalScore(): Promise<void> {
+    await this.auth.signIn()
     await update(child(this.statsDb, this.summaryPath), {
       games: increment(1),
       correct: increment(store.getState().session.totalCorrect),
@@ -45,6 +54,7 @@ export default class StatsService {
   }
   @ifBackendEnabled()
   static async submitAnswer(page: number, pick: DataKey): Promise<void> {
+    await this.auth.signIn()
     await update(child(this.statsDb, `${this.questionsPath}/${page}`), {
       [pick]: increment(1),
     })

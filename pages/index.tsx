@@ -5,7 +5,6 @@ import { useReset, useStaticProps } from "../hooks/storage"
 import { useStoreState } from "../store/store"
 import { QuizService } from "../services/QuizService"
 import getConfig from "next/config"
-import { signIn } from "../firebase/setup"
 import React from "react"
 import { getFirebaseOptions } from "../firebase/config"
 
@@ -29,11 +28,6 @@ export default function Home(props: StaticProps) {
  */
 export async function getStaticProps() {
   const fbOpts = getFirebaseOptions()
-  if (publicRuntimeConfig.backendEnabled) {
-    await signIn(fbOpts)
-      .then(() => console.log("Server signed in"))
-      .catch((err) => console.error("Server sign in error", err))
-  } else console.log("Backend disabled")
   const questions = sampleQuestions()
   const quizService = new QuizService(fbOpts)
   const quizId = await quizService.getLatestId()
