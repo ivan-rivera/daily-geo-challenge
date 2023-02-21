@@ -49,5 +49,6 @@ If you would like to add more questions, then you may like to first familiarise 
 2. Create a new file under `sparql/` directory where the first word will describe the level at which the data is reported (e.g. country or city) and the rest will describe what exactly itn is about, e.g. `country-population.rq`.
 3. Paste your query from the query builder into this file. Make sure that your query runs in the query builder. Make sure that the results return `key` and `value` pairs where the key will be the entity at which your data is reported and the value will be used to resolve the answer. Also make that all keys and values are unique (you can remove duplicated values by sampling them out). Also make sure that you remove confusing cities and countries (e.g. there is "Netherlands" and "Kingdom Of The Netherlands", only one should be kept). 
 4. Run `npm run generate-data`. This should create a file under `data/` with matching name to your SPARQL query but `json` suffix.
-5. At this point you may like to run tests locally `npm run test` and run the app locally with `npm run dev`
-6. Create a PR for this
+5. Add a question for the new data source under `lib/questions/bank.ts`.
+6. At this point you may like to run tests locally `npm run test` and run the app locally with `npm run dev`
+7. Create a PR for this
