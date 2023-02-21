@@ -14,6 +14,9 @@ import { store } from "../store/store"
 
 const { publicRuntimeConfig } = getConfig()
 
+/**
+ * Feedback service. It is used to handle votes up/down and messages.
+ */
 export default class FeedbackService {
   private static get firebaseDatabases(): FirebaseDatabases {
     return getDatabases(store.getState().session.fbOpts)

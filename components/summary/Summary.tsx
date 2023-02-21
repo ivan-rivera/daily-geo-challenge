@@ -12,11 +12,11 @@ import AnalyticsService from "../../services/AnalyticsService"
 import React from "react"
 import { createIssue } from "../../lib/issues"
 
+/**
+ * Summary screen that is displayed after the user has answered all questions
+ * @constructor
+ */
 export default function Summary() {
-  /**
-   * Summary screen that is displayed after the user has answered all questions
-   * @constructor
-   */
   useEffect(() => {
     if (!store.getState().session.finalScoreSubmitted) {
       AnalyticsService.logEvent("goal_completion", { goal_name: "end" })

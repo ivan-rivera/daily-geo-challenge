@@ -15,8 +15,6 @@ import {
 } from "../../lib/mocks/states"
 import Game from "../../components/game/Game"
 
-// TODO:
-//  - Reconcile these with tests?
 export default {
   title: "Pages/Question Page",
   component: Game,

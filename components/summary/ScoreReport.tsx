@@ -2,6 +2,10 @@ import { Box, Divider, Text } from "@chakra-ui/react"
 import { useStoreState } from "../../store/store"
 import React from "react"
 
+/**
+ * Displaying the user's score and the average score for the day
+ * @constructor
+ */
 export default function ScoreReport() {
   const dailyScore = useStoreState((state) => state.session.dailyScore)
   const yourScore = useStoreState((state) => state.session.yourScore)

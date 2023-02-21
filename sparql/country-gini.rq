@@ -1,4 +1,4 @@
-# Get the Gini of a country
+# Get the Gini coefficient (measure of income equality) of a country
 SELECT
     (SAMPLE(?countryLabel) AS ?key)
     ?value

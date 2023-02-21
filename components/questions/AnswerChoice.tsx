@@ -14,7 +14,7 @@ interface AnswerChoiceProps {
 }
 
 /**
- * A single available choice
+ * A single available choice that a user can pick for any given question
  * @constructor
  */
 export default function AnswerChoice({

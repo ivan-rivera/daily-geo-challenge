@@ -13,7 +13,7 @@ import React from "react"
 const { publicRuntimeConfig } = getConfig()
 
 /**
- * Question navigation controls
+ * Question navigation controls (next, previous, submit)
  * @constructor
  */
 export default function QuestionNav({ infoUrl }: { infoUrl: string }) {

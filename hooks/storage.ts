@@ -3,6 +3,13 @@ import { store } from "../store/store"
 import { getQuizId, setQuizId } from "../lib/storage"
 import { signIn } from "../firebase/setup"
 
+/**
+ * Cache images.
+ * The idea is to iterate over each image at the beginning of the game and cache
+ * it by instantiating it. This means that when the user reaches a page with an
+ * image on it, it would have already loaded in the background.
+ * @param questions
+ */
 function cacheImages(questions: QuestionData[]) {
   questions.map((question) => {
     const image = new Image()
@@ -11,7 +18,8 @@ function cacheImages(questions: QuestionData[]) {
 }
 
 /**
- * Reset progress if the game ID changes
+ * Reset progress if the game ID changes. This change is expected to happen
+ * at a particular schedule declared in the settings (usually once a day).
  * @param latestQuizId
  */
 export function useReset(latestQuizId: number) {
@@ -24,6 +32,10 @@ export function useReset(latestQuizId: number) {
   }, [latestQuizId])
 }
 
+/**
+ * Process static props and pass them to the client
+ * @param props
+ */
 export function useStaticProps(props: StaticProps) {
   useEffect(() => {
     store.dispatch.session.setQuestions(props.questions)

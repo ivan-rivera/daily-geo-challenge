@@ -1,3 +1,7 @@
+/**
+ * Mocked states used for testing
+ */
+
 import { models as globalModels, StoreModel } from "../../store/store"
 import { createQuestionList } from "./generators"
 import {

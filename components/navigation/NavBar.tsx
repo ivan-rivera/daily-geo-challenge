@@ -12,7 +12,7 @@ const { publicRuntimeConfig } = getConfig()
  * This component displays boxes, one for each question in the questionnaire
  * together with the status of each question (answered correctly, answered
  * incorrectly or unanswered) as well as the current position (focus). This
- * component can be used to navigate around the page.
+ * component can be used to navigate around the pages.
  * @constructor
  */
 export default function NavBar() {

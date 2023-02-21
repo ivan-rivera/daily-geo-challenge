@@ -8,6 +8,12 @@ interface ContactProps {
   onClick: (message: string) => void
 }
 
+/**
+ * General contact form component which contains a title, text area and a button
+ * @param onClick
+ * @param title
+ * @constructor
+ */
 export default function Contact({ onClick, title }: ContactProps) {
   const [text, setText] = useState("")
   const handleInputChange: ChangeEventHandler = (

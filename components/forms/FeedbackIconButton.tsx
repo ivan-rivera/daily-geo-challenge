@@ -8,6 +8,12 @@ import getConfig from "next/config"
 
 const { publicRuntimeConfig } = getConfig()
 
+/**
+ * Feedback icon button.
+ * It models thumbs up and down icons that are used to submit feedback
+ * @param isLiked - thumb up if liked, thumb down if disliked
+ * @constructor
+ */
 export default function FeedbackIconButton({ isLiked }: { isLiked: boolean }) {
   const page = useStoreState((state) => state.session.page)
   const setVoted = useStoreActions((actions) => actions.session.setPageVoted)

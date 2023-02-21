@@ -15,7 +15,6 @@ import countryPopulationData from "data/country-population.json"
 import countryIncarcerationData from "data/manual-country-incarceration.json"
 
 /**
- * TODO: review this blurb
  * The question bank contains all the possible questions that can be asked.
  * Each time we generate a quiz, we randomly sample a set of questions from
  * this list.

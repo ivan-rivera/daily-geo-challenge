@@ -6,6 +6,9 @@ import { FirebaseOptions } from "@firebase/app"
 
 const { publicRuntimeConfig } = getConfig()
 
+/**
+ * Quiz service used to instantiate the quiz.
+ */
 export class QuizService {
   private readonly databases: FirebaseDatabases
   constructor(fbOpts: FirebaseOptions) {

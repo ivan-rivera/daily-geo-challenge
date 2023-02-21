@@ -13,6 +13,9 @@ import { getDatabases } from "../firebase/setup"
 
 const { publicRuntimeConfig } = getConfig()
 
+/**
+ * Stats service, used to handle user stats.
+ */
 export default class StatsService {
   private static get statsDb(): DatabaseReference {
     const { statsDb } = getDatabases(store.getState().session.fbOpts)
@@ -57,6 +60,11 @@ export default class StatsService {
   }
 }
 
+/**
+ * Filter out questions with less than N responses to avoid generating stats for them
+ * @param _key
+ * @param values
+ */
 function filterOutLowResponse([_key, values]: [
   string,
   Record<string, number>
@@ -67,6 +75,11 @@ function filterOutLowResponse([_key, values]: [
   )
 }
 
+/**
+ * Convert the response to a fraction of the total responses
+ * @param key
+ * @param values
+ */
 function convertResponseToProp([key, values]: [
   string,
   Record<string, number>

@@ -4,6 +4,7 @@ import { BUTTON_COLOURS } from "../../lib/constants"
 
 /**
  * Navigation button that can be used to move forward and backward
+ * between questions
  * @param props
  * @constructor
  */

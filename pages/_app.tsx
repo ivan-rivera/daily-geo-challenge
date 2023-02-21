@@ -9,6 +9,12 @@ import Layout from "../components/root/Layout"
 import React from "react"
 import Loading from "../components/display/Loading"
 
+/**
+ * A function that checks whether the store has been hydrated and if it has not,
+ * then we display a loading screen, otherwise display the children components
+ * @param children
+ * @constructor
+ */
 function WaitForStateRehydration({ children }: { children: React.ReactNode }) {
   const isRehydrated = useStoreRehydrated()
   return isRehydrated ? <>{children}</> : <Loading />

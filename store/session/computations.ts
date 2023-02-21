@@ -6,6 +6,9 @@ import AnswerStatus from "../../lib/AnswerStatus"
 
 const { publicRuntimeConfig } = getConfig()
 
+/**
+ * Returns true if the quiz is finished, false otherwise.
+ */
 export const isFinished = computed((state: State<SessionStoreModel>) => {
   return (
     Object.values(state.answers).filter(

@@ -10,6 +10,10 @@ const animationKeyframes = keyframes`
   100% { transform: scale(1) rotate(0); border-radius: 20%; }
 `
 
+/**
+ * Spinning animation displayed when the app is loading
+ * @constructor
+ */
 export default function Loading() {
   return (
     <>

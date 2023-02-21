@@ -1,0 +1,6 @@
+## Connected Issues
+
+- [ ] #<IssueNumber>
+
+## Description
+

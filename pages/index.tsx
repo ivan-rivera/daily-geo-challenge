@@ -22,6 +22,11 @@ export default function Home(props: StaticProps) {
   return <>{page ? <Game /> : <Welcome />}</>
 }
 
+/**
+ * Get the static props for the app. This function adds resources to the backend,
+ * and then it passes relevant props to the client side. Note that we are using
+ * ISR here, so the app gets regenerated every N seconds.
+ */
 export async function getStaticProps() {
   const fbOpts = getFirebaseOptions()
   if (publicRuntimeConfig.backendEnabled) {

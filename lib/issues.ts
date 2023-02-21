@@ -2,6 +2,14 @@ import getConfig from "next/config"
 
 const { publicRuntimeConfig } = getConfig()
 
+/**
+ * A function that is used to create a new issue on GitHub. This is directly
+ * connected to the suggestion text from the website. Note that the token provided
+ * belongs to the author's personal account, however it is exclusively limited to
+ * creating issues in the target repository minimizing the potential for abuse.
+ * @param content
+ * @param token
+ */
 export async function createIssue(
   content: string,
   token: string

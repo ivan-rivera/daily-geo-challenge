@@ -1,3 +1,7 @@
+/**
+ * Mocks used for testing and for Storybook.
+ */
+
 import { createQuestions } from "./generators"
 
 const fillerChoices: Choices = {

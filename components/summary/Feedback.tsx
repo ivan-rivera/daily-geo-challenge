@@ -3,6 +3,10 @@ import FeedbackIconButton from "../forms/FeedbackIconButton"
 import { useStoreState } from "../../store/store"
 import React from "react"
 
+/**
+ * Final feedback component displayed at the end of the quiz
+ * @constructor
+ */
 export default function Feedback() {
   const voted = useStoreState((state) => state.session.pageVoted)
   return (

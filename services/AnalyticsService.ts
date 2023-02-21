@@ -10,6 +10,10 @@ import { store } from "../store/store"
 
 type EventProps = Record<string, string | number>
 
+/**
+ * Analytics service. This class is used to handle GA events.
+ * Note that the analytics service also classifies as a backend service.
+ */
 export default class AnalyticsService {
   private static get instance(): Analytics {
     const fbOpts = store.getState().session.fbOpts

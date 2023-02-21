@@ -28,6 +28,10 @@ const countRenderer = ({
   )
 }
 
+/**
+ * Countdown component displayed the amount of time that remains until the next refresh
+ * @constructor
+ */
 export default function Countdown() {
   const timeUntilRefresh = useStoreState((state) => {
     const refreshedTime = new Date(state.session.refreshTime).getTime()

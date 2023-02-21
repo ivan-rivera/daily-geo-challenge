@@ -19,7 +19,7 @@ function getStatusProps(status: AnswerStatus): [NavStatusColour, JSX.Element] {
 }
 
 /**
- * Navigation cell
+ * Navigation cell - a single cell in the navigation bar
  * @param id - id of the cell (page number!)
  * @constructor
  */

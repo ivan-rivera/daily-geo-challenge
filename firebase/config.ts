@@ -1,5 +1,14 @@
 import { FirebaseOptions } from "@firebase/app"
 
+/**
+ * A function to retrieve the Firebase configurations. Note that we use 2
+ * different Firebase projects for development and production. The developer
+ * needs to have an `.env.local` file in the root directory of the project
+ * with the environment variables used below, if unknown, then you can either
+ * create your own Firebase project and use it for development, or you can
+ * pass dummy values as environment variables and disable the backend in
+ * settings.json.
+ */
 export const getFirebaseOptions = (): FirebaseOptions => {
   const devConfig: FirebaseOptions = {
     apiKey: process.env.NEXT_PUBLIC_DEV_FB_API_KEY,

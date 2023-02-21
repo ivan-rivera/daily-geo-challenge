@@ -34,6 +34,10 @@ const shareHandler = async ({ text, popupTrigger }: ShareHandlerProps) => {
   }
 }
 
+/**
+ * Info popup that appears when the text is copied to clipboard
+ * @constructor
+ */
 function Popup() {
   return (
     <Center>
@@ -54,6 +58,11 @@ function Popup() {
   )
 }
 
+/**
+ * Share component that allows users to either copy their results to clipboard
+ * or, if the Web Share API is supported, open up the native sharing menu
+ * @constructor
+ */
 export default function Share() {
   const text = useStoreState((state) => state.session.shareScore)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
