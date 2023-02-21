@@ -1,0 +1,38 @@
+# Country population numbers
+# Note that a global city is a city that has international significance and it is defined as such in Wikidata.
+# We are interested in extracting the latest population figures for each of these cities
+SELECT
+    (?countryLabel AS ?key)
+    (SAMPLE(?population) AS ?value)
+WITH {
+    SELECT
+        ?countryLabel
+        ?population
+        ?date
+    WHERE {
+        ?country
+            wdt:P31 wd:Q6256;
+            p:P1082 [pq:P585 ?date; ps:P1082 ?population] .
+        ?country rdfs:label ?countryLabel .
+    FILTER(STR(?countryLabel) NOT IN ("Kingdom of the Netherlands", "Kingdom of Denmark"))
+    FILTER (LANG(?countryLabel)='en')
+    }
+} AS %pop
+{
+    {
+        SELECT
+            ?countryLabel
+            ?population
+            ?date
+        WHERE { include %pop }
+    }
+{
+    SELECT
+        (?countryLabel AS ?countryLabelB)
+        (MAX(?date) AS ?latestDate) WHERE { include %pop } GROUP BY ?countryLabel
+}
+    FILTER (?date = ?latestDate  && ?countryLabel = ?countryLabelB)
+}
+GROUP BY ?countryLabel
+HAVING(COUNT(?population)=1)
+ORDER BY ?key

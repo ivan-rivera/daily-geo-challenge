@@ -1,0 +1,20 @@
+# Literacy by country
+SELECT
+    (SAMPLE(?countryLabel) AS ?key)
+    ?value
+{
+    SELECT
+        ?countryLabel
+        (SAMPLE(?literacy) AS ?value)
+    WHERE {
+        ?country wdt:P31 wd:Q6256 .
+        ?country wdt:P6897 ?literacy .
+        ?country rdfs:label ?countryLabel . FILTER (LANG(?countryLabel)='en')
+        FILTER(STR(?countryLabel) NOT IN ("Kingdom of the Netherlands", "Kingdom of Denmark"))
+    }
+    GROUP BY ?countryLabel
+    HAVING (COUNT(?literacy) = 1)
+}
+GROUP BY ?value
+HAVING (COUNT(?countryLabel) = 1)
+ORDER BY ?key

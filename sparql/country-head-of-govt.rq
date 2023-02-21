@@ -1,0 +1,21 @@
+# Country and head of govt
+SELECT
+    (SAMPLE(?countryLabel) AS ?key)
+    ?value
+{
+    SELECT
+        ?countryLabel
+        (SAMPLE(?hogLabel) AS ?value)
+    WHERE {
+        ?country wdt:P31 wd:Q6256 .
+        ?country wdt:P6 ?hog .
+        ?country rdfs:label ?countryLabel . FILTER (LANG(?countryLabel)='en')
+        ?hog rdfs:label ?hogLabel . FILTER (LANG(?hogLabel)='en')
+        FILTER(STR(?countryLabel) NOT IN ("Kingdom of the Netherlands", "Kingdom of Denmark"))
+    }
+    GROUP BY ?countryLabel
+    HAVING (COUNT(?hog) = 1)
+}
+GROUP BY ?value
+HAVING (COUNT(?countryLabel) = 1)
+ORDER BY ?key

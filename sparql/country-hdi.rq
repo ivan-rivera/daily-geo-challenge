@@ -1,0 +1,20 @@
+# Human development index by country
+SELECT
+    (SAMPLE(?countryLabel) AS ?key)
+    ?value
+{
+    SELECT
+    ?countryLabel
+    (SAMPLE(?hdi) AS ?value)
+    WHERE {
+        ?country
+        wdt:P31 wd:Q6256;
+        wdt:P1081 ?hdi .
+        ?country rdfs:label ?countryLabel . FILTER (LANG(?countryLabel)='en')
+        FILTER(STR(?countryLabel) NOT IN ("Kingdom of the Netherlands", "Kingdom of Denmark"))
+    }
+    GROUP BY ?countryLabel
+    HAVING (COUNT(?hdi) = 1)
+}
+GROUP BY ?value
+ORDER BY ?key

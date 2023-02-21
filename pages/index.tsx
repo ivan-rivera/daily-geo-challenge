@@ -14,14 +14,6 @@ const { publicRuntimeConfig } = getConfig()
 /**
  * Main entry point into the app
  * @constructor
- * TODO:
- *  - GitHub actions
- *  - Queries
- *    - Remove duplicates
- *    - Validate numbers & images
- *    - Add more queries
- *    - Remove bad queries
- *    - City founded date: remove Auckland
  */
 export default function Home(props: StaticProps) {
   useReset(props.quizId)

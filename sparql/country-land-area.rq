@@ -7,5 +7,6 @@ WHERE {
     ?country wdt:P2046 ?totalArea.
     OPTIONAL { ?country wdt:P2927 ?waterProp. }
     ?country rdfs:label ?key . FILTER (LANG(?key)='en')
+    FILTER(STR(?key) NOT IN ("Kingdom of the Netherlands", "Kingdom of Denmark"))
 }
 ORDER BY ?key

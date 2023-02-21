@@ -12,6 +12,9 @@ SELECT
     WHERE {
         ?city wdt:P31 wd:Q208511 .
         ?city wdt:P571 ?inception .
+        ?city rdfs:label ?cityLabelFilter .
+        FILTER(LANG(?cityLabelFilter)="en")
+        FILTER(STR(?cityLabelFilter) NOT IN ("Auckland"))
         SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
     }
     GROUP BY ?cityLabel
