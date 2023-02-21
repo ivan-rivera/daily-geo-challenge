@@ -9,7 +9,7 @@ SELECT
 {
     SELECT
         ?countryLabel
-        (SAMPLE(?flagLabel) AS ?value)
+        (REPLACE(SAMPLE(?flagLabel), "http:", "https:") AS ?value)
     {
         SELECT
             ?countryLabel
