@@ -34,7 +34,7 @@ export default function WelcomeItem({ icon, text, delay }: WelcomeItemProps) {
         <Icon
           as={icon}
           color="quarternary"
-          boxSize={[8, 14]}
+          boxSize={[8, 10, 14]}
           pr={2}
           ml={[0, 1, 5]}
         />

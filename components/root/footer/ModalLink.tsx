@@ -19,7 +19,7 @@ export default function ModalLink({ modal }: ModalLinkProps) {
   return (
     <Center>
       <Link onClick={toggle}>
-        <Text fontSize={["xs", "md"]} as="b">
+        <Text fontSize={["xs", "xs", "md"]} as="b">
           {humanize(modal)}
         </Text>
       </Link>
