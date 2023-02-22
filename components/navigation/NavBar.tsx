@@ -2,7 +2,6 @@ import { Center, Flex, Stack, Text } from "@chakra-ui/react"
 import getConfig from "next/config"
 import NavCell from "./NavCell"
 import { useStoreState } from "../../store/store"
-import { getQuizId } from "../../lib/storage"
 import React from "react"
 
 const { publicRuntimeConfig } = getConfig()
@@ -16,6 +15,7 @@ const { publicRuntimeConfig } = getConfig()
  * @constructor
  */
 export default function NavBar() {
+  const quizId = useStoreState((state) => state.session.quizId)
   const isFinished = useStoreState((state) => state.session.isFinished)
   const page = useStoreState((state) => state.session.page)
   const displayPage = 0 < page && page <= publicRuntimeConfig.questions
@@ -28,7 +28,7 @@ export default function NavBar() {
       <Stack direction="column">
         <Flex justifyContent="space-between" color="quarternary">
           <Text>{displayPage && pageDescription}</Text>
-          <Text>Quiz #{getQuizId()}</Text>
+          <Text>Quiz #{quizId}</Text>
         </Flex>
         <Flex>
           {Array.from(questionArray.keys()).map((i) => {

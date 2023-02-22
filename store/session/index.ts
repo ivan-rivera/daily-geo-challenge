@@ -24,6 +24,7 @@ import { FirebaseOptions } from "@firebase/app"
 
 const initialState = {
   page: 0,
+  quizId: 0,
   suggested: false,
   refreshTime: new Date(),
   dailyScore: "TBD",
@@ -39,6 +40,7 @@ const initialState = {
 
 const stateFn = {
   resetSession: resetSession(initialState),
+  setQuizId: setToPayload("quizId"),
   setGitHubToken: setToPayload("gitHubToken"),
   setPage: setToPayload("page"),
   setRefreshTime: setToPayload("refreshTime"),

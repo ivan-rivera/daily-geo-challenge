@@ -1,7 +1,6 @@
 import { Card, CardFooter, Stack, Text } from "@chakra-ui/react"
 import PlayButton from "../forms/PlayButton"
 import { useStoreState } from "../../store/store"
-import { getQuizId } from "../../lib/storage"
 import { BOX_BORDER_RADIUS } from "../../lib/constants"
 import React from "react"
 
@@ -12,6 +11,7 @@ const dailyScoreAvailable = (value: string): boolean => value != "TBD"
  * @constructor
  */
 export default function WelcomeFooter() {
+  const quizId = useStoreState((state) => state.session.quizId)
   const dailyScore = useStoreState((state) => state.session.dailyScore)
   return (
     <Card
@@ -28,7 +28,7 @@ export default function WelcomeFooter() {
         >
           <Stack direction="column" align="self-start" justifyContent="center">
             <Text fontSize={["base", "xl", "2xl"]} as="b">
-              Quiz #{getQuizId()}
+              Quiz #{quizId}
             </Text>
             {dailyScoreAvailable(dailyScore) && (
               <Text data-testid="dailyScore" fontSize={["sm", "md", "xl"]}>

@@ -1,4 +1,3 @@
-import { getQuizId } from "../lib/storage"
 import {
   child,
   DatabaseReference,
@@ -30,7 +29,7 @@ export default class StatsService {
     return statsDb
   }
   private static get quizId(): string {
-    return getQuizId().toString()
+    return store.getState().session.quizId.toString()
   }
   static get summaryPath(): string {
     return `${this.quizId}/summary`

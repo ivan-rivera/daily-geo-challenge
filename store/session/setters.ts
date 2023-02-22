@@ -32,6 +32,7 @@ export const setDailyScore = setToPayload(
 
 export const resetSession = (initialState: {}) =>
   action((state: State<SessionStoreModel>) => {
+    console.log("resetting session...")
     Object.assign(state, initialState)
   })
 

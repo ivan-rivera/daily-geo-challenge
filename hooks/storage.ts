@@ -1,6 +1,5 @@
 import { useEffect } from "react"
-import { store } from "../store/store"
-import { getQuizId, setQuizId } from "../lib/storage"
+import { store, useStoreActions, useStoreState } from "../store/store"
 
 /**
  * Cache images.
@@ -22,13 +21,15 @@ function cacheImages(questions: QuestionData[]) {
  * @param latestQuizId
  */
 export function useReset(latestQuizId: number) {
-  useEffect(() => {
-    if (getQuizId() !== latestQuizId) {
-      console.log("resetting progress...")
-      setQuizId(latestQuizId)
-      store.dispatch.session.resetSession()
+  const currentQuizId = useStoreState((state) => state.session.quizId)
+  console.log("current quiz ID: ", currentQuizId)
+  useStoreActions((actions) => {
+    console.log("evaluating rest with quizID: ", latestQuizId)
+    if (currentQuizId !== latestQuizId) {
+      actions.session.resetSession()
+      actions.session.setQuizId(latestQuizId)
     }
-  }, [latestQuizId])
+  })
 }
 
 /**

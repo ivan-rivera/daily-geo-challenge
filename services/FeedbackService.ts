@@ -6,7 +6,6 @@ import {
   update,
 } from "@firebase/database"
 import getConfig from "next/config"
-import { getQuizId } from "../lib/storage"
 import { v4 as uuid } from "uuid"
 import { ifBackendEnabled } from "../lib/backend"
 import { getDatabases } from "../firebase/setup"
@@ -38,7 +37,7 @@ export default class FeedbackService {
     return statsDb
   }
   static get quizId(): string {
-    return getQuizId().toString()
+    return store.getState().session.quizId.toString()
   }
   private static get path(): string {
     const today = new Date()

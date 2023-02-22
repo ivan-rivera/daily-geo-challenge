@@ -19,7 +19,7 @@ const countRenderer = ({
   seconds,
   completed,
 }: CountdownProps) => {
-  if (completed) return <Text>Updating questions...</Text>
+  if (completed) return <Text>Updating, a refresh may be needed...</Text>
   const time = `${zeroPad(hours)}:${zeroPad(minutes)}:${zeroPad(seconds)}`
   return (
     <Text color="quarternary" mb={5}>
