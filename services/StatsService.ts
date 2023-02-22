@@ -28,8 +28,8 @@ export default class StatsService {
     const { statsDb } = getDatabases(this.fbOpts)
     return statsDb
   }
-  private static get quizId(): string {
-    return store.getState().session.quizId.toString()
+  private static get quizId(): number {
+    return store.getState().session.quizId
   }
   static get summaryPath(): string {
     return `${this.quizId}/summary`
