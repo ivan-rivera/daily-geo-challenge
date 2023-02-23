@@ -4,8 +4,17 @@ import { ifBackendEnabled } from "../lib/backend"
 import { getDatabases } from "../firebase/setup"
 import { FirebaseOptions } from "@firebase/app"
 import { AuthService } from "./AuthService"
+import { sampleQuestions } from "../lib/questions/sampling"
 
 const { publicRuntimeConfig } = getConfig()
+
+/**
+ * getStaticProps sometimes runs several times during and after the build
+ * (not yet sure whether intentionally or due to a bug), and to avoid
+ * quickly regenerating a quiz, we need a cooldown period. This period
+ * marks the shortest possible duration that a quiz can be alive for.
+ */
+const COOLDOWN = 60 * 5
 
 /**
  * Quiz service used to instantiate the quiz.
@@ -48,22 +57,58 @@ export class QuizService {
       this.initStats
     )
   }
-  @ifBackendEnabled()
-  async initQuiz(questions: QuestionData[], quizId: number): Promise<void> {
+
+  /**
+   * Initialize the quiz. This method handles anonymous sign in, then it retrieves
+   * the latest quiz ID together with the datetime when it was generated. If the
+   * quiz DB was recently updated, then we generate new questions for it, otherwise
+   * we retrieve existing questions from the DB.
+   */
+  @ifBackendEnabled([0, Date.now(), sampleQuestions()])
+  async init(): Promise<[number, Date, QuestionData[]]> {
     await this.auth.signIn()
-    this.commitQuestions(questions, quizId)
-      .then(() => console.log("committed questions to DB"))
-      .catch((e) => console.log("failed to commit questions to DB: ", e))
-    this.commitStats(quizId)
-      .then(() => console.log("committed stats to DB"))
-      .catch((e) => console.log("failed to commit stats: ", e))
+    const [updated, date, quizId] = await this.getLatestQuiz()
+    let questions: QuestionData[]
+    if (updated) {
+      questions = sampleQuestions()
+      this.commitQuestions(questions, quizId)
+        .then(() => console.log("committed questions to DB"))
+        .catch((e) => console.log("failed to commit questions to DB: ", e))
+      this.commitStats(quizId)
+        .then(() => console.log("committed stats to DB"))
+        .catch((e) => console.log("failed to commit stats: ", e))
+    } else {
+      console.log("using cached data from previous quizID")
+      const questionPath = child(this.questionDb, quizId.toString())
+      const questionsSnapshot = await get(questionPath)
+      questions = questionsSnapshot.val() || []
+    }
+    return [quizId, date, questions]
   }
-  @ifBackendEnabled(Math.floor(Math.random() * 10_000))
-  async getLatestId(): Promise<number> {
-    await this.auth.signIn()
+
+  /**
+   * Get the latest quiz reference
+   * If no previous data has been created, then we generate a new quiz, otherwise
+   * we first check when was the last quiz generated and if it was within the
+   * cooldown period, we use the same quiz instead of generating a new one. See
+   * more info about the cooldown period next to the constant definition. In
+   * addition to the quiz ID, we return the datetime object when the quiz
+   * was generated and a boolean flag indicating whether the quiz was updated.
+   * @private
+   */
+  private async getLatestQuiz(): Promise<[boolean, Date, number]> {
     const latestIdSnapshot = await get(this.latestIdDb)
-    const latestId = (latestIdSnapshot.val() || 0) + 1
-    await set(this.latestIdDb, latestId)
-    return latestId
+    const latestIdContent = latestIdSnapshot.val() || { id: 0, time: 0 }
+    let time = latestIdContent.time
+    let latestId = latestIdContent.id
+    let updated = false
+    const now = Math.floor(Date.now() / 1000)
+    if (now - latestIdContent.time > COOLDOWN) {
+      updated = true
+      time = now
+      await set(child(this.latestIdDb, "id"), ++latestId)
+      await set(child(this.latestIdDb, "time"), now)
+    }
+    return [updated, new Date(time * 1000), latestId]
   }
 }

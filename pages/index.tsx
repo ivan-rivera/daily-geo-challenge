@@ -1,6 +1,5 @@
 import Welcome from "../components/welcome/Welcome"
 import Game from "../components/game/Game"
-import { sampleQuestions } from "../lib/questions/sampling"
 import { useReset, useStaticProps } from "../hooks/storage"
 import { useStoreState } from "../store/store"
 import { QuizService } from "../services/QuizService"
@@ -28,17 +27,15 @@ export default function Home(props: StaticProps) {
  */
 export async function getStaticProps() {
   const fbOpts = getFirebaseOptions()
-  const questions = sampleQuestions()
   const quizService = new QuizService(fbOpts)
-  const quizId = await quizService.getLatestId()
-  await quizService.initQuiz(questions, quizId)
+  const [quizId, date, questions] = await quizService.init()
   return {
     props: {
       fbOpts,
       gitHubToken: process.env.NEXT_PUBLIC_GH_TOKEN,
       questions,
       quizId,
-      time: JSON.parse(JSON.stringify(new Date())),
+      time: JSON.parse(JSON.stringify(date)),
     },
     revalidate: publicRuntimeConfig.revalidationIncrement,
   }

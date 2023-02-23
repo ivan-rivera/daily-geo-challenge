@@ -1,6 +1,6 @@
 {
   "publicRuntimeConfig": {
-    "version": "0.0.3",
+    "version": "0.0.4",
     "staticFolder": "/static",
     "title": "Daily Geo Challenge",
     "hashtag": "#daily-geo",
