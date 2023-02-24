@@ -39,7 +39,7 @@ export default function Contact({ onClick, title }: ContactProps) {
       <br />
       <Button
         data-testid="submitContactButton"
-        disabled={text === ""}
+        isDisabled={text === ""}
         display="block"
         ml="auto"
         mr={0}

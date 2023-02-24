@@ -1,16 +1,15 @@
 {
   "publicRuntimeConfig": {
-    "version": "0.0.4",
+    "version": "0.0.5",
     "staticFolder": "/static",
     "title": "Daily Geo Challenge",
-    "hashtag": "#daily-geo",
+    "hashtag": "#dailygeo",
     "url": "https://www.daily-geo.com",
     "repo": "ivan-rivera/daily-geo-challenge",
     "backendEnabled": true,
     "questions": 5,
     "choices": 4,
     "minResponsesForGlobalStats": 10,
-    "minResponsesForQuestionStats": 10,
-    "revalidationIncrement": 86400
+    "minResponsesForQuestionStats": 10
   }
 }

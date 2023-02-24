@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { store, useStoreActions, useStoreState } from "../store/store"
+import { store } from "../store/store"
 
 /**
  * Cache images.
@@ -16,28 +16,15 @@ function cacheImages(questions: QuestionData[]) {
 }
 
 /**
- * Reset progress if the game ID changes. This change is expected to happen
- * at a particular schedule declared in the settings (usually once a day).
- * @param latestQuizId
- */
-export function useReset(latestQuizId: number) {
-  const currentQuizId = useStoreState((state) => state.session.quizId)
-  console.log("current quiz ID: ", currentQuizId)
-  useStoreActions((actions) => {
-    console.log("evaluating rest with quizID: ", latestQuizId)
-    if (currentQuizId !== latestQuizId) {
-      actions.session.resetSession()
-      actions.session.setQuizId(latestQuizId)
-    }
-  })
-}
-
-/**
  * Process static props and pass them to the client
  * @param props
  */
 export function useStaticProps(props: StaticProps) {
   useEffect(() => {
+    if (store.getState().session.quizId !== props.quizId) {
+      store.dispatch.session.resetSession()
+      store.dispatch.session.setQuizId(props.quizId)
+    }
     store.dispatch.session.setQuestions(props.questions)
     store.dispatch.session.setRefreshTime(props.time)
     store.dispatch.session.setFbOpts(props.fbOpts)

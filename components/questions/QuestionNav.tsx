@@ -40,6 +40,7 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
       .then()
       .catch((e) => console.error("failed to submit answer to server: ", e))
   }
+  console.log("page: ", page)
   return (
     <Flex
       direction="row"
@@ -49,7 +50,7 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
     >
       <NavButton
         data-testid="backButton"
-        disabled={page === 1}
+        isDisabled={page === 1}
         aria-label="previous"
         icon={<ChevronLeftIcon />}
         onClick={() => setPage(page - 1)}
@@ -64,14 +65,14 @@ export default function QuestionNav({ infoUrl }: { infoUrl: string }) {
         <Button
           data-testid="submitAnswerButton"
           onClick={handleSubmit}
-          disabled={pick === ""}
+          isDisabled={pick === ""}
         >
           Submit
         </Button>
       )}
       <NavButton
         data-testid="forwardButton"
-        disabled={page === availablePages}
+        isDisabled={page === availablePages}
         aria-label="next"
         icon={<ChevronRightIcon />}
         onClick={() => setPage(page + 1)}

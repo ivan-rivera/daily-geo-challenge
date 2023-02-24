@@ -1,20 +1,16 @@
 import Welcome from "../components/welcome/Welcome"
 import Game from "../components/game/Game"
-import { useReset, useStaticProps } from "../hooks/storage"
+import { useStaticProps } from "../hooks/storage"
 import { useStoreState } from "../store/store"
 import { QuizService } from "../services/QuizService"
-import getConfig from "next/config"
 import React from "react"
 import { getFirebaseOptions } from "../firebase/config"
-
-const { publicRuntimeConfig } = getConfig()
 
 /**
  * Main entry point into the app
  * @constructor
  */
 export default function Home(props: StaticProps) {
-  useReset(props.quizId)
   useStaticProps(props)
   const page = useStoreState((state) => state.session.page)
   return <>{page ? <Game /> : <Welcome />}</>
@@ -22,8 +18,8 @@ export default function Home(props: StaticProps) {
 
 /**
  * Get the static props for the app. This function adds resources to the backend,
- * and then it passes relevant props to the client side. Note that we are using
- * ISR here, so the app gets regenerated every N seconds.
+ * and then it passes relevant props to the client side. Note that ISR is handled
+ * via a cron job that calls the `revalidate` endpoint once every 24 hours.
  */
 export async function getStaticProps() {
   const fbOpts = getFirebaseOptions()
@@ -37,6 +33,5 @@ export async function getStaticProps() {
       quizId,
       time: JSON.parse(JSON.stringify(date)),
     },
-    revalidate: publicRuntimeConfig.revalidationIncrement,
   }
 }

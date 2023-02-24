@@ -1,7 +1,6 @@
 import { Text } from "@chakra-ui/react"
 import BrandCard from "../display/BrandCard"
 import { store, useStoreActions, useStoreState } from "../../store/store"
-import Countdown from "./Countdown"
 import ScoreReport from "./ScoreReport"
 import Feedback from "./Feedback"
 import Contact from "../forms/Contact"
@@ -40,7 +39,7 @@ export default function Summary() {
         <Text my={2} color="quarternary" fontSize="3xl">
           You are done for today!
         </Text>
-        <Countdown />
+        <Text>Next challenge comes out tomorrow</Text>
         <ScoreReport />
         <Share />
       </BrandCard>

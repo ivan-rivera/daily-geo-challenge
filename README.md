@@ -14,7 +14,7 @@ Web enthusiasts are welcome to contribute to this project, if you are interested
 
 - This project is written in **TypeScript**
 - The frontend was designed with **Figma**
-- The frontend is built with **Next.js** and **React** (using ISR)
+- The frontend is built with **Next.js** and **React**
 - The frontend is styled with **Chakra-UI**
 - The backend is built with **Firebase**
 - The website is hosted on **Vercel**
