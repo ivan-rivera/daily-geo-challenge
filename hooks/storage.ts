@@ -26,7 +26,6 @@ export function useStaticProps(props: StaticProps) {
       store.dispatch.session.setQuizId(props.quizId)
     }
     store.dispatch.session.setQuestions(props.questions)
-    store.dispatch.session.setRefreshTime(props.time)
     store.dispatch.session.setFbOpts(props.fbOpts)
     store.dispatch.session.setGitHubToken(props.gitHubToken)
     store.dispatch.session.setServerProps()

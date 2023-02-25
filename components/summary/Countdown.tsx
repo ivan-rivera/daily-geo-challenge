@@ -1,10 +1,6 @@
 import { default as ReactCountdown, zeroPad } from "react-countdown"
 import { Text } from "@chakra-ui/react"
-import { useStoreState } from "../../store/store"
-import getConfig from "next/config"
 import React from "react"
-
-const { publicRuntimeConfig } = getConfig()
 
 interface CountdownProps {
   hours: number
@@ -33,9 +29,8 @@ const countRenderer = ({
  * @constructor
  */
 export default function Countdown() {
-  const timeUntilRefresh = useStoreState((state) => {
-    const refreshedTime = new Date(state.session.refreshTime).getTime()
-    return refreshedTime + publicRuntimeConfig.revalidationIncrement * 1000
-  })
-  return <ReactCountdown date={timeUntilRefresh} renderer={countRenderer} />
+  const now = new Date()
+  now.setUTCHours(0, 0, 0, 0)
+  now.setUTCDate(now.getUTCDate() + 1)
+  return <ReactCountdown date={now.getTime()} renderer={countRenderer} />
 }

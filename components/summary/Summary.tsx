@@ -10,6 +10,7 @@ import { useEffect } from "react"
 import AnalyticsService from "../../services/AnalyticsService"
 import React from "react"
 import { createIssue } from "../../lib/issues"
+import Countdown from "./Countdown"
 
 /**
  * Summary screen that is displayed after the user has answered all questions
@@ -39,7 +40,7 @@ export default function Summary() {
         <Text my={2} color="quarternary" fontSize="3xl">
           You are done for today!
         </Text>
-        <Text>Next challenge comes out tomorrow</Text>
+        <Countdown />
         <ScoreReport />
         <Share />
       </BrandCard>

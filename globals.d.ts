@@ -43,7 +43,6 @@ declare global {
     gitHubToken: string
     quizId: number
     questions: QuestionData[]
-    time: Date
   }
 
   interface QuestionBlueprint {

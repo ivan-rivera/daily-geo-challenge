@@ -6,7 +6,6 @@ interface SessionAttributes {
   page: Page
   quizId: number
   gitHubToken: string
-  refreshTime: Date
   dailyScore: string
   questionsStats: Record<Page, QuestionStats>
   suggested: boolean
@@ -23,7 +22,6 @@ interface SessionSetters {
   setQuizId: Action<SessionStoreModel, number>
   setPage: Action<SessionStoreModel, Page>
   setGitHubToken: Action<SessionStoreModel, string>
-  setRefreshTime: Action<SessionStoreModel, Date>
   setSuggested: Action<SessionStoreModel, boolean>
   setDailyScore: Action<SessionStoreModel, number>
   setPagePick: Action<SessionStoreModel, DataKey>

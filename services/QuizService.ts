@@ -64,10 +64,10 @@ export class QuizService {
    * quiz DB was recently updated, then we generate new questions for it, otherwise
    * we retrieve existing questions from the DB.
    */
-  @ifBackendEnabled([0, Date.now(), sampleQuestions()])
-  async init(): Promise<[number, Date, QuestionData[]]> {
+  @ifBackendEnabled([0, sampleQuestions()])
+  async init(): Promise<[number, QuestionData[]]> {
     await this.auth.signIn()
-    const [updated, date, quizId] = await this.getLatestQuiz()
+    const [updated, quizId] = await this.getLatestQuiz()
     let questions: QuestionData[]
     if (updated) {
       questions = sampleQuestions()
@@ -83,7 +83,7 @@ export class QuizService {
       const questionsSnapshot = await get(questionPath)
       questions = questionsSnapshot.val() || []
     }
-    return [quizId, date, questions]
+    return [quizId, questions]
   }
 
   /**
@@ -96,19 +96,17 @@ export class QuizService {
    * was generated and a boolean flag indicating whether the quiz was updated.
    * @private
    */
-  private async getLatestQuiz(): Promise<[boolean, Date, number]> {
+  private async getLatestQuiz(): Promise<[boolean, number]> {
     const latestIdSnapshot = await get(this.latestIdDb)
     const latestIdContent = latestIdSnapshot.val() || { id: 0, time: 0 }
-    let time = latestIdContent.time
     let latestId = latestIdContent.id
     let updated = false
     const now = Math.floor(Date.now() / 1000)
     if (now - latestIdContent.time > COOLDOWN) {
       updated = true
-      time = now
       await set(child(this.latestIdDb, "id"), ++latestId)
       await set(child(this.latestIdDb, "time"), now)
     }
-    return [updated, new Date(time * 1000), latestId]
+    return [updated, latestId]
   }
 }

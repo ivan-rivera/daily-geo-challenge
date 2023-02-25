@@ -24,14 +24,13 @@ export default function Home(props: StaticProps) {
 export async function getStaticProps() {
   const fbOpts = getFirebaseOptions()
   const quizService = new QuizService(fbOpts)
-  const [quizId, date, questions] = await quizService.init()
+  const [quizId, questions] = await quizService.init()
   return {
     props: {
-      fbOpts,
       gitHubToken: process.env.NEXT_PUBLIC_GH_TOKEN,
+      fbOpts,
       questions,
       quizId,
-      time: JSON.parse(JSON.stringify(date)),
     },
   }
 }
