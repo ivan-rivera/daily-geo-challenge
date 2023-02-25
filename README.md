@@ -4,7 +4,7 @@
 
 ## About
 
-This is the source code for the [Daily Geo Challenge](www.daily-geo.com) website. The website is a quiz game that tests your knowledge of geography. Most of the questions are based on data extracted from Wikidata. However, the answers are not hardcoded, but are derived from the underlying data, which means that there is virtually an endless supply of questions. The questions are designed to be regenerated once per day with everyone seeing the same set of questions and possible answers.
+This is the source code for the [Daily Geo Challenge](www.daily-geo.com) website. The website is a quiz game that tests your knowledge of geography. Most of the questions are based on data extracted from Wikidata. However, the answers are not hardcoded, but are derived from the underlying data, which means that there is virtually an endless supply of questions. The questions are designed to be regenerated once per day (midnight UTC) with everyone seeing the same set of questions and possible answers.
 
 ## Contributing
 
@@ -21,5 +21,6 @@ Web enthusiasts are welcome to contribute to this project, if you are interested
 - The code is tested with **Storybook** and **Jest**
 - The code is linted with **ESLint**, **Prettier** and **Husky**
 - We use **Easy-Peasy** for state management
+- Daily update is triggered with a cron job via **easycron.com**
 
 

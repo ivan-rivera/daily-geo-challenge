@@ -43,8 +43,8 @@ export const getDatabases = (fbOpts: FirebaseOptions): FirebaseDatabases => {
   const db = getDatabase(app)
   return {
     questionDb: ref(db, "questions"),
-    statsDb: ref(db, "stats"),
     latestIdDb: ref(db, "latestId"),
+    statsDb: ref(db, "stats"),
     contactDb: ref(db, "contact"),
   }
 }
