@@ -25,7 +25,7 @@ export default class FeedbackService {
   private static get auth(): AuthService {
     return new AuthService(this.fbOpts)
   }
-  private static get firebaseDatabases(): FirebaseDatabases {
+  private static get firebaseDatabases() {
     return getDatabases(this.fbOpts)
   }
   private static get contactDb(): DatabaseReference {

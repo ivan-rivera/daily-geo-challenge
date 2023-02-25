@@ -22,13 +22,11 @@ export default function Home(props: StaticProps) {
  * via a cron job that calls the `revalidate` endpoint once every 24 hours.
  */
 export async function getStaticProps() {
-  const fbOpts = getFirebaseOptions()
-  const quizService = new QuizService(fbOpts)
-  const [quizId, questions] = await quizService.init()
+  const [quizId, questions] = await QuizService.init()
   return {
     props: {
       gitHubToken: process.env.NEXT_PUBLIC_GH_TOKEN,
-      fbOpts,
+      fbOpts: getFirebaseOptions(),
       questions,
       quizId,
     },

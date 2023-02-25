@@ -37,11 +37,11 @@ export default class StatsService {
   static get questionsPath(): string {
     return `${this.quizId}/questions`
   }
-  @ifBackendEnabled<DailyStats>({ games: 0, questions: 0, correct: 0 })
-  static async getDailyStats(): Promise<DailyStats> {
+  @ifBackendEnabled<DailyStatsSummary>({ games: 0, questions: 0, correct: 0 })
+  static async getDailyStats(): Promise<DailyStatsSummary> {
     const statsSnapshot = await get(child(this.statsDb, this.summaryPath))
     const stats = statsSnapshot.val() || {}
-    return stats as DailyStats
+    return stats as DailyStatsSummary
   }
   @ifBackendEnabled()
   static async submitFinalScore(): Promise<void> {

@@ -14,6 +14,7 @@ import { getDatabase, ref } from "firebase/database"
 import { getAuth, signInAnonymously } from "@firebase/auth"
 import { Analytics, getAnalytics as getFbAnalytics } from "@firebase/analytics"
 import { FirebaseOptions } from "@firebase/app"
+import { DATABASES } from "../lib/constants"
 
 /**
  * Sign in method for Firebase.
@@ -35,16 +36,14 @@ export const getAnalytics = (fbOpts: FirebaseOptions): Analytics => {
 }
 
 /**
- * Get all Firebase databases.
+ * Get public-writable Firebase databases.
  * @param fbOpts
  */
-export const getDatabases = (fbOpts: FirebaseOptions): FirebaseDatabases => {
+export const getDatabases = (fbOpts: FirebaseOptions) => {
   const app = initializeApp(fbOpts)
   const db = getDatabase(app)
   return {
-    questionDb: ref(db, "questions"),
-    latestIdDb: ref(db, "latestId"),
-    statsDb: ref(db, "stats"),
-    contactDb: ref(db, "contact"),
+    statsDb: ref(db, DATABASES.stats),
+    contactDb: ref(db, DATABASES.contact),
   }
 }

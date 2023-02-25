@@ -1,10 +1,7 @@
-import { child, DatabaseReference, get, set } from "@firebase/database"
 import getConfig from "next/config"
 import { ifBackendEnabled } from "../lib/backend"
-import { getDatabases } from "../firebase/setup"
-import { FirebaseOptions } from "@firebase/app"
-import { AuthService } from "./AuthService"
 import { sampleQuestions } from "../lib/questions/sampling"
+import AdminService from "./AdminService"
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -20,42 +17,21 @@ const COOLDOWN = 60 * 5
  * Quiz service used to instantiate the quiz.
  */
 export class QuizService {
-  private readonly databases: FirebaseDatabases
-  private readonly auth: AuthService
-  constructor(fbOpts: FirebaseOptions) {
-    this.databases = getDatabases(fbOpts)
-    this.auth = new AuthService(fbOpts)
-  }
-  private get questionDb(): DatabaseReference {
-    const { questionDb } = this.databases
-    return questionDb
-  }
-  private get statsDb(): DatabaseReference {
-    const { statsDb } = this.databases
-    return statsDb
-  }
-  private get latestIdDb(): DatabaseReference {
-    const { latestIdDb } = this.databases
-    return latestIdDb
-  }
-  private initStats: DailyStats = {
+  private static initStats: DailyStatsSummary = {
     games: 0,
     correct: 0,
     questions: publicRuntimeConfig.questions,
   }
   @ifBackendEnabled()
-  private async commitQuestions(
+  private static async commitQuestions(
     questions: QuestionData[],
     quizId: number
   ): Promise<void> {
-    await set(child(this.questionDb, quizId.toString()), questions)
+    await AdminService.questionDb.child(quizId.toString()).set(questions)
   }
   @ifBackendEnabled()
-  private async commitStats(quizId: number): Promise<void> {
-    await set(
-      child(this.statsDb, `${quizId.toString()}/summary`),
-      this.initStats
-    )
+  private static async commitStats(quizId: number): Promise<void> {
+    await AdminService.statsDb.child(`${quizId}/summary`).set(this.initStats)
   }
 
   /**
@@ -65,25 +41,35 @@ export class QuizService {
    * we retrieve existing questions from the DB.
    */
   @ifBackendEnabled([0, sampleQuestions()])
-  async init(): Promise<[number, QuestionData[]]> {
-    await this.auth.signIn()
+  static async init(): Promise<[number, QuestionData[]]> {
     const [updated, quizId] = await this.getLatestQuiz()
     let questions: QuestionData[]
     if (updated) {
       questions = sampleQuestions()
-      this.commitQuestions(questions, quizId)
-        .then(() => console.log("committed questions to DB"))
-        .catch((e) => console.log("failed to commit questions to DB: ", e))
-      this.commitStats(quizId)
-        .then(() => console.log("committed stats to DB"))
-        .catch((e) => console.log("failed to commit stats: ", e))
+      await this.updateQuiz(questions, quizId)
     } else {
       console.log("using cached data from previous quizID")
-      const questionPath = child(this.questionDb, quizId.toString())
-      const questionsSnapshot = await get(questionPath)
+      const questionsSnapshot = await AdminService.questionDb
+        .child(quizId.toString())
+        .get()
       questions = questionsSnapshot.val() || []
     }
     return [quizId, questions]
+  }
+
+  /**
+   * Set new quiz data for the current quiz ID
+   * @param questions
+   * @param quizId
+   * @private
+   */
+  private static async updateQuiz(questions: QuestionData[], quizId: number) {
+    this.commitQuestions(questions, quizId)
+      .then(() => console.log("committed questions to DB"))
+      .catch((e) => console.log("failed to commit questions to DB: ", e))
+    this.commitStats(quizId)
+      .then(() => console.log("committed stats to DB"))
+      .catch((e) => console.log("failed to commit stats: ", e))
   }
 
   /**
@@ -96,16 +82,16 @@ export class QuizService {
    * was generated and a boolean flag indicating whether the quiz was updated.
    * @private
    */
-  private async getLatestQuiz(): Promise<[boolean, number]> {
-    const latestIdSnapshot = await get(this.latestIdDb)
+  private static async getLatestQuiz(): Promise<[boolean, number]> {
+    const latestIdSnapshot = await AdminService.latestIdDb.get()
     const latestIdContent = latestIdSnapshot.val() || { id: 0, time: 0 }
     let latestId = latestIdContent.id
     let updated = false
     const now = Math.floor(Date.now() / 1000)
     if (now - latestIdContent.time > COOLDOWN) {
       updated = true
-      await set(child(this.latestIdDb, "id"), ++latestId)
-      await set(child(this.latestIdDb, "time"), now)
+      await AdminService.latestIdDb.child("id").set(++latestId)
+      await AdminService.latestIdDb.child("time").set(now)
     }
     return [updated, latestId]
   }

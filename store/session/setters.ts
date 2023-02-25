@@ -56,6 +56,6 @@ export const setServerProps = thunk<SessionStoreModel>(
   }
 )
 
-function calculateDailyScore(stats: DailyStats) {
+function calculateDailyScore(stats: DailyStatsSummary) {
   return stats.correct / (stats.games * stats.questions)
 }

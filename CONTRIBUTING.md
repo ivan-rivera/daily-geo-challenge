@@ -37,7 +37,15 @@ NEXT_PUBLIC_PROD_FB_APP_ID=1:xxx:web:xxx
 NEXT_PUBLIC_PROD_GA_MEASUREMENT_ID=G-XXX
 ```
 
-Then you may also like to go into `settings.json` and set `backendEnabled=false`. Alternatively, you can create your own Firebase project and set the `DEV` environment to point at that project.
+Then you may also like to go into `settings.json` and set `backendEnabled=false`, which may be enough to test some frontend changes. Alternatively, you can create your own Firebase project and set the `DEV` environment to point at that project. You will also need to go into the project settings and set up a service account with the following environment variables:
+
+```shell
+ADMIN_DEV_CLIENT_ID="..."
+ADMIN_DEV_CLIENT_EMAIL="..."
+ADMIN_DEV_CLIENT_X509_CERT_URL="..."
+ADMIN_DEV_PRIVATE_KEY_ID="..."
+ADMIN_DEV_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
 
 Now you should be able to run `npm run dev` and the app should be running on `localhost:3000`. You should also be able to access Storybook and run tests (see `package.json` for available commands).
 

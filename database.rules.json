@@ -1,6 +1,20 @@
 {
   "rules": {
-    ".read": true,
-    ".write": "auth != null"
+    "questions": {
+      ".read": false,
+      ".write": false
+    },
+    "latestId": {
+      ".read": false,
+      ".write": false
+    },
+    "stats": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "contact": {
+      ".read": true,
+      ".write": "auth != null"
+    }
   }
 }

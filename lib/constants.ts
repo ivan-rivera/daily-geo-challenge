@@ -17,3 +17,10 @@ export const BUTTON_COLOURS = {
     color: "primary",
   },
 }
+
+export const DATABASES = {
+  questions: "questions",
+  latestId: "latestId",
+  stats: "stats",
+  contact: "contact",
+}
