@@ -82,7 +82,7 @@ export const shareScore = computed((state: State<SessionStoreModel>) => {
   const emojis = Object.values(state.answers).map(answerToEmoji).join("")
   const score = Object.values(state.answers).filter(isCorrect).length / size
   const scoreStr = Math.floor(score * 100).toString() + "%"
-  const header = `I got ${scoreStr} on ${publicRuntimeConfig.title}!`
+  const header = `I got ${scoreStr} on ${publicRuntimeConfig.title} #${state.quizId}`
   const callToAction = `Take the quiz yourself at ${publicRuntimeConfig.url}`
   return `${header}\n${emojis}\n${callToAction}\n${publicRuntimeConfig.hashtag}`
 })
