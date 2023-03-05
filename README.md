@@ -4,7 +4,7 @@
 
 ## About
 
-This is the source code for the [Daily Geo Challenge](www.daily-geo.com) website. The website is a quiz game that tests your knowledge of geography. Most of the questions are based on data extracted from Wikidata. However, the answers are not hardcoded, but are derived from the underlying data, which means that there is virtually an endless supply of questions. The questions are designed to be regenerated once per day (midnight UTC) with everyone seeing the same set of questions and possible answers.
+This is the source code for the [Daily Geo Challenge](www.daily-geo.com) website. The website is a quiz game that tests your knowledge of geography. Most of the questions are based on data extracted from Wikidata. However, the answers are not hardcoded, but are derived from the underlying data, which means that there is virtually an endless supply of questions. The questions are designed to be regenerated once per day (7 PM UTC) with everyone seeing the same set of questions and possible answers.
 
 ## Contributing
 

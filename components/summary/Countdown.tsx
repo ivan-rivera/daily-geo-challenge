@@ -30,7 +30,7 @@ const countRenderer = ({
  */
 export default function Countdown() {
   const now = new Date()
-  now.setUTCHours(0, 0, 0, 0)
+  now.setUTCHours(19, 0, 0, 0)
   now.setUTCDate(now.getUTCDate() + 1)
   return <ReactCountdown date={now.getTime()} renderer={countRenderer} />
 }
